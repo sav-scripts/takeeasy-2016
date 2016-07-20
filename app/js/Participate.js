@@ -47,6 +47,11 @@
         $("#invisible-container").append(templates[0].dom);
         $doms.container = $("#participate");
 
+        $doms.btnSend = $doms.container.find(".btn-send").on("click", function()
+        {
+            SceneHandler.toHash("/ParticipateForm");
+        });
+
 
         $doms.container.detach();
     }
