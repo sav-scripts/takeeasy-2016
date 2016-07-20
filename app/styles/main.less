@@ -1,4 +1,5 @@
 @import "common-mixins.less";
+@import "misc.less";
 
 @background-color: #f7e08f;
 
@@ -258,4 +259,74 @@ body{
 #participate-form{
     .container-pc();
     .layout-pc("layouts/participate-step-form-pc.jpg");
+
+    .percent-div(title, -342, -323, 715, 157, "participate-upload-title.png");
+    .percent-div(sub-title, -300, -168, 612, 29, "participate-form-sub-title.png");
+    .percent-div(title-girl, 191, -242, 115, 75, "participate-upload-title-girl.png");
+    .percent-div(left-girl, -447, -228, 117, 142, "participate-upload-left-girl.png");
+    .percent-div(mob, 337, 171, 122, 110, "participate-upload-mob.png");
+    .percent-div(btn-send, 202, 144, 133, 139, "participate-form-btn-send.png");
+
+    .btn-send{
+        cursor: pointer;
+        &:active{
+            margin-top: 3px;
+        }
+    }
+
+    .fields{
+        .percent-div(none, -281, -106, 324, 52, "participate-form-field-names.png");
+
+        .field-name, .field-phone, .field-email{
+            position: absolute;
+            height: 24px;
+            border: 1px solid black;
+            background: white;
+
+            padding: 0 8px;
+
+            .default-font(14px, #555);
+        }
+
+        .field-name{
+            left: 92px;
+            top: -5px;
+            width: 120px;
+        }
+
+        .field-phone{
+            left: 335px;
+            top: -5px;
+            width: 201px;
+        }
+
+        .field-email{
+            left: 94px;
+            top: 32px;
+            width: 442px;
+        }
+    }
+
+    .eula-content{
+        position: absolute;
+        background: rgba(255,255,255,.3);
+        border: 1px solid black;
+        left:-413px;
+        top:-22px;
+        width: 789px;
+        height: 163px;
+    }
+
+    .eula-confirm{
+
+        .percent-div(none, -103, 165, 266, 14, "participate-form-confirm-text.png");
+
+        .checkbox{
+            position: absolute;
+            left: -33px;
+            top:-4px;
+        }
+    }
+
+
 }

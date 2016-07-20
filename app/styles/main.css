@@ -1,4 +1,57 @@
 /** common mixins **/
+/* .custom-checkbox */
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  background: white;
+  border: 1px solid #000000;
+}
+.custom-checkbox label {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.custom-checkbox label:after {
+  content: '';
+  width: 9px;
+  height: 5px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border: 3px solid #000000;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.custom-checkbox label:hover::after {
+  opacity: 0;
+}
+.custom-checkbox input[type=checkbox] {
+  visibility: hidden;
+}
+.custom-checkbox input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+.custom-checkbox.no-style {
+  background: none;
+  border: none;
+}
+.custom-checkbox.no-style label {
+  display: none;
+}
+.custom-checkbox.no-style input[type=checkbox] {
+  visibility: visible;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+}
 html {
   padding: 0;
   margin: 0;
@@ -441,4 +494,123 @@ body {
   background-image: url("../images/layouts/participate-step-form-pc.jpg");
   background-size: cover;
   opacity: 0.3;
+}
+#participate-form .title {
+  position: absolute;
+  left: -342%;
+  top: -323%;
+  width: 715%;
+  height: 157%;
+  background-image: url("../images/participate-upload-title.png");
+  background-size: cover;
+}
+#participate-form .sub-title {
+  position: absolute;
+  left: -300%;
+  top: -168%;
+  width: 612%;
+  height: 29%;
+  background-image: url("../images/participate-form-sub-title.png");
+  background-size: cover;
+}
+#participate-form .title-girl {
+  position: absolute;
+  left: 191%;
+  top: -242%;
+  width: 115%;
+  height: 75%;
+  background-image: url("../images/participate-upload-title-girl.png");
+  background-size: cover;
+}
+#participate-form .left-girl {
+  position: absolute;
+  left: -447%;
+  top: -228%;
+  width: 117%;
+  height: 142%;
+  background-image: url("../images/participate-upload-left-girl.png");
+  background-size: cover;
+}
+#participate-form .mob {
+  position: absolute;
+  left: 337%;
+  top: 171%;
+  width: 122%;
+  height: 110%;
+  background-image: url("../images/participate-upload-mob.png");
+  background-size: cover;
+}
+#participate-form .btn-send {
+  position: absolute;
+  left: 202%;
+  top: 144%;
+  width: 133%;
+  height: 139%;
+  background-image: url("../images/participate-form-btn-send.png");
+  background-size: cover;
+}
+#participate-form .btn-send {
+  cursor: pointer;
+}
+#participate-form .btn-send:active {
+  margin-top: 3px;
+}
+#participate-form .fields {
+  position: absolute;
+  left: -281%;
+  top: -106%;
+  width: 324%;
+  height: 52%;
+  background-image: url("../images/participate-form-field-names.png");
+  background-size: cover;
+}
+#participate-form .fields .field-name,
+#participate-form .fields .field-phone,
+#participate-form .fields .field-email {
+  position: absolute;
+  height: 24px;
+  border: 1px solid black;
+  background: white;
+  padding: 0 8px;
+  font-family: '微軟正黑體', "Heiti TC", serif;
+  font-size: 14px;
+  color: #555;
+}
+#participate-form .fields .field-name {
+  left: 92px;
+  top: -5px;
+  width: 120px;
+}
+#participate-form .fields .field-phone {
+  left: 335px;
+  top: -5px;
+  width: 201px;
+}
+#participate-form .fields .field-email {
+  left: 94px;
+  top: 32px;
+  width: 442px;
+}
+#participate-form .eula-content {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid black;
+  left: -413px;
+  top: -22px;
+  width: 789px;
+  height: 163px;
+}
+#participate-form .eula-confirm {
+  position: absolute;
+  left: -103%;
+  top: 165%;
+  width: 266%;
+  height: 14%;
+  background-image: url("../images/participate-form-confirm-text.png");
+  background-size: cover;
+}
+#participate-form .eula-confirm .checkbox {
+  position: absolute;
+  left: -33px;
+  top: -4px;
 }
