@@ -5,9 +5,37 @@
 
     _p.init = function()
     {
-        ScalableContent.init([640]);
-        ScalableContent.enableFixFullImage = true;
-        ScalableContent.enableDrawBounds = true;
+        var hashArray =
+        [
+            "/Index",
+            "/Participate",
+            "/ParticipateForm"
+        ],
+        blockHashs =
+        [
+            //"/ParticipateForm"
+        ];
+
+        SceneHandler.init(hashArray,
+        {
+            blockHashs: blockHashs,
+            listeningHashChange: true,
+            version: Utility.urlParams.nocache == '1'? new Date().getTime(): "0",
+
+            cbBeforeChange: function()
+            {
+            },
+            cbContentChange: function(hashName)
+            {
+            },
+            hashChangeTester: function(hashName)
+            {
+                return hashName;
+            }
+        });
+
+        SceneHandler.toFirstHash();
+
 
         $(window).on("resize", onResize);
         onResize();
@@ -18,11 +46,8 @@
         var width = $(window).width(),
             height = $(window).height();
 
-
-        //ScalableContent.updateView(1280, height);
-
-        ScalableContent.updateView(width, height);
-        ScalableContent.updateResizeAble();
+        //ScalableContent.updateView(width, height);
+        //ScalableContent.updateResizeAble();
     }
 
 }());

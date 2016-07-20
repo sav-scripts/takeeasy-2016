@@ -3,7 +3,7 @@
 <head lang="en">
     <title></title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1334">
+    <meta name="viewport" content="width=640">
 
     <meta property="fb:app_id" content="xxx"/>
     <meta property="og:title" content="xxx" />
@@ -18,44 +18,28 @@
 <body onload="Main.init();">
 
 
+    <script src="js/lib/SquareLoading.1.0.1.js"></script>
+    <script>
+
+        window.Loading = SquareLoading;
+        Loading.progress(0).show();
+
+    </script>
+
     <div id="invisible-container"></div>
     <div id="scene-container">
 
         <div id="backgrounds"></div>
 
-        <!--<div id="index" resizable="640x950;1200x700">-->
-        <div id="index">
-
-            <!--<div class="layout"></div>-->
-
-            <div class="left-girl"></div>
-            <div class="right-boy"></div>
-
-            <div class="hand"></div>
-            <div class="hand-girl"></div>
-            <div class="my-image"></div>
-
-            <div class="desc"></div>
-            <div class="sub-title"></div>
-            <div class="title"></div>
-
-            <div class="left-mob"></div>
-            <div class="button-1"></div>
-            <div class="button-2"></div>
-            <div class="button-3"></div>
-
-            <div class="arrow-left"></div>
-            <div class="arrow-right"></div>
-
-            <div class="sample-thumb"></div>
-            <div class="sample-serial">0001</div>
-            <div class="sample-author">作者: 陳阿勇他阿嬤</div>
-
-        </div>
-
         <div id="menu"></div>
         <div id="logo"></div>
         <div id="statements"></div>
+
+
+        <div id="entry-view">
+
+
+        </div>
 
     </div>
 
@@ -71,8 +55,13 @@
     <!-- build:js js/optimized.js -->
     <script src="js/lib/FBHelper.js"></script>
     <script src="js/lib/Helper.1.0.2.js"></script>
-    <script src="js/lib/ScalableContent.js"></script>
+    <script src="js/lib/SceneHandler.1.0.2.js"></script>
+    <script src="js/lib/jquery.waitforimages.min.js"></script>
+    <script src="js/lib/Utility.0.0.13.js"></script>
     <script src="js/Main.js"></script>
+    <script src="js/Index.js"></script>
+    <script src="js/Participate.js"></script>
+    <script src="js/ParticipateForm.js"></script>
     <!-- endbuild -->
 
 </body>
