@@ -1,6 +1,19 @@
 @import "common-mixins.less";
 
-@background-color: #faefd8;
+@background-color: #f7e08f;
+
+@pc-width: 1200px;
+@pc-height: 700px;
+@mobile-width: 640px;
+@mobile-height: 950px;
+
+@use-layout: true;
+
+.default-font(@font-size: 14px, @font-color: #000){
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: @font-size;
+    color: @font-color;
+}
 
 
 html {
@@ -55,25 +68,156 @@ body{
     }
 }
 
-/* index */
+@media (max-width: @pc-width) {
+    body{
+        overflow-x: auto;
+    }
+    #scene-container{
+        width: @pc-width;
+    }
+}
+
+@media (max-height: @pc-height) {
+    body{
+        overflow-y: auto;
+    }
+    #scene-container{
+        height: @pc-height;
+    }
+}
+
+/** common **/
+.container-pc(){
+    position: absolute;
+    left:50%;
+    top:50%;
+    width: 100px;
+    height: 100px;
+}
+.layout-pc(@image-src; @opacity: .3;){
+    & when (@use-layout = true)
+    {
+        .layout{
+            .percent-div(none, -@pc-width*.5, -@pc-height*.5, @pc-width, @pc-height, @image-src);
+            opacity: @opacity;
+        }
+    }
+}
+#backgrounds{
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    .image-bg("background.jpg");
+}
+
+/** ui **/
+#menu{
+    position: absolute;
+    z-index: 1000;
+    .image-bg('menu-icon.png');
+    right: 36px;
+    top: 33px;
+    width: 36px;
+    height: 36px;
+}
+#logo{
+    position: absolute;
+    z-index: 1000;
+    .image-bg('logo.png');
+    left: 23px;
+    top: 16px;
+    width: 156px;
+    height: 58px;
+}
+#statements{
+    position: absolute;
+    z-index: 1000;
+    .image-bg('statements.png');
+    right: 38px;
+    bottom: 7px;
+    width: 385px;
+    height: 36px;
+
+}
+
+/** index **/
 #index {
 
-    .percent-container();
-    left: 50%;
-    top: 50%;
+    .container-pc();
+    .layout-pc("layouts/index-pc.jpg");
 
-    .percent-div(my-image, -600, -314, 1900, 628, "sample.png");
-    @media (max-width: 1280px){
-        .percent-div(my-image, -600, -314, 1200, 628, "sample.png");
-    }
-    @media (max-width: 640px){
-        .percent-div(my-image, -300, -157, 600, 314, "sample.png");
+
+    .percent-div(left-girl, -416, -186, 153, 194, "index-left-girl.png");
+    .percent-div(right-boy, 268, -239, 178, 170, "index-right-boy.png");
+
+    .percent-div(hand, -260, -53, 535, 641, "index-hand.png");
+    .percent-div(hand-girl, 144, -35, 115, 75, "index-hand-girl.png");
+
+    .percent-div(desc, -245, -111, 508, 70, "index-desc.png");
+    .percent-div(sub-title, -284, -200, 539, 81, "index-sub-title.png");
+    .percent-div(title, -265, -338, 576, 179, "index-title.png");
+
+    .percent-div(left-mob, -458, 80, 179, 161, "index-left-mob.png");
+    .percent-div(button-1, -352, 114, 133, 139, "index-button-1.png");
+    .percent-div(button-2, -211, 114, 133, 139, "index-button-2.png");
+    .percent-div(button-3, 78, 114, 133, 139, "index-button-3.png");
+
+    .percent-div(arrow-left, 210, 163, 30, 50, "index-arrow-left.png");
+    .percent-div(arrow-right, 377, 163, 30, 50, "index-arrow-right.png");
+
+    .sample-thumb{
+        position: absolute;
+        left:236px;
+        top:138px;
+        width: 140px;
+        height: 98px;
+        border: 1px solid rgba(0,0,0,.5);
+        background-color: white;
     }
 
-    /*
-    .my-image{
-        .centralized-div(50%, 50%, 1200px, 628px);
-        .image-bg("sample.png");
+    .sample-serial{
+        position: absolute;
+        left: 238px;
+        top:237px;
+        .default-font(14px);
+        width: 50px;
+        .unselectable();
+        cursor: default;
     }
-    */
+
+    .sample-author{
+        position: absolute;
+        left: 288px;
+        top:237px;
+        .default-font(14px);
+        width: 90px;
+        text-align: right;
+        letter-spacing: 0;
+        .unselectable();
+        cursor: default;
+    }
+
+    .button-1, .button-2, .button-3{
+        cursor: pointer;
+        &:active{
+            margin-top: 5px;
+        }
+    }
+    .arrow-left{
+        cursor: pointer;
+        &:active{
+            margin-left: -2px;
+        }
+    }
+    .arrow-right{
+        cursor: pointer;
+        &:active{
+            margin-left: 2px;
+        }
+    }
+
+
+
 }

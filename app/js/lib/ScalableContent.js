@@ -17,6 +17,11 @@
         enableFixFullImage: true,
         enableDrawBounds: true,
 
+        init: function(viewWidthRanges)
+        {
+            _currentView.viewWidthRanges = viewWidthRanges;
+        },
+
         updateView: function(width, height)
         {
 

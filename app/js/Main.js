@@ -5,6 +5,7 @@
 
     _p.init = function()
     {
+        ScalableContent.init([640]);
         ScalableContent.enableFixFullImage = true;
         ScalableContent.enableDrawBounds = true;
 

@@ -1,6 +1,7 @@
 .idea
 design/
 documents/
+node_modules
 
 # Windows image file caches
 Thumbs.db
