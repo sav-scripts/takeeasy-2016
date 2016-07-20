@@ -37,7 +37,8 @@ module.exports = function(grunt)
                             //'images/*.{png,gif,jpg,svg}',
                             '*.html',
                             'js/lib/TweenMax.min.js',
-                            'js/lib/jquery.min.js'
+                            'js/lib/jquery.min.js',
+                            'js/lib/SquareLoading.1.0.1.js'
                         ],
                         dest: 'dist/app'
                     }
