@@ -12,7 +12,7 @@ var send =
     "search_type": "user_name", // 搜尋方式, 有兩種: user_name => 投稿者名稱, serial => 作品流水號
     "sort_type": "date", // 排序方式, 有兩種: date => 依投稿日期, votes => 投票數量
     "page_index": 0,
-    "page_size": 10
+    "page_size": 10 // 搜尋的結果如果有多筆的話, 依據 page_size 分頁, 然後傳回 page_index 指定的的分頁的內容
 };
 
 
@@ -34,6 +34,6 @@ var response =
         }
         // ...etc
     ],
-    "num_pages": 12,
-    "page_index": 0
+    "num_pages": 12, // 搜尋結果的頁數
+    "page_index": 0 // 所回應的資料的分頁索引
 };
