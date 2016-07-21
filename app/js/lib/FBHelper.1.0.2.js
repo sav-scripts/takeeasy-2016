@@ -97,6 +97,120 @@
         });
     };
 
+    _p.checkLoginStatus = function(permissions, cb)
+    {
+        FB.getLoginStatus(function(response)
+        {
+            if (response.status === 'connected')
+            {
+                if(permissions)
+                {
+                    checkPermissions(response.authResponse);
+                }
+                else
+                {
+                    cb.call(null, null, response.authResponse);
+                }
+            }
+            else
+            {
+                //doRedirectLogin();
+                cb.call(null, {message:"no connect"}, null);
+            }
+        });
+
+        function checkPermissions(authResponse)
+        {
+            var permissionDic = {},
+                necessaryCount = permissions.length,
+                matchedCount = 0;
+
+            for(var i=0;i<permissions.length;i++)
+            {
+                permissionDic[permissions[i]] = false;
+            }
+
+            FB.api('/me/permissions', function(response)
+            {
+                if (response && response.data && response.data.length)
+                {
+
+                    var i, obj;
+                    for(i=0;i<response.data.length;i++)
+                    {
+                        obj = response.data[i];
+                        if(permissionDic[obj.permission] !== undefined)
+                        {
+                            permissionDic[obj.permission] = true;
+                            matchedCount++;
+                        }
+                    }
+
+                    if(matchedCount < necessaryCount)
+                    {
+                        cb.call(null, {message:"lack permission", permissionDic: permissionDic}, null);
+                    }
+                    else
+                    {
+                        cb.call(null, null, authResponse);
+                    }
+                }
+                else
+                {
+                    cb.call(null, {message:"check permission fail"}, null);
+                }
+            });
+        }
+    };
+
+    _p.postImageToFacebook = function(canvas, authToken, cb)
+    {
+        var imageData  = canvas.toDataURL("image/png");
+        var blob;
+        try{
+            blob = dataURItoBlob(imageData);
+        }catch(e){console.log(e);}
+        var fd = new FormData();
+        fd.append("access_token",authToken);
+        fd.append("source", blob);
+        //fd.append("message","Photo Text");
+        try{
+            $.ajax({
+                url:"https://graph.facebook.com/me/photos?access_token=" + authToken,
+                type:"POST",
+                data:fd,
+                processData:false,
+                contentType:false,
+                cache:false,
+                success:function(data){
+                    //console.log("success " + data);
+                    cb.call(null, null, data);
+                },
+                error:function(shr,status,data){
+                    //console.log("error " + data + " Status " + shr.status);
+
+                    cb.call(null, "error " + data + " Status " + shr.status);
+                },
+                complete:function(){
+                    //console.log("Posted to facebook");
+                }
+            })
+
+        }catch(e){
+            cb.call(null, e);
+        }
+    };
+
+    function dataURItoBlob(dataURI) {
+        var byteString = atob(dataURI.split(',')[1]);
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ab], { type: 'image/png' });
+    }
+
 
 
     window.FBData = FBData;

@@ -547,7 +547,45 @@
         // writing result to canvas.
         resCtx.putImageData(imgRes, offsetX, offsetY);
         return resCV;
-    }
+    };
+
+
+
+
+    Helper.imageToCanvas = function(image, width, height)
+    {
+        var canvas = document.createElement("canvas");
+
+        var scaleRate = 1;
+
+        //var iosFix = Boolean(Main.isiPhone5 && image.width >= 3264 && image.height >= 2448),
+        //    scaleRate = iosFix? .5: 1;
+
+
+        var rw = width;
+        var rh = height;
+
+        canvas.width = rw;
+        canvas.height = rh;
+
+        var ctx = canvas.getContext("2d");
+        var bound = Helper.getSize_cover(rw, rh, image.width, image.height);
+
+        var offsetX = (rw-bound.width)*.5;
+        var offsetY = (rh-bound.height)*.5;
+
+        if(bound.ratio < 1)
+        {
+            $(canvas).detach();
+            canvas = Helper.downScaleImage(image, bound.ratio, offsetX, offsetY, rw, rh);
+        }
+        else
+        {
+            ctx.drawImage(image, 0, 0, image.width, image.height, offsetX, offsetY, bound.width * scaleRate, bound.height);
+        }
+
+        return canvas;
+    };
 
 
 }());

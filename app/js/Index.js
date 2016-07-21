@@ -50,7 +50,10 @@
 
         $doms.btnToParticipate = $doms.container.find(".button-1").on("click", function()
         {
-            SceneHandler.toHash("/Participate");
+            Main.loginFB(function()
+            {
+                SceneHandler.toHash("/Participate");
+            });
         });
 
         $doms.btnToEntries = $doms.container.find(".button-2").on("click", function()

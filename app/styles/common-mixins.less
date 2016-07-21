@@ -1,12 +1,12 @@
 /** common mixins **/
 .abs-div(@left; @top; @width; @height; @marginLeft:0; @marginTop:0;){
     position: absolute;
-    left: @left;
-    top: @top;
-    width: @width;
-    height: @height;
-    margin-left: @marginLeft;
-    margin-top: @marginTop;
+    left: @left * 1px;
+    top: @top * 1px;
+    width: @width * 1px;
+    height: @height * 1px;
+    margin-left: @marginLeft * 1px;
+    margin-top: @marginTop * 1px;
 }
 .centralized-div(@left; @top; @width; @height; @offsetX:0; @offsetY:0;){
     position: absolute;

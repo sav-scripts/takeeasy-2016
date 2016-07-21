@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=640">
 
     <meta property="fb:app_id" content="xxx"/>
-    <meta property="og:title" content="xxx" />
+    <meta property="og:title" content="輕鬆小品暑假打工爽的咧" />
     <meta property="og:type" content="activity" />
     <meta property="og:url" content="xxx" />
-    <meta property="og:description" content="xxx" />
-    <meta property="og:image" content="xxx" />
+    <meta property="og:description" content="把腦海中擋不住的爽感通通畫出來，就有機會像微疼、啾啾妹、小學課本的逆襲一樣出道成為人氣插畫家，再得10萬元打工獎金＋一箱輕鬆小品，天哪！這夏實在太爽惹～～" />
+    <meta property="og:image" content="./misc/fb-share.jpg" />
 
     <link rel="stylesheet" href="styles/main.css">
 
@@ -26,7 +26,71 @@
 
     </script>
 
-    <div id="invisible-container"></div>
+    <div id="invisible-container">
+
+        <div id="entry-view">
+
+            <div class="layout"></div>
+
+            <div class="basement"></div>
+            <div class="btn-close"></div>
+            <div class="arrow-left"></div>
+            <div class="arrow-right"></div>
+
+
+            <div class="optional-fields">
+                <div class="texts-1"></div>
+                <div class="field-num-votes">29,903</div>
+                <div class="field-serial">36</div>
+                <div class="field-author">陳阿吉</div>
+            </div>
+
+
+            <div class="texts-2"></div>
+            <div class="field-description">some texts some textssome textssome textssome textssome textssome textssome textssome textssome texts</div>
+
+            <div class="image-preview"></div>
+
+
+        </div>
+
+        <div id="common-form">
+
+            <!--<div class="layout"></div>-->
+
+            <div class="sub-title"></div>
+            <div class="mob"></div>
+            <div class="btn-send"></div>
+
+            <div class="fields">
+                <input class="field-name" title="">
+                <input class="field-phone" title="">
+                <input class="field-email" title="">
+            </div>
+
+            <div class="eula-content">
+                <div class="scroll-base"></div>
+
+
+                <div class="content-container">
+                    <div class="content"></div>
+                </div>
+
+            </div>
+
+            <div class="eula-confirm">
+
+                <div class="checkbox custom-checkbox">
+                    <input type="checkbox" id="eula-checkbox" class="eula-checkbox" />
+                    <label for="eula-checkbox"></label>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
     <div id="scene-container">
 
         <div id="backgrounds"></div>
@@ -34,11 +98,6 @@
         <div id="menu"></div>
         <div id="logo"></div>
         <div id="statements"></div>
-
-
-        <div id="entry-view">
-
-        </div>
 
     </div>
 
@@ -52,15 +111,20 @@
 
 
     <!-- build:js js/optimized.js -->
-    <script src="js/lib/FBHelper.js"></script>
-    <script src="js/lib/Helper.1.0.2.js"></script>
+    <script src="js/lib/modernizr-custom.js"></script>
+    <script src="js/lib/FBHelper.1.0.2.js"></script>
+    <script src="js/lib/Helper.1.0.3.js"></script>
     <script src="js/lib/SceneHandler.1.0.2.js"></script>
     <script src="js/lib/jquery.waitforimages.min.js"></script>
-    <script src="js/lib/Utility.0.0.13.js"></script>
+    <script src="js/lib/Utility.0.0.14.js"></script>
+    <script src="js/lib/jquery.mousewheel.min.js"></script>
+    <script src="js/lib/hammer.js"></script>
+    <script src="js/lib/simple_scroller.0.0.7.js"></script>
     <script src="js/Main.js"></script>
     <script src="js/Index.js"></script>
     <script src="js/Participate.js"></script>
-    <script src="js/ParticipateForm.js"></script>
+    <script src="js/CommonForm.js"></script>
+    <script src="js/EntryView.js"></script>
     <!-- endbuild -->
 
 </body>
