@@ -94,6 +94,8 @@
         self.Title.show();
         self.UploadStep.show(0, cb);
 
+        //self.Success.show();
+
         //_currentStep = 'form';
         //self.Title.show();
         //CommonForm.show(0, cb);
@@ -165,7 +167,8 @@
 (function ()
 {
     var $doms = {},
-        _isHiding = true;
+        _isHiding = true,
+        _shareEntrySerial = null;
 
     var self = window.Participate.Success =
     {
@@ -183,29 +186,32 @@
 
             $doms.btnShare = $doms.container.find(".btn-share").on("click", function()
             {
-                Main.loginFB(function()
-                {
-                    FB.ui
-                    (
+                FB.ui
+                (
+                    {
+                        method:"share",
+                        display: "iframe",
+                        href: Utility.getPath() + "?serial=" + _shareEntrySerial
+                    },function(response)
+                    {
+                        if(!response.error && !response.error_code)
                         {
-                            method:"share",
-                            display: "iframe",
-                            href: Utility.getPath()
-                        },function(response)
-                        {
-                            if(!response.error)
-                            {
-                                self.hide();
-                                SceneHandler.toHash("/Index");
-                            }
+                            self.hide();
+                            SceneHandler.toHash("/Index");
                         }
-                    );
-                });
+                    }
+                );
 
             });
 
             $doms.container.detach();
         },
+
+        setShareEntryUrl: function(serial)
+        {
+            _shareEntrySerial = serial;
+        },
+
         show: function (delay, cb)
         {
             if(!_isHiding) return;

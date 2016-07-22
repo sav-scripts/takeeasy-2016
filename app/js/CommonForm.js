@@ -111,7 +111,9 @@
                         }
                         else
                         {
-                            console.log("success");
+                            //console.log("success");
+                            Participate.Success.setShareEntryUrl(response.serial);
+                            Participate.Success.show();
                         }
 
                         Loading.hide();

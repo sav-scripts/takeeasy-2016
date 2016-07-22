@@ -257,7 +257,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(9).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(9) .text {
   position: absolute;
@@ -285,7 +289,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(8).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(8) .text {
   position: absolute;
@@ -313,7 +321,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(7).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(7) .text {
   position: absolute;
@@ -341,7 +353,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(6).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(6) .text {
   position: absolute;
@@ -369,7 +385,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(5).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(5) .text {
   position: absolute;
@@ -397,7 +417,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(4).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(4) .text {
   position: absolute;
@@ -425,7 +449,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(3).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(3) .text {
   position: absolute;
@@ -453,7 +481,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(2).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(2) .text {
   position: absolute;
@@ -481,7 +513,11 @@ div.disactivated {
   width: 136px;
   height: 41px;
   cursor: pointer;
+  opacity: .4;
   background-position: bottom;
+}
+#menu .button-container .button:nth-child(1).activated {
+  opacity: 1;
 }
 #menu .button-container .button:nth-child(1) .text {
   position: absolute;

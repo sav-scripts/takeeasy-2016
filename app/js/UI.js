@@ -74,7 +74,7 @@
     {
         var $dom = $doms.buttons[name] = $doms.buttonContainer.find(".button:nth-child("+index+")");
 
-        $dom.on("click", function()
+        $dom.toggleClass("activated", true).on("click", function()
         {
             self.hide();
 
