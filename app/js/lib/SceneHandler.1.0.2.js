@@ -9,6 +9,7 @@
     var _hashDic = {},
         _isPlaying = false,
         _currentHash = null,
+        _lastHash = null,
         _cbAfterToContent = null,
         _cbContentLoaded = null,
         _defaultHash = "/Index",
@@ -35,6 +36,11 @@
             array.push("/" + name);
         }
         return array;
+    };
+
+    _p.getLastHash = function()
+    {
+        return _lastHash;
     };
 
     _p.init = function(scenes, opts)
@@ -155,6 +161,8 @@
     {
         if(noUpdate) _ignoreNextHashChange = true;
         window.location.hash = "#" + targetHash;
+
+        //console.log("setHash: " + targetHash);
     };
 
     _p.toFirstHash = function(options)
@@ -214,6 +222,7 @@
         {
             options.isFirstIn = true;
 
+            _lastHash = _currentHash;
             _currentHash = hashName;
             targetObj = _hashDic[hashName];
 
@@ -231,6 +240,7 @@
 
             _p.currentScene = targetObj.stageClass;
 
+            _lastHash = _currentHash;
             _currentHash = hashName;
 
             currentObj.stageClass.stageOut(options, function()

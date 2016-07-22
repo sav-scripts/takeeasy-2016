@@ -16,7 +16,7 @@ var send =
     "fb_uid": "231356646542", // facebook uid
     "fb_token": "asdf89f79asfsdf678asf0sadfasf", // facebook access token
 
-    "image_data": "somebase64string", // image data,
+    "image_data": "somebase64string", // image data, base 64 string, jpeg 格式, 已去除開頭 "data:image/jpeg;base64," 字串,
     "description": "這作品的精神是....balabalabala" // 作品創作概念
 };
 

@@ -140,14 +140,103 @@ div{
 }
 
 /** ui **/
+#menu-cover{
+    position: absolute;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
 #menu{
+
     position: absolute;
     z-index: 1000;
-    .image-bg('menu-icon.png');
-    right: 36px;
-    top: 33px;
-    width: 36px;
-    height: 36px;
+    right: 0;
+    top: 0;
+
+    .icon{
+        position: absolute;
+
+        .image-bg('menu-icon.png');
+        right: 36px;
+        top:33px;
+        width: 36px;
+        height: 36px;
+
+        cursor: pointer;
+    }
+
+    .button-container{
+
+        @num-buttons: 9;
+        @text-gap-h: 40px;
+
+        @button-w: 136px;
+        @button-h: 41px;
+
+        @total-h: @num-buttons * @button-h;
+
+        position: absolute;
+        right:80px;
+        top:33px;
+        width: @button-w;
+        height: @total-h;
+
+        overflow-y: hidden;
+
+        transition: height .3s ease-out;
+
+        visibility: hidden;
+
+        &.close-mode{
+            height:0;
+        }
+
+        .my-mixin(1);
+
+        .my-mixin(@index) when (@index <= @num-buttons)
+        {
+            .my-mixin((@index + 1));
+
+            @i: @index - 1;
+
+            .button:nth-child(@{index}){
+                position: relative;
+                right:0;
+                top:0;
+                .image-bg("menu-button-base.png");
+                width: @button-w;
+                height: @button-h;
+
+                cursor: pointer;
+
+                //            transition: background-position .4s ease-out;
+                background-position: bottom;
+
+                .text{
+                    position: absolute;
+                    left:25px;
+                    top:13px;
+                    width: 90px;
+                    height: 38px;
+                    .image-bg("menu-texts.png");
+
+                    background-repeat: no-repeat;
+                    background-position: 0 (-@i * @text-gap-h );
+                }
+
+
+
+                &:hover{
+                    background-position: top;
+
+                    .text{
+                        background-position: -90px (-@i * @text-gap-h );
+                    }
+                }
+            }
+        }
+    }
 }
 #logo{
     position: absolute;
@@ -190,12 +279,12 @@ div{
     .percent-div(button-2, -211, 114, 133, 139, "index-button-2.png");
     .percent-div(button-3, 78, 114, 133, 139, "index-button-3.png");
 
-    .percent-div(arrow-left, 210, 163, 30, 50, "index-arrow-left.png");
-    .percent-div(arrow-right, 368, 163, 30, 50, "index-arrow-right.png");
+    .percent-div(arrow-left, 214, 163, 30, 50, "index-arrow-left.png");
+    .percent-div(arrow-right, 372, 163, 30, 50, "index-arrow-right.png");
 
     .sample-thumb{
         position: absolute;
-        left:236px;
+        left:240px;
         top:137px;
         width: 133px;
         height: 100px;
@@ -205,7 +294,7 @@ div{
 
     .sample-serial{
         position: absolute;
-        left: 238px;
+        left: 242px;
         top:237px;
         .default-font(14px, #555555);
         width: 50px;
@@ -215,7 +304,7 @@ div{
 
     .sample-author{
         position: absolute;
-        left: 281px;
+        left: 285px;
         top:237px;
         .default-font(14px, #555555);
         width: 90px;
@@ -295,6 +384,26 @@ div{
             .default-font(14px, #999999);
 
             resize: none;
+        }
+
+
+        .upload-confirm{
+
+            .percent-div(none, -179, 172, 336, 81, "participate-upload-confirm-text.png");
+
+            .checkbox{
+                position: absolute;
+                left: -33px;
+                top:-1px;
+            }
+
+            .btn-rule{
+                .abs-div(13,62,60,22);
+//                background: rgba(0,0,0,.2);
+                .image-bg("transparent-pixel.png");
+                background-repeat: repeat;
+                cursor: pointer;
+            }
         }
     }
 }
@@ -433,10 +542,13 @@ div{
 
             .content{
                 position: relative;
-                width: 500px;
-                height: 1398px;
+                width: 728px;
+                height: 476px;
 
-                background: linear-gradient(black, white);
+                left: 13px;
+
+//                background: linear-gradient(black, white);
+                .image-bg("eula-content.png");
 
                 .unselectable();
 
@@ -589,5 +701,81 @@ div{
         .abs-div(-478, -127, 474, 356);
         background: white;
         border: 1px solid black;
+    }
+}
+
+/** rule **/
+#rule{
+    .container-pc();
+    .layout-pc("layouts/rule-pc.jpg");
+
+    .basement{
+
+        .abs-div(-531,-255,1056,537);
+
+        background-color:white;
+        border: 1px solid #666;
+
+        .title{
+            .abs-div(432,24,176,46);
+            .image-bg("rule-title.png");
+        }
+        .scroll-base{
+            .abs-div(1020, 86, 27, 444);
+          background-color: #fff7dc;
+//            background-color: blue;
+        }
+
+
+        .btn-close{
+            .abs-div(1019, 9, 28, 28);
+            .image-bg("common-btn-close.png");
+
+            cursor: pointer;
+            &:active{
+                margin-top: 3px;
+            }
+        }
+
+        .content-container{
+            position: absolute;
+
+            left:33px;
+            top:86px;
+            width: 980px;
+            height: 444px;
+
+//            background: rgba(0,0,0,.2);
+
+            .content{
+
+                position: relative;
+                width: 961px;
+                height: 1495px;
+
+                margin-top: 4px;
+
+                .image-bg("rule-content.png");
+
+                .unselectable();
+
+                overflow-y: auto;
+
+            }
+        }
+        .ss_scrollbase{
+            background: none;
+        }
+        .ss_scrollbar{
+
+            position: absolute;
+
+            .image-bg("scroll-bar.png");
+            width: 21px;
+            height: 38px;
+            margin-left: 0;
+            margin-top: 0;
+            background-color: transparent;
+        }
     }
 }

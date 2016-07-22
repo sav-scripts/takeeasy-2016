@@ -30,7 +30,7 @@
 
         <div id="entry-view">
 
-            <div class="layout"></div>
+            <!--<div class="layout"></div>-->
 
             <div class="basement"></div>
             <div class="btn-close"></div>
@@ -63,9 +63,9 @@
             <div class="btn-send"></div>
 
             <div class="fields">
-                <input class="field-name" title="">
-                <input class="field-phone" title="">
-                <input class="field-email" title="">
+                <input class="field-name" title="" maxlength="50">
+                <input class="field-phone" title="" maxlength="10">
+                <input class="field-email" title="" maxlength="100">
             </div>
 
             <div class="eula-content">
@@ -95,7 +95,25 @@
 
         <div id="backgrounds"></div>
 
-        <div id="menu"></div>
+        <div id="menu-cover"></div>
+        <div id="menu">
+
+            <div class="icon"></div>
+            <div class="button-container close-mode">
+
+                <div class="button btn-index"><div class="text"></div></div>
+                <div class="button btn-index"><div class="text"></div></div>
+                <div class="button btn-index"><div class="text"></div></div>
+                <div class="button btn-index"><div class="text"></div></div>
+                <div class="button btn-index"><div class="text"></div></div>
+                <div class="button btn-index"><div class="text"></div></div>
+                <div class="button btn-index"><div class="text"></div></div>
+                <div class="button btn-index"><div class="text"></div></div>
+                <div class="button btn-index"><div class="text"></div></div>
+
+            </div>
+
+        </div>
         <div id="logo"></div>
         <div id="statements"></div>
 
@@ -121,9 +139,13 @@
     <script src="js/lib/hammer.js"></script>
     <script src="js/lib/simple_scroller.0.0.7.js"></script>
     <script src="js/Main.js"></script>
+    <script src="js/UI.js"></script>
     <script src="js/Index.js"></script>
+    <script src="js/Rule.js"></script>
     <script src="js/Participate.js"></script>
+    <script src="js/Participate.Upload.js"></script>
     <script src="js/CommonForm.js"></script>
+    <script src="js/ApiProxy.js"></script>
     <script src="js/EntryView.js"></script>
     <!-- endbuild -->
 

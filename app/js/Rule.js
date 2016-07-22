@@ -3,7 +3,7 @@
     var $doms = {},
         _isInit = false;
 
-    window.Index =
+    window.Rule =
     {
         stageIn: function (options, cb)
         {
@@ -18,14 +18,14 @@
             {
                 var templates =
                     [
-                        {url: "_index.html", startWeight: 0, weight: 100, dom: null}
+                        {url: "_rule.html", startWeight: 0, weight: 100, dom: null}
                     ];
 
                 SceneHandler.loadTemplate(null, templates, function loadComplete()
                 {
                     build(templates);
                     _isInit = true;
-                    cb.apply(null, [true]);
+                    cb.apply(null);
                 }, 0);
             }
         },
@@ -41,25 +41,32 @@
         }
     };
 
-
     function build(templates)
     {
         $("#invisible-container").append(templates[0].dom);
-        $doms.container = $("#index");
+        $doms.container = $("#rule");
 
+        $doms.contentContainer = $doms.container.find(".content-container");
 
-        $doms.btnToParticipate = $doms.container.find(".button-1").on("click", function()
+        var containerHeight = $doms.contentContainer.height();
+        var ss = new SimpleScroller($doms.contentContainer[0], null, 0, Modernizr.touchevents).update(true);
+
+        var $ssContainer = $(ss.doms.container);
+        ss.containerSize(null, containerHeight).scrollBound($ssContainer.width()+10, 3, 0, containerHeight-44).update(true);
+
+        $doms.btnClose = $doms.container.find(".btn-close").on("click", function()
         {
-            Main.loginFB("/Participate", function()
+            var lashHash = SceneHandler.getLastHash();
+            if(lashHash)
             {
-                SceneHandler.toHash("/Participate");
-            });
+                SceneHandler.toHash(lashHash);
+            }
+            else
+            {
+                SceneHandler.toHash("/Index");
+            }
         });
 
-        $doms.btnToEntries = $doms.container.find(".button-2").on("click", function()
-        {
-            //SceneHandler.toContent("/ParticipateForm");
-        });
 
         $doms.container.detach();
     }
