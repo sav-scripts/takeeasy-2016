@@ -2,6 +2,10 @@
 {
     var $doms = {},
         _isHiding = true,
+        _keyword = "xxx",
+        _searchType = "user_name",
+        _sortType = "date",
+        _pageSize = 10,
         _thumbs = [];
 
     var self = window.Entries.List =
@@ -11,8 +15,17 @@
             $doms.container = $container;
             $doms.parent = $container.parent();
 
-            $doms.arrowLeft = $doms.container.find(".arrow-left");
-            $doms.arrowRight = $doms.container.find(".arrow-right");
+            $doms.arrowLeft = $doms.container.find(".arrow-left").on("click", function()
+            {
+                self.PageIndex.toPrevPage();
+            });
+
+            $doms.arrowRight = $doms.container.find(".arrow-right").on("click", function()
+            {
+                self.PageIndex.toNextPage();
+            });
+
+            self.updateArrows(false, false);
 
 
             self.Thumb.$container = $doms.container.find(".output-container");
@@ -20,8 +33,8 @@
 
             self.PageIndex.init($doms.container.find(".page-index-container"));
 
-            createThumb(123, 'xxx', '0001', "./images/participate-upload-title-girl.png");
-            createThumb(321, 'xxx', '0002', "./images/participate-upload-title-girl.png");
+            //createThumb(123, 'xxx', '0001', "./images/participate-upload-title-girl.png");
+            //createThumb(321, 'xxx', '0002', "./images/participate-upload-title-girl.png");
 
             $doms.container.detach();
         },
@@ -40,6 +53,8 @@
             tl.add(function ()
             {
                 if (cb) cb.apply();
+
+                self.doSearch(0);
             });
 
         },
@@ -62,6 +77,62 @@
         {
             $doms.arrowLeft.css("display", haveLastPage? "block": "none");
             $doms.arrowRight.css("display", haveNextPage? "block": "none");
+        },
+
+        doSearch: function(pageIndex)
+        {
+            Loading.show();
+
+            var params =
+            {
+                "keyword": _keyword,
+                "search_type": _searchType,
+                "sort_type": _sortType,
+                "page_index": pageIndex,
+                "page_size": _pageSize
+            };
+
+            ApiProxy.callApi("entries_search", params, function(response)
+            {
+                if(response.error)
+                {
+                    alert(response.error);
+                }
+                else
+                {
+                    //console.log("data = " + response.data);
+
+                    self.PageIndex.update(parseInt(response.num_pages), parseInt(response.page_index)+1);
+
+                    self.updateEntries(response.data);
+                }
+
+                Loading.hide();
+            });
+        },
+
+        updateEntries: function(data)
+        {
+            clearThumbs();
+
+            var i, obj;
+            for(i=0;i<data.length;i++)
+            {
+                obj = data[i];
+
+                createThumb(obj.num_votes, obj.name, obj.serial, obj.url);
+            }
+
+        },
+
+        clear: function()
+        {
+            clearThumbs();
+        },
+
+        changePage: function()
+        {
+
         }
     };
 
@@ -124,7 +195,7 @@
 
             self.clear();
 
-            self.update(72, 6);
+            //self.update(72, 6);
         },
 
         toPrevPage: function()
@@ -152,7 +223,9 @@
             if(pageIndex < 1) pageIndex = 1;
             if(pageIndex > _numPages) pageIndex = _numPages;
 
-            self.update(_numPages, pageIndex);
+            Entries.List.doSearch(pageIndex-1);
+
+            //self.update(_numPages, pageIndex);
         },
 
         update: function(numPages, pageIndex)
