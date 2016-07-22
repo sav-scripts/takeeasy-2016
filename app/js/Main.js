@@ -47,6 +47,7 @@
             [
                 "/Index",
                 "/Participate",
+                "/Entries",
                 "/Rule"
             ],
              blockHashs =

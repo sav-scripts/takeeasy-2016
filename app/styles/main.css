@@ -1378,3 +1378,316 @@ div.disactivated {
   margin-top: 0;
   background-color: transparent;
 }
+/** entries **/
+#entries {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+}
+#entries .layout {
+  position: absolute;
+  left: -600%;
+  top: -350%;
+  width: 1200%;
+  height: 700%;
+  background-image: url("../images/layouts/entries-pc.jpg");
+  background-size: cover;
+  opacity: 0.3;
+}
+#entries .content-title {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#entries .content-title .title {
+  position: absolute;
+  left: -250%;
+  top: -339%;
+  width: 471%;
+  height: 157%;
+  background-image: url("../images/entries-title.png");
+  background-size: cover;
+}
+#entries .content-title .hand {
+  position: absolute;
+  left: -275%;
+  top: -277%;
+  width: 122%;
+  height: 101%;
+  background-image: url("../images/entries-title-hand.png");
+  background-size: cover;
+}
+#entries .content-title .mob {
+  position: absolute;
+  left: -367%;
+  top: -305%;
+  width: 161%;
+  height: 117%;
+  background-image: url("../images/entries-title-mob.png");
+  background-size: cover;
+}
+#entries .content-title .boy {
+  position: absolute;
+  left: 199%;
+  top: -329%;
+  width: 135%;
+  height: 129%;
+  background-image: url("../images/entries-title-boy.png");
+  background-size: cover;
+}
+#entries .content-title .sub-title {
+  position: absolute;
+  left: -136%;
+  top: -179%;
+  width: 322%;
+  height: 19%;
+  background-image: url("../images/entries-sub-title.png");
+  background-size: cover;
+}
+#entries .content-list {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#entries .content-list .tab-by-date {
+  position: absolute;
+  left: -509px;
+  top: -186px;
+  width: 173px;
+  height: 34px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/entries-button-tab-by-date.png");
+  background-size: auto;
+  cursor: pointer;
+}
+#entries .content-list .tab-by-date:active {
+  margin-top: 3px;
+}
+#entries .content-list .tab-by-date.activated {
+  background-position: bottom;
+}
+#entries .content-list .tab-by-rank {
+  position: absolute;
+  left: -319px;
+  top: -186px;
+  width: 173px;
+  height: 34px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/entries-button-tab-by-rank.png");
+  background-size: auto;
+  cursor: pointer;
+}
+#entries .content-list .tab-by-rank:active {
+  margin-top: 3px;
+}
+#entries .content-list .tab-by-rank.activated {
+  background-position: bottom;
+}
+#entries .content-list .bottom-part {
+  position: absolute;
+  left: -509px;
+  top: -153px;
+  width: 1005px;
+  height: 429px;
+  margin-left: 0px;
+  margin-top: 0px;
+  border: 1px solid black;
+  background: white;
+}
+#entries .content-list .bottom-part .output-container {
+  position: absolute;
+  left: 57px;
+  top: 19px;
+  width: 925px;
+  height: 363px;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+#entries .content-list .bottom-part .output-container .thumb-container {
+  position: relative;
+  cursor: pointer;
+  background-image: url("../images/entries-thumb-base.png");
+  background-size: auto;
+  width: 149px;
+  height: 175px;
+  float: left;
+  margin-right: 36px;
+  margin-bottom: 13px;
+}
+#entries .content-list .bottom-part .output-container .thumb-container .thumb {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 133px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+}
+#entries .content-list .bottom-part .output-container .thumb-container .text-num-votes,
+#entries .content-list .bottom-part .output-container .thumb-container .text-author,
+#entries .content-list .bottom-part .output-container .thumb-container .text-serial {
+  position: relative;
+  width: auto;
+  margin-left: 8px;
+  font-family: '微軟正黑體', "Heiti TC", serif;
+  font-size: 14px;
+  color: #000;
+}
+#entries .content-list .bottom-part .output-container .thumb-container .text-num-votes {
+  margin-top: 110px;
+}
+#entries .content-list .bottom-part .output-container .thumb-container .text-author {
+  margin-top: 1px;
+}
+#entries .content-list .bottom-part .output-container .thumb-container .text-serial {
+  margin-top: 1px;
+}
+#entries .content-list .bottom-part .arrow-left {
+  position: absolute;
+  left: -20px;
+  top: 182px;
+  width: 38px;
+  height: 38px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/entry-view-arrow-left.png");
+  background-size: auto;
+  cursor: pointer;
+}
+#entries .content-list .bottom-part .arrow-left:active {
+  margin-left: -3px;
+}
+#entries .content-list .bottom-part .arrow-right {
+  position: absolute;
+  left: 988px;
+  top: 182px;
+  width: 38px;
+  height: 38px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/entry-view-arrow-right.png");
+  background-size: auto;
+  cursor: pointer;
+}
+#entries .content-list .bottom-part .arrow-right:active {
+  margin-left: 3px;
+}
+#entries .content-list .bottom-part .page-index-container {
+  position: absolute;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  bottom: 8px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  height: 28px;
+  cursor: default;
+}
+#entries .content-list .bottom-part .page-index-container .word,
+#entries .content-list .bottom-part .page-index-container .word-prev-block,
+#entries .content-list .bottom-part .page-index-container .word-next-block,
+#entries .content-list .bottom-part .page-index-container .word-prev-page,
+#entries .content-list .bottom-part .page-index-container .word-next-page {
+  display: inline-block;
+  height: 26px;
+  line-height: 25px;
+  border-radius: 30px;
+  font-family: '微軟正黑體', "Heiti TC", serif;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+}
+#entries .content-list .bottom-part .page-index-container .word {
+  width: 26px;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+#entries .content-list .bottom-part .page-index-container .word.activated {
+  color: white;
+  background: #ff9c00;
+}
+#entries .content-list .bottom-part .page-index-container .word-prev-block,
+#entries .content-list .bottom-part .page-index-container .word-next-block {
+  width: 30px;
+  letter-spacing: 2px;
+}
+#entries .content-list .bottom-part .page-index-container .word-prev-page,
+#entries .content-list .bottom-part .page-index-container .word-next-page {
+  width: 54px;
+  letter-spacing: 2px;
+}
+#entries .content-list .search-bar {
+  position: absolute;
+  left: 202px;
+  top: -196px;
+  width: 297px;
+  height: 34px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/entries-search-bar.png");
+  background-size: auto;
+}
+#entries .content-list .search-bar .girl {
+  position: absolute;
+  left: 197px;
+  top: -69px;
+  width: 115px;
+  height: 75px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/index-hand-girl.png");
+  background-size: auto;
+}
+#entries .content-list .search-bar .btn-name {
+  position: absolute;
+  left: 128px;
+  top: 0px;
+  width: 84px;
+  height: 33px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/entries-search-text.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: 6px 8px;
+  cursor: pointer;
+}
+#entries .content-list .search-bar .btn-name:active {
+  background-position: 6px 11px;
+}
+#entries .content-list .search-bar .btn-serial {
+  position: absolute;
+  left: 215px;
+  top: 0px;
+  width: 80px;
+  height: 33px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/entries-search-text.png");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: -81px 8px;
+  cursor: pointer;
+}
+#entries .content-list .search-bar .btn-serial:active {
+  background-position: -81px 11px;
+}
+#entries .content-list .search-bar .field-keyword {
+  position: absolute;
+  background: none;
+  left: 1px;
+  top: 1px;
+  padding: 3px 7px;
+  width: 110px;
+  height: 26px;
+  border: none;
+  font-family: '微軟正黑體', "Heiti TC", serif;
+  font-size: 14px;
+  color: #000;
+}

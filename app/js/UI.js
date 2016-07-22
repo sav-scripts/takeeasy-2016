@@ -36,6 +36,16 @@
                 SceneHandler.toHash("/Participate");
             });
 
+            setupButton(4, "vote", function()
+            {
+                SceneHandler.toHash("/Entries");
+            });
+
+            setupButton(6, "entries", function()
+            {
+                SceneHandler.toHash("/Entries");
+            });
+
             setupButton(7, "participate", function()
             {
                 SceneHandler.toHash("/Rule");

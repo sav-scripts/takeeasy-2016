@@ -1,5 +1,5 @@
 /** common mixins **/
-.abs-div(@left; @top; @width; @height; @marginLeft:0; @marginTop:0;){
+.abs-div(@left; @top; @width; @height; @image-src: ignore; @marginLeft:0; @marginTop:0;){
     position: absolute;
     left: @left * 1px;
     top: @top * 1px;
@@ -7,6 +7,11 @@
     height: @height * 1px;
     margin-left: @marginLeft * 1px;
     margin-top: @marginTop * 1px;
+
+    & when not (@image-src = ignore)
+    {
+        .image-bg(@image-src);
+    }
 }
 .centralized-div(@left; @top; @width; @height; @offsetX:0; @offsetY:0;){
     position: absolute;
