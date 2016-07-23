@@ -1498,16 +1498,26 @@ div.disactivated {
   border: 1px solid black;
   background: white;
 }
-#entries .content-list .bottom-part .output-container {
+#entries .content-list .bottom-part .output-mask {
   position: absolute;
   left: 57px;
   top: 19px;
+  width: 889px;
+  height: 363px;
+  margin-left: 0px;
+  margin-top: 0px;
+  overflow: hidden;
+}
+#entries .content-list .bottom-part .output-mask .output-container {
+  position: absolute;
+  left: 0px;
+  top: 0px;
   width: 925px;
   height: 363px;
   margin-left: 0px;
   margin-top: 0px;
 }
-#entries .content-list .bottom-part .output-container .thumb-container {
+#entries .content-list .bottom-part .output-mask .output-container .thumb-container {
   position: relative;
   cursor: pointer;
   background-image: url("../images/entries-thumb-base.png");
@@ -1518,7 +1528,7 @@ div.disactivated {
   margin-right: 36px;
   margin-bottom: 13px;
 }
-#entries .content-list .bottom-part .output-container .thumb-container .thumb {
+#entries .content-list .bottom-part .output-mask .output-container .thumb-container .thumb {
   position: absolute;
   left: 8px;
   top: 8px;
@@ -1526,9 +1536,9 @@ div.disactivated {
   height: 100px;
   background: rgba(255, 255, 255, 0.1);
 }
-#entries .content-list .bottom-part .output-container .thumb-container .text-num-votes,
-#entries .content-list .bottom-part .output-container .thumb-container .text-author,
-#entries .content-list .bottom-part .output-container .thumb-container .text-serial {
+#entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-num-votes,
+#entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-author,
+#entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-serial {
   position: relative;
   width: auto;
   margin-left: 8px;
@@ -1536,13 +1546,13 @@ div.disactivated {
   font-size: 14px;
   color: #000;
 }
-#entries .content-list .bottom-part .output-container .thumb-container .text-num-votes {
+#entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-num-votes {
   margin-top: 110px;
 }
-#entries .content-list .bottom-part .output-container .thumb-container .text-author {
+#entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-author {
   margin-top: 1px;
 }
-#entries .content-list .bottom-part .output-container .thumb-container .text-serial {
+#entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-serial {
   margin-top: 1px;
 }
 #entries .content-list .bottom-part .arrow-left {

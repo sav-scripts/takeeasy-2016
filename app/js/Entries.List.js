@@ -2,11 +2,18 @@
 {
     var $doms = {},
         _isHiding = true,
-        _keyword = "xxx",
+        _keyword = "",
         _searchType = "user_name",
         _sortType = "date",
         _pageSize = 10,
-        _thumbs = [];
+        _thumbs = [],
+        _oldThumbs = [],
+        _thumbGapSetting =
+        {
+            0: {w:10, h:10},
+            1: {w:36, h:13}
+        },
+        _isLocking = false;
 
     var self = window.Entries.List =
     {
@@ -27,14 +34,48 @@
 
             self.updateArrows(false, false);
 
+            $doms.outputMask = $doms.container.find(".output-mask");
 
-            self.Thumb.$container = $doms.container.find(".output-container");
+            $doms.outputA = $doms.container.find(".output-container:nth-child(1)");
+            $doms.outputB = $doms.container.find(".output-container:nth-child(2)").detach();
+
+            //self.Thumb.$container = $doms.outputA;
             self.Thumb.$sample = $doms.container.find(".thumb-container").detach();
 
             self.PageIndex.init($doms.container.find(".page-index-container"));
 
-            //createThumb(123, 'xxx', '0001', "./images/participate-upload-title-girl.png");
-            //createThumb(321, 'xxx', '0002', "./images/participate-upload-title-girl.png");
+            $doms.keywordInput = $doms.container.find(".field-keyword");
+
+            $doms.btnSearchName = $doms.container.find(".btn-name").on("click", function()
+            {
+                _searchType = "user_name";
+                _keyword = $doms.keywordInput.val();
+                $doms.keywordInput.val('');
+                self.doSearch(0, true);
+
+            });
+
+            $doms.btnSearchSerial = $doms.container.find(".btn-serial").on("click", function()
+            {
+                _searchType = "serial";
+                _keyword = $doms.keywordInput.val();
+                $doms.keywordInput.val('');
+                self.doSearch(0, true);
+            });
+
+            $doms.btnSortByDate = $doms.container.find(".tab-by-date").on("click", function()
+            {
+                _keyword = '';
+                $doms.keywordInput.val('');
+                self.changeSortType("date");
+            });
+
+            $doms.btnSortByRank = $doms.container.find(".tab-by-rank").on("click", function()
+            {
+                _keyword = '';
+                $doms.keywordInput.val('');
+                self.changeSortType("votes");
+            });
 
             $doms.container.detach();
         },
@@ -54,7 +95,7 @@
             {
                 if (cb) cb.apply();
 
-                self.doSearch(0);
+                self.doSearch(0, true);
             });
 
         },
@@ -73,14 +114,65 @@
 
         },
 
+        resize: function(viewport)
+        {
+
+        },
+
+        changeSortType: function(newType)
+        {
+            if(newType == _sortType) return;
+            if(_isLocking) return;
+
+            _searchType = "user_name";
+            _sortType = newType;
+
+            if(_sortType == "date")
+            {
+                $doms.btnSortByDate.toggleClass("activated", true);
+                $doms.btnSortByRank.toggleClass("activated", false);
+
+                $doms.keywordInput.val('');
+                self.doSearch(0, true);
+            }
+            else
+            {
+                $doms.btnSortByDate.toggleClass("activated", false);
+                $doms.btnSortByRank.toggleClass("activated", true);
+
+                $doms.keywordInput.val('');
+                self.doSearch(0, true);
+            }
+        },
+
         updateArrows: function(haveLastPage, haveNextPage)
         {
             $doms.arrowLeft.css("display", haveLastPage? "block": "none");
             $doms.arrowRight.css("display", haveNextPage? "block": "none");
         },
 
-        doSearch: function(pageIndex)
+        doSearch: function(pageIndex, isNewSearch, oldPageIndex)
         {
+            if(_isLocking) return;
+            _isLocking = true;
+
+            var fromDirection = "bottom";
+
+            //_keyword = $doms.keywordInput.val();
+
+
+            if(!isNewSearch)
+            {
+                if(pageIndex > oldPageIndex)
+                {
+                    fromDirection = "right";
+                }
+                else if(pageIndex < oldPageIndex)
+                {
+                    fromDirection = "left";
+                }
+            }
+
             Loading.show();
 
             var params =
@@ -103,56 +195,99 @@
                     //console.log("data = " + response.data);
 
                     self.PageIndex.update(parseInt(response.num_pages), parseInt(response.page_index)+1);
-
-                    self.updateEntries(response.data);
+                    self.updateEntries(response.data, fromDirection);
                 }
 
                 Loading.hide();
             });
         },
 
-        updateEntries: function(data)
+        updateEntries: function(data, fromDirection)
         {
-            clearThumbs();
+            //clearThumbs();
+
+            _oldThumbs = _thumbs;
+            _thumbs = [];
 
             var i, obj;
             for(i=0;i<data.length;i++)
             {
                 obj = data[i];
 
-                createThumb(obj.num_votes, obj.name, obj.serial, obj.url);
+                createThumb($doms.outputB, obj.num_votes, obj.name, obj.serial, obj.url);
             }
 
+            self.animeEntries(fromDirection);
         },
 
-        clear: function()
+        animeEntries: function(fromDirection)
         {
-            clearThumbs();
-        },
+            var gapSetting = _thumbGapSetting[Main.settings.viewport.index];
 
-        changePage: function()
-        {
+            $doms.outputMask.append($doms.outputB);
+
+            var offsetY = $doms.outputMask.height() + gapSetting.h,
+                offsetX = $doms.outputMask.width() + gapSetting.w;
+
+            var tl = new TimelineMax,
+                duration = .5,
+                ease = Power3.easeInOut;
+
+            if(fromDirection == 'bottom')
+            {
+                ease = Power2.easeInOut;
+                tl.set($doms.outputB, {left: 0, top: offsetY});
+                tl.to($doms.outputA,duration,{top:-offsetY, ease:ease}, 0);
+                tl.to($doms.outputB,duration,{top:0, ease:ease}, 0);
+            }
+            else if(fromDirection == 'right')
+            {
+                duration *= (offsetX / offsetY);
+                tl.set($doms.outputB, {left: offsetX, top: 0});
+                tl.to($doms.outputA,duration,{left:-offsetX, ease:ease}, 0);
+                tl.to($doms.outputB,duration,{left:0, ease:ease}, 0);
+
+            }
+            else if(fromDirection == 'left')
+            {
+                duration *= (offsetX / offsetY);
+                tl.set($doms.outputB, {left: -offsetX, top: 0});
+                tl.to($doms.outputA,duration,{left:offsetX, ease:ease}, 0);
+                tl.to($doms.outputB,duration,{left:0, ease:ease}, 0);
+            }
+
+            tl.add(function()
+            {
+                var holder = $doms.outputA;
+                $doms.outputA = $doms.outputB;
+                $doms.outputB = holder;
+
+                $doms.outputB.detach();
+                clearThumbs(_oldThumbs);
+                _oldThumbs = [];
+
+                _isLocking = false;
+            });
+
 
         }
     };
 
-    function createThumb(numVotes, authorName, serial, thumbUrl)
+    function createThumb($container, numVotes, authorName, serial, thumbUrl)
     {
-        var thumb = new self.Thumb(numVotes, authorName, serial, thumbUrl);
+        var thumb = new self.Thumb($container, numVotes, authorName, serial, thumbUrl);
 
         _thumbs.push(thumb);
     }
 
-    function clearThumbs()
+    function clearThumbs(thumbArray)
     {
         var i, thumb;
-        for(i=0;i<_thumbs.length;i++)
+        for(i=0;i<thumbArray.length;i++)
         {
-            thumb = _thumbs[i];
+            thumb = thumbArray[i];
             thumb.destroy();
         }
-
-        _thumbs = [];
     }
 
 }());
@@ -220,10 +355,12 @@
 
         toPage: function(pageIndex)
         {
+            var oldPageIndex = _pageIndex;
+
             if(pageIndex < 1) pageIndex = 1;
             if(pageIndex > _numPages) pageIndex = _numPages;
 
-            Entries.List.doSearch(pageIndex-1);
+            Entries.List.doSearch(pageIndex-1, false, oldPageIndex-1);
 
             //self.update(_numPages, pageIndex);
         },
@@ -350,9 +487,9 @@
     window.Entries.List.Thumb = Thumb;
 
     Thumb.$sample = null;
-    Thumb.$container = null;
+    //Thumb.$container = null;
 
-    function Thumb(numVotes, authorName, serial, thumbUrl)
+    function Thumb($container, numVotes, authorName, serial, thumbUrl)
     {
         var $dom = this.$dom = Thumb.$sample.clone();
 
@@ -373,7 +510,7 @@
             image.src = thumbUrl;
         }
 
-        Thumb.$container.append($dom);
+        $container.append($dom);
     }
 
     Thumb.prototype =

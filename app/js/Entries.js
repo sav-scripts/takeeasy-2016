@@ -54,9 +54,10 @@
             _stepDic[_currentStep].show();
         },
 
-        resize: function (width, height, scale)
+        resize: function ()
         {
-
+            var viewport = Main.settings.viewport;
+            self.List.resize(viewport);
         }
     };
 
@@ -86,6 +87,8 @@
     function show(cb)
     {
         $("#scene-container").append($doms.container);
+
+        self.resize();
 
         _currentStep = 'list';
         self.Title.show();

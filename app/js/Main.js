@@ -18,7 +18,15 @@
             fbToken: null,
             fbUid: null,
 
-            isiOS: false
+            isiOS: false,
+
+            viewport:
+            {
+                width: 0,
+                height: 0,
+                ranges: [640],
+                index: 0
+            }
         },
         init: function()
         {
@@ -255,6 +263,22 @@
     {
         var width = $(window).width(),
             height = $(window).height();
+
+        var i,
+            vp = self.settings.viewport;
+        for(i=0;i<vp.ranges.length;i++)
+        {
+            if(vp.ranges[i] >= width) break;
+        }
+
+        vp.index = i;
+        vp.width = width;
+        vp.height = vp;
+
+        if(SceneHandler.currentScene)
+        {
+            SceneHandler.currentScene.resize();
+        }
     }
 
 }());
