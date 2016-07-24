@@ -64,7 +64,7 @@ var response_serial =
     "data":
         [
             {
-                "serial": "0088",
+                "serial": "123",
                 "status": "reviewing",
                 "name": "John",
                 "num_votes": "31231",
