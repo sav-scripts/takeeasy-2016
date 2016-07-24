@@ -1,7 +1,11 @@
 (function ()
 {
     var $doms = {},
-        _isHiding = true;
+        _isHiding = true,
+        _isLocking = false,
+        _entryData,
+        _searchSetting,
+        _currentIndex;
 
     var self = window.EntryView =
     {
@@ -15,8 +19,28 @@
 
             $doms.optionalFields = $doms.container.find(".optional-fields");
 
-            $doms.arrowLeft = $doms.container.find(".arrow-left");
-            $doms.arrowRight = $doms.container.find(".arrow-right");
+            $doms.arrowLeft = $doms.container.find(".arrow-left").on("click", function()
+            {
+                if(_isLocking) return;
+                if(_searchSetting)
+                {
+                    _searchSetting.page_index--;
+                    if(_searchSetting.page_index < 0) _searchSetting.page_index = 0;
+                    self.showEntryAt(_searchSetting);
+                }
+            });
+
+            $doms.arrowRight = $doms.container.find(".arrow-right").on("click", function()
+            {
+                if(_isLocking) return;
+                if(_searchSetting)
+                {
+                    _searchSetting.page_index++;
+                    if(_searchSetting.page_index >= _searchSetting.num_pages) _searchSetting.page_index = _searchSetting.num_pages - 1;
+                    self.showEntryAt(_searchSetting);
+                }
+
+            });
 
             $doms.fields =
             {
@@ -39,17 +63,63 @@
             $doms.imagePreview.empty();
             $doms.imagePreview.append(canvas);
 
-            $doms.fields.description.html(description);
+            $doms.fields.description.text(description);
 
             toPreviewMode();
             self.show();
         },
-        showEntry: function()
+        showEntry: function(entryData, isMultipleMode)
         {
-            toEntryMode();
+            _entryData = entryData;
+
+
+            var image = document.createElement("img");
+            image.src = entryData.url;
+
+            $doms.imagePreview.empty();
+            $doms.imagePreview.append(image);
+
+            $doms.fields.description.text(entryData.description);
+            $doms.fields.numVotes.text(entryData.num_votes);
+            $doms.fields.author.text(entryData.name);
+            $doms.fields.serial.text(entryData.serial);
+
+            toEntryMode(isMultipleMode);
             self.show();
 
         },
+
+        showEntryAt: function(searchSetting)
+        {
+            _searchSetting = searchSetting;
+
+            _isLocking = true;
+            Loading.show();
+
+            ApiProxy.callApi("entries_search", searchSetting, "entries_search.single", function(response)
+            {
+                TweenMax.delayedCall(.5, function()
+                {
+                    if(response.error)
+                    {
+                        alert(response.error);
+                    }
+                    else
+                    {
+                        //console.log("response = " + JSON.stringify(response));
+
+                        _searchSetting.num_pages = parseInt(response.num_pages);
+
+                        self.showEntry(response.data[0], true);
+
+                        _isLocking = false;
+                        Loading.hide();
+                    }
+                });
+            });
+
+        },
+
         show: function (delay, cb)
         {
             if(!_isHiding) return;
@@ -87,16 +157,41 @@
     {
         $doms.optionalFields.toggleClass("hidding", true);
 
-        $doms.arrowLeft.toggleClass("hidding", true);
-        $doms.arrowRight.toggleClass("hidding", true);
+        $doms.arrowLeft.css("display", 'none');
+        $doms.arrowRight.css("display", 'none');
     }
 
-    function toEntryMode()
+    function toEntryMode(isMultipleMode)
     {
         $doms.optionalFields.toggleClass("hidding", false);
 
-        $doms.arrowLeft.toggleClass("hidding", false);
-        $doms.arrowRight.toggleClass("hidding", false);
+        if(isMultipleMode)
+        {
+            $doms.arrowLeft.css("display", 'block');
+            $doms.arrowRight.css("display", 'block');
+
+            if(_searchSetting)
+            {
+                $doms.arrowLeft.css("visibility", "visible");
+                $doms.arrowRight.css("visibility", "visible");
+
+                if(_searchSetting.page_index <= 0)
+                {
+                    $doms.arrowLeft.css("visibility", "hidden");
+                }
+
+                if(_searchSetting.page_index >= (_searchSetting.num_pages-1))
+                {
+                    $doms.arrowRight.css("visibility", "hidden");
+                }
+            }
+
+        }
+        else
+        {
+            $doms.arrowLeft.css("display", 'none');
+            $doms.arrowRight.css("display", 'none');
+        }
     }
 
 }());

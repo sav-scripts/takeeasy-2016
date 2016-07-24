@@ -2,18 +2,18 @@
 {
     var $doms = {},
         _isHiding = true,
+        _isLocking = false,
         _keyword = "",
-        _searchType = "user_name",
         _sortType = "date",
         _pageSize = 10,
         _thumbs = [],
         _oldThumbs = [],
+        _lastSearchSetting,
         _thumbGapSetting =
         {
             0: {w:10, h:10},
             1: {w:36, h:13}
-        },
-        _isLocking = false;
+        };
 
     var self = window.Entries.List =
     {
@@ -42,38 +42,44 @@
             //self.Thumb.$container = $doms.outputA;
             self.Thumb.$sample = $doms.container.find(".thumb-container").detach();
 
-            self.PageIndex.init($doms.container.find(".page-index-container"));
+
+            $doms.pageIndexContainer = $doms.container.find(".page-index-container");
+            self.PageIndex.init($doms.pageIndexContainer);
+
+            $doms.loadingHint = $doms.container.find(".loading-hint").css("display", "none");
 
             $doms.keywordInput = $doms.container.find(".field-keyword");
 
             $doms.btnSearchName = $doms.container.find(".btn-name").on("click", function()
             {
-                _searchType = "user_name";
+                if(_isLocking) return;
+
                 _keyword = $doms.keywordInput.val();
-                $doms.keywordInput.val('');
+                //$doms.keywordInput.val('');
                 self.doSearch(0, true);
 
             });
 
             $doms.btnSearchSerial = $doms.container.find(".btn-serial").on("click", function()
             {
-                _searchType = "serial";
+                if(_isLocking) return;
+
                 _keyword = $doms.keywordInput.val();
                 $doms.keywordInput.val('');
-                self.doSearch(0, true);
+                self.doSearch(0, true, null, true);
             });
 
             $doms.btnSortByDate = $doms.container.find(".tab-by-date").on("click", function()
             {
-                _keyword = '';
-                $doms.keywordInput.val('');
+                if(_isLocking) return;
+
                 self.changeSortType("date");
             });
 
             $doms.btnSortByRank = $doms.container.find(".tab-by-rank").on("click", function()
             {
-                _keyword = '';
-                $doms.keywordInput.val('');
+                if(_isLocking) return;
+
                 self.changeSortType("votes");
             });
 
@@ -124,25 +130,21 @@
             if(newType == _sortType) return;
             if(_isLocking) return;
 
-            _searchType = "user_name";
             _sortType = newType;
 
             if(_sortType == "date")
             {
                 $doms.btnSortByDate.toggleClass("activated", true);
                 $doms.btnSortByRank.toggleClass("activated", false);
-
-                $doms.keywordInput.val('');
-                self.doSearch(0, true);
             }
             else
             {
                 $doms.btnSortByDate.toggleClass("activated", false);
                 $doms.btnSortByRank.toggleClass("activated", true);
-
-                $doms.keywordInput.val('');
-                self.doSearch(0, true);
             }
+
+            _keyword = $doms.keywordInput.val();
+            self.doSearch(0, true);
         },
 
         updateArrows: function(haveLastPage, haveNextPage)
@@ -151,12 +153,15 @@
             $doms.arrowRight.css("display", haveNextPage? "block": "none");
         },
 
-        doSearch: function(pageIndex, isNewSearch, oldPageIndex)
+        doSearch: function(pageIndex, isNewSearch, oldPageIndex, isSearchSerial)
         {
             if(_isLocking) return;
             _isLocking = true;
 
-            var fromDirection = "bottom";
+            loadingShow();
+
+            var fromDirection = "bottom",
+                serachingKeyword = _keyword;
 
             //_keyword = $doms.keywordInput.val();
 
@@ -173,33 +178,78 @@
                 }
             }
 
-            Loading.show();
-
-            var params =
+            var params = _lastSearchSetting =
             {
                 "keyword": _keyword,
-                "search_type": _searchType,
+                "search_type": isSearchSerial? "serial": "user_name",
                 "sort_type": _sortType,
                 "page_index": pageIndex,
                 "page_size": _pageSize
             };
 
-            ApiProxy.callApi("entries_search", params, function(response)
+            if(isSearchSerial)
             {
-                if(response.error)
+                ApiProxy.callApi("entries_search", params, 'entries_search.serial', function(response)
                 {
-                    alert(response.error);
-                }
-                else
+                    TweenMax.delayedCall(.5, function()
+                    {
+
+                        if(response.error)
+                        {
+                            alert(response.error);
+                        }
+                        else
+                        {
+                            if(response.data.length == 0)
+                            {
+                                alert("很抱歉, 作品編號 ["+serachingKeyword+"] 並不存在");
+                            }
+                            else
+                            {
+                                var dataObj = response.data[0];
+                                if(dataObj.status == 'approved')
+                                {
+                                    EntryView.showEntry(dataObj);
+                                }
+                                else if(dataObj.status = 'reviewing')
+                                {
+                                    Entries.Reviewing.show();
+                                }
+                                else if(dataObj.status = 'unapproved')
+                                {
+                                    Entries.Unapproved.show();
+                                }
+                            }
+                        }
+
+                        loadingHide();
+                        _isLocking = false;
+                    });
+                });
+            }
+            else
+            {
+                ApiProxy.callApi("entries_search", params, 'entries_search', function(response)
                 {
-                    //console.log("data = " + response.data);
+                    TweenMax.delayedCall(.5, function()
+                    {
 
-                    self.PageIndex.update(parseInt(response.num_pages), parseInt(response.page_index)+1);
-                    self.updateEntries(response.data, fromDirection);
-                }
+                        if(response.error)
+                        {
+                            alert(response.error);
+                        }
+                        else
+                        {
+                            //console.log("data = " + response.data);
 
-                Loading.hide();
-            });
+                            self.PageIndex.update(parseInt(response.num_pages), parseInt(response.page_index)+1);
+                            self.updateEntries(response.data, fromDirection);
+                        }
+
+                        loadingHide();
+                    });
+                });
+            }
         },
 
         updateEntries: function(data, fromDirection)
@@ -214,7 +264,7 @@
             {
                 obj = data[i];
 
-                createThumb($doms.outputB, obj.num_votes, obj.name, obj.serial, obj.url);
+                createThumb(i, $doms.outputB, obj.num_votes, obj.name, obj.serial, obj.thumb_url);
             }
 
             self.animeEntries(fromDirection);
@@ -273,11 +323,46 @@
         }
     };
 
-    function createThumb($container, numVotes, authorName, serial, thumbUrl)
+    function loadingShow()
+    {
+        $doms.loadingHint.css("display", "block");
+        $doms.pageIndexContainer.css("display", "none");
+
+        $doms.arrowLeft.css("visibility", "hidding");
+        $doms.arrowRight.css("visibility", "hidding");
+    }
+
+    function loadingHide()
+    {
+        $doms.arrowLeft.css("visibility", "visible");
+        $doms.arrowRight.css("visibility", "visible");
+
+        var array = [$doms.arrowLeft, $doms.arrowRight, $doms.pageIndexContainer];
+
+        var tl = new TimelineMax;
+        tl.set(array, {opacity:0});
+        tl.to(array,.4, {opacity:1});
+
+        $doms.loadingHint.css("display", "none");
+        $doms.pageIndexContainer.css("display", "block");
+
+    }
+
+    function createThumb(index, $container, numVotes, authorName, serial, thumbUrl)
     {
         var thumb = new self.Thumb($container, numVotes, authorName, serial, thumbUrl);
-
         _thumbs.push(thumb);
+
+        thumb.$dom.on("click", function()
+        {
+            var params = $.extend({}, _lastSearchSetting),
+                entryIndex = params.page_size * params.page_index + index;
+
+            params.page_size = 1;
+            params.page_index = entryIndex;
+
+            EntryView.showEntryAt(params);
+        });
     }
 
     function clearThumbs(thumbArray)
@@ -296,7 +381,8 @@
 (function(){
 
     var $doms = {},
-        BLOCK_SIZE = 10,
+        BLOCK_SIZE = 9,
+        SIDE_BLOCK_SIZE = 4,
         _numBlocks,
         _numPages,
         _pageIndex;
@@ -380,6 +466,7 @@
 
 
             var numWordCreated = 0,
+                sideNumCreated = 0,
                 firstWordIndex,
                 lastWordIndex;
 
@@ -388,27 +475,55 @@
             pageIndex++;
             numWordCreated++;
 
-            while(numWordCreated < BLOCK_SIZE && pageIndex <= _numPages)
+
+
+            while(sideNumCreated < SIDE_BLOCK_SIZE && pageIndex <= _numPages)
             {
                 createWord(pageIndex, false, false);
 
                 pageIndex++;
                 numWordCreated++;
+                sideNumCreated++;
             }
-
             lastWordIndex = pageIndex-1;
 
+            sideNumCreated = 0;
             pageIndex = _pageIndex-1;
-
-            while(numWordCreated < BLOCK_SIZE && pageIndex >= 1)
+            while(sideNumCreated < SIDE_BLOCK_SIZE && pageIndex >= 1)
             {
                 createWord(pageIndex, true, false);
 
                 pageIndex--;
                 numWordCreated++;
+                sideNumCreated++;
+            }
+            firstWordIndex = pageIndex+1;
+
+            if(lastWordIndex <= _numPages)
+            {
+                pageIndex = lastWordIndex+1;
+                while(numWordCreated < BLOCK_SIZE && pageIndex <= _numPages)
+                {
+                    createWord(pageIndex, false, false);
+
+                    pageIndex++;
+                    numWordCreated++;
+                }
+                lastWordIndex = pageIndex-1;
             }
 
-            firstWordIndex = pageIndex+1;
+            if(firstWordIndex >= 1)
+            {
+                pageIndex = firstWordIndex-1;
+                while(numWordCreated < BLOCK_SIZE && pageIndex >= 1)
+                {
+                    createWord(pageIndex, true, false);
+
+                    pageIndex--;
+                    numWordCreated++;
+                }
+                firstWordIndex = pageIndex+1;
+            }
 
             //console.log("firstWordIndex = " + firstWordIndex);
             //console.log("lastWordIndex = " + lastWordIndex);

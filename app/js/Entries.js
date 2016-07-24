@@ -78,6 +78,9 @@
         self.Title.init($doms.container.find(".content-title"));
         self.List.init($doms.container.find(".content-list"));
 
+        self.Reviewing.init($("#entries-reviewing"));
+        self.Unapproved.init($("#entries-unapproved"));
+
 
         $doms.container.detach();
     }
@@ -93,6 +96,8 @@
         _currentStep = 'list';
         self.Title.show();
         self.List.show(0, cb);
+
+        //self.Unapproved.show();
     }
 
     function hide(cb)
@@ -153,6 +158,135 @@
             {
                 $doms.container.detach();
                 if(cb) cb.apply();
+            });
+
+        }
+    };
+
+}());
+
+
+
+(function ()
+{
+    var $doms = {},
+        _isHiding = true;
+
+    var self = window.Entries.Reviewing =
+    {
+        init: function ($container)
+        {
+            $doms.container = $container;
+            $doms.parent = $("body");
+
+            $doms.btnClose = $doms.container.find(".btn-close").on("click", function()
+            {
+                self.hide();
+            });
+
+            $doms.btnEntries = $doms.container.find(".btn-entries").on("click", function()
+            {
+                self.hide();
+
+            });
+
+            $doms.container.detach();
+        },
+
+        show: function (delay, cb)
+        {
+            if(!_isHiding) return;
+            _isHiding = false;
+
+            $doms.parent.append($doms.container);
+
+            if (delay === undefined) delay = 0;
+
+            var tl = new TimelineMax;
+            tl.set($doms.container, {autoAlpha: 0});
+            tl.to($doms.container, .4, {autoAlpha: 1}, delay);
+            tl.add(function ()
+            {
+                if (cb) cb.apply();
+            });
+
+        },
+        hide: function (delay, cb)
+        {
+            if(_isHiding) return;
+            _isHiding = true;
+
+            var tl = new TimelineMax;
+            tl.to($doms.container, .4, {autoAlpha: 0}, delay);
+            tl.add(function ()
+            {
+                $doms.container.detach();
+                if (cb) cb.apply();
+            });
+
+        }
+    };
+
+}());
+
+
+
+
+(function ()
+{
+    var $doms = {},
+        _isHiding = true;
+
+    var self = window.Entries.Unapproved =
+    {
+        init: function ($container)
+        {
+            $doms.container = $container;
+            $doms.parent = $("body");
+
+            $doms.btnClose = $doms.container.find(".btn-close").on("click", function()
+            {
+                self.hide();
+            });
+
+            $doms.btnEntries = $doms.container.find(".btn-entries").on("click", function()
+            {
+                self.hide();
+
+            });
+
+            $doms.container.detach();
+        },
+
+        show: function (delay, cb)
+        {
+            if(!_isHiding) return;
+            _isHiding = false;
+
+            $doms.parent.append($doms.container);
+
+            if (delay === undefined) delay = 0;
+
+            var tl = new TimelineMax;
+            tl.set($doms.container, {autoAlpha: 0});
+            tl.to($doms.container, .4, {autoAlpha: 1}, delay);
+            tl.add(function ()
+            {
+                if (cb) cb.apply();
+            });
+
+        },
+        hide: function (delay, cb)
+        {
+            if(_isHiding) return;
+            _isHiding = true;
+
+            var tl = new TimelineMax;
+            tl.to($doms.container, .4, {autoAlpha: 0}, delay);
+            tl.add(function ()
+            {
+                $doms.container.detach();
+                if (cb) cb.apply();
             });
 
         }

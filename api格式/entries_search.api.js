@@ -38,6 +38,7 @@ var response =
     ],
     "num_pages": 12, // 搜尋結果的頁數
     "page_index": 0, // 所回應的資料的分頁索引
+    "page_size": 10, // request 的 page_size, 原樣傳回
     "search_type:": "user_name", // request 的 search_type, 原樣傳回
     "sort_type": "date" // request 的 sort_type, 原樣傳回
 };
@@ -54,7 +55,7 @@ var send_serial =
     "sort_type": "date",
     "status": "all",
     "page_index": 0,
-    "page_size": 10
+    "page_size": 1
 };
 
 /*** 後端回應 ***/
@@ -75,6 +76,7 @@ var response_serial =
         ],
     "num_pages": 1,
     "page_index": 0,
+    "page_size": 1,
     "search_type:": "serial",
     "sort_type": "date"
 };

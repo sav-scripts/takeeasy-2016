@@ -103,7 +103,7 @@
 
                     Loading.progress('資料傳輸中 ... 請稍候').show();
 
-                    ApiProxy.callApi("participate", formObj, function(response)
+                    ApiProxy.callApi("participate", formObj, true, function(response)
                     {
                         if(response.error)
                         {
