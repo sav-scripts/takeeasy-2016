@@ -2,9 +2,10 @@
 {
     var $doms = {},
         _isHiding = true,
-        _currentMode = null;
+        _currentMode = null,
+        _votingSerial;
 
-    window.CommonForm =
+    var self = window.CommonForm =
     {
         init: function ()
         {
@@ -69,9 +70,16 @@
 
         },
 
+        setVotingSerial: function(serial)
+        {
+            _votingSerial = serial;
+        },
+
         setMode: function(mode)
         {
             _currentMode = mode;
+
+            return self;
         }
     };
 
@@ -112,7 +120,7 @@
                         else
                         {
                             //console.log("success");
-                            Participate.Success.setShareEntryUrl(response.serial);
+                            Participate.Success.setShareEntrySerial(response.serial);
                             Participate.Success.show();
                         }
 
@@ -126,9 +134,37 @@
                 }
 
             }
+            else if(_currentMode == 'vote')
+            {
+                if(!_votingSerial)
+                {
+                    alert('lack voting serial');
+                }
+                else
+                {
+                    formObj.serial = _votingSerial;
+
+                    Loading.progress('資料傳輸中 ... 請稍候').show();
+
+                    ApiProxy.callApi("entries_vote", formObj, true, function(response)
+                    {
+                        if(response.error)
+                        {
+                            alert(response.error);
+                        }
+                        else
+                        {
+                            Entries.VoteSuccess.setShareEntrySerial(response.serial);
+                            Entries.VoteSuccess.show();
+                        }
+
+                        Loading.hide();
+                    });
+                }
+            }
             else
             {
-                alert("lack necessary data");
+                alert("unsupported mode");
             }
         }
     }

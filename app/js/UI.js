@@ -31,19 +31,41 @@
                 SceneHandler.toHash("/Index");
             });
 
+            setupButton(2, "reviewer", function()
+            {
+                SceneHandler.toHash("/Reviewer");
+            });
+
             setupButton(3, "participate", function()
             {
-                SceneHandler.toHash("/Participate");
+                Main.loginFB("/Participate", function()
+                {
+                    SceneHandler.toHash("/Participate");
+                });
             });
 
             setupButton(4, "vote", function()
             {
-                SceneHandler.toHash("/Entries");
+                Main.loginFB("/Participate", function()
+                {
+                    SceneHandler.toHash("/Entries");
+                });
+            });
+
+            setupButton(5, "fill", function()
+            {
+                Main.loginFB("/Fill", function()
+                {
+                    SceneHandler.toHash("/Fill");
+                });
             });
 
             setupButton(6, "entries", function()
             {
-                SceneHandler.toHash("/Entries");
+                Main.loginFB("/Participate", function()
+                {
+                    SceneHandler.toHash("/Entries");
+                });
             });
 
             setupButton(7, "participate", function()

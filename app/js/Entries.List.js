@@ -101,6 +101,8 @@
             {
                 if (cb) cb.apply();
 
+                $doms.keywordInput.val('');
+                _keyword = '';
                 self.doSearch(0, true);
             });
 
@@ -182,6 +184,7 @@
             {
                 "keyword": _keyword,
                 "search_type": isSearchSerial? "serial": "user_name",
+                "status": isSearchSerial? "": "approved",
                 "sort_type": _sortType,
                 "page_index": pageIndex,
                 "page_size": _pageSize
@@ -383,7 +386,6 @@
     var $doms = {},
         BLOCK_SIZE = 9,
         SIDE_BLOCK_SIZE = 4,
-        _numBlocks,
         _numPages,
         _pageIndex;
 
@@ -455,7 +457,8 @@
         {
             if(pageIndex < 1 || pageIndex > numPages)
             {
-                console.error("illegal params, numPages: " + numPages + ", pageIndex: " + pageIndex);
+                console.log("illegal params, numPages: " + numPages + ", pageIndex: " + pageIndex);
+                self.clear();
                 return;
             }
 

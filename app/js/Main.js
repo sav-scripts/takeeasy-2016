@@ -12,6 +12,8 @@
             isLocal: false,
             isMobile: false,
 
+            useFakeData: false,
+
             fb_appid: "153715675051521",
             fbPermissions: [],
 
@@ -36,6 +38,8 @@
                 Main.settings.isLocal = true;
             }
 
+            if(Main.settings.isLocal || Utility.urlParams.usefakedata == '1') Main.settings.useFakeData = true;
+
             if(Utility.urlParams.state)
             {
                 var length = history.length;
@@ -44,6 +48,7 @@
                 window.location.replace(Utility.getPath() + "#" + Utility.urlParams.state);
                 //SceneHandler.setHash(Utility.urlParams.state, false);
             }
+
 
             self.settings.isiOS = Utility.isiOS();
 
@@ -56,7 +61,9 @@
                 "/Index",
                 "/Participate",
                 "/Entries",
-                "/Rule"
+                "/Rule",
+                "/Reviewer",
+                "/Fill"
             ],
              blockHashs =
             [
@@ -107,13 +114,14 @@
                             },
                             hashChangeTester: function(hashName)
                             {
-                                if(hashName == '/Participate')
+                                if(hashName == '/Participate' || hashName == '/Entries')
                                 {
                                     if(!Main.settings.fbToken)
                                     {
                                         console.log("no token");
+                                        var targetHash = hashName;
                                         hashName = null; // cancel content change
-                                        SceneHandler.setHash("/Index");
+                                        SceneHandler.setHash(targetHash);
                                     }
                                 }
 

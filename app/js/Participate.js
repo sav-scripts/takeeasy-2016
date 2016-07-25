@@ -72,8 +72,8 @@
 
         $doms.container = $("#participate");
 
-        self.UploadStep.init($doms.container.find(".content-step-upload"));
         self.Title.init($doms.container.find(".content-title"));
+        self.UploadStep.init($doms.container.find(".content-step-upload"));
         self.Success.init($("#participate-success"));
 
         $doms.container.detach();
@@ -84,7 +84,6 @@
         if(!Main.settings.fbToken)
         {
             cb.apply();
-            //SceneHandler.toHash("/Index");
             return;
         }
 
@@ -92,13 +91,13 @@
 
         _currentStep = 'upload';
         self.Title.show();
-        self.UploadStep.show(0, cb);
-
-        //self.Success.show();
 
         //_currentStep = 'form';
         //self.Title.show();
-        //CommonForm.show(0, cb);
+
+        _stepDic[_currentStep].show(0, cb);
+
+        //self.Success.show();
     }
 
     function hide(cb)
@@ -207,11 +206,6 @@
             $doms.container.detach();
         },
 
-        setShareEntryUrl: function(serial)
-        {
-            _shareEntrySerial = serial;
-        },
-
         show: function (delay, cb)
         {
             if(!_isHiding) return;
@@ -230,6 +224,7 @@
             });
 
         },
+
         hide: function (delay, cb)
         {
             if(_isHiding) return;
@@ -243,6 +238,11 @@
                 if (cb) cb.apply();
             });
 
+        },
+
+        setShareEntrySerial: function(serial)
+        {
+            _shareEntrySerial = serial;
         }
     };
 

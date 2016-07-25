@@ -7,78 +7,71 @@
     {
         "participate":
         {
-            enabled: true,
-            response: {
-                error: "",
-                serial: "0001"
-            }
+            error: "",
+            serial: "0001"
+        },
+
+        "entries_vote":
+        {
+            "error": ""
         },
 
         "entries_search":
         {
-            enabled: true,
-            response:{
-                erro: "",
-                data:[
+            erro: "",
+            data:[
 
-                    {
-                        "serial": "0088",
-                        "status": "approved",
-                        "name": "John",
-                        "num_votes": "31231",
-                        "thumb_url": "http://xxxx.xx/thumbxxx.jpg", // 作品 url (尺寸 133 x 100)
-                        "url":  "http://xxxx.xx/imagexxx.jpg", // 作品 url (尺寸 474 x 356)
-                        "description": "bablalalala" // 作品創作概念
-                    }
-                ],
-                num_pages: 13,
-                page_index: 3,
-                page_size: 10
-            }
+                {
+                    "serial": "0088",
+                    "status": "approved",
+                    "name": "John",
+                    "num_votes": "31231",
+                    "thumb_url": "http://xxxx.xx/thumbxxx.jpg",
+                    "url":  "http://xxxx.xx/imagexxx.jpg",
+                    "description": "bablalalala"
+                }
+            ],
+            num_pages: 13,
+            page_index: 3,
+            page_size: 10
         },
-        "entries_search.serial": {
+        "entries_search.serial":
+        {
+            erro: "",
+            data:[
 
-            enabled: true,
-            response:{
-                erro: "",
-                data:[
-
-                    {
-                        "serial": "0088",
-                        "status": "approved",
-                        "name": "John",
-                        "num_votes": "31231",
-                        "thumb_url": "./images/participate-upload-title-girl.png", // 作品 url (尺寸 133 x 100)
-                        "url":  "./images/participate-upload-title-girl.png", // 作品 url (尺寸 474 x 356)
-                        "description": "bablalalala" // 作品創作概念
-                    }
-                ],
-                num_pages: 1,
-                page_index: 0,
-                page_size: 1
-            }
+                {
+                    "serial": "0088",
+                    "status": "approved",
+                    "name": "John",
+                    "num_votes": "31231",
+                    "thumb_url": "./images/participate-upload-title-girl.png",
+                    "url":  "./images/participate-upload-title-girl.png",
+                    "description": "bablalalala"
+                }
+            ],
+            num_pages: 1,
+            page_index: 0,
+            page_size: 1
         },
-        "entries_search.single": {
+        "entries_search.single":
+        {
+            erro: "",
+            data:[
 
-            enabled: true,
-            response:{
-                erro: "",
-                data:[
-
-                    {
-                        "serial": "7354",
-                        "status": "approved",
-                        "name": "John",
-                        "num_votes": "6945",
-                        "thumb_url": "./images/participate-upload-title-girl.png", // 作品 url (尺寸 133 x 100)
-                        "url":  "./images/participate-upload-title-girl.png", // 作品 url (尺寸 474 x 356)
-                        "description": "bablalalala" // 作品創作概念
-                    }
-                ],
-                num_pages: 123,
-                page_index: 0,
-                page_size: 1
-            }
+                {
+                    "serial": "7354",
+                    "status": "approved",
+                    "name": "John",
+                    "num_votes": "6945",
+                    "thumb_url": "./images/participate-upload-title-girl.png",
+                    "url":  "./images/participate-upload-title-girl.png",
+                    "description": "bablalalala"
+                }
+            ],
+            num_pages: 123,
+            page_index: 0,
+            page_size: 1
         }
     };
 
@@ -89,12 +82,11 @@
     {
         callApi: function(apiName, params, fakeDataName, cb)
         {
-            if(fakeDataName)
+            if(Main.settings.useFakeData && fakeDataName)
             {
                 if(fakeDataName === true) fakeDataName = apiName;
 
-                var fakeData = _fakeData[fakeDataName],
-                    response = fakeData.response;
+                var response = _fakeData[fakeDataName];
 
                 if(fakeDataName == 'entries_search')
                 {

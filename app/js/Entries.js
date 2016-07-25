@@ -45,9 +45,9 @@
 
             _currentStep = step;
 
-            if(_currentStep == "form")
+            if(_currentStep == "vote")
             {
-                CommonForm.setMode("participate");
+                CommonForm.setMode("vote");
                 //self.UploadStep.hide(0, CommonForm.show);
             }
 
@@ -70,7 +70,8 @@
 
         _stepDic =
         {
-            "list": self.List
+            "list": self.List,
+            "vote": CommonForm
         };
 
 
@@ -80,6 +81,7 @@
 
         self.Reviewing.init($("#entries-reviewing"));
         self.Unapproved.init($("#entries-unapproved"));
+        self.VoteSuccess.init($("#entries-vote-success"));
 
 
         $doms.container.detach();
@@ -89,6 +91,12 @@
 
     function show(cb)
     {
+        if(!Main.settings.fbToken)
+        {
+            cb.apply();
+            return;
+        }
+
         $("#scene-container").append($doms.container);
 
         self.resize();
@@ -294,3 +302,93 @@
 
 }());
 
+(function ()
+{
+    var $doms = {},
+        _isHiding = true,
+        _shareEntrySerial,
+        _shareImageUrl;
+
+    var self = window.Entries.VoteSuccess =
+    {
+        init: function ($container)
+        {
+            $doms.container = $container;
+            $doms.parent = $("body");
+
+            $doms.btnClose = $doms.container.find(".btn-close").on("click", function()
+            {
+                self.hide();
+                Entries.toStep("list");
+            });
+
+            $doms.btnShare = $doms.container.find(".btn-share").on("click", function()
+            {
+                //self.hide();
+
+                FB.ui
+                (
+                    {
+                        method:"share",
+                        display: "iframe",
+                        href: Utility.getPath() + "?serial=" + _shareEntrySerial,
+                        picture: _shareImageUrl
+                    },function(response)
+                    {
+                        if(!response.error && !response.error_code)
+                        {
+                            self.hide();
+                            Entries.toStep("list");
+                        }
+                    }
+                );
+            });
+
+            $doms.container.detach();
+        },
+
+        show: function (delay, cb)
+        {
+            if(!_isHiding) return;
+            _isHiding = false;
+
+            $doms.parent.append($doms.container);
+
+            if (delay === undefined) delay = 0;
+
+            var tl = new TimelineMax;
+            tl.set($doms.container, {autoAlpha: 0});
+            tl.to($doms.container, .4, {autoAlpha: 1}, delay);
+            tl.add(function ()
+            {
+                if (cb) cb.apply();
+            });
+
+        },
+        hide: function (delay, cb)
+        {
+            if(_isHiding) return;
+            _isHiding = true;
+
+            var tl = new TimelineMax;
+            tl.to($doms.container, .4, {autoAlpha: 0}, delay);
+            tl.add(function ()
+            {
+                $doms.container.detach();
+                if (cb) cb.apply();
+            });
+
+        },
+
+        setShareEntrySerial: function(serial)
+        {
+            _shareEntrySerial = serial;
+        },
+
+        setShareImageUrl: function(url)
+        {
+            _shareImageUrl = url;
+        }
+    };
+
+}());

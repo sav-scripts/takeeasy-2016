@@ -4,8 +4,7 @@
         _isHiding = true,
         _isLocking = false,
         _entryData,
-        _searchSetting,
-        _currentIndex;
+        _searchSetting;
 
     var self = window.EntryView =
     {
@@ -55,6 +54,19 @@
                 self.hide();
             });
 
+            $doms.btnToList = $doms.container.find(".btn-to-list").on("click", function()
+            {
+                self.hide();
+            });
+
+            $doms.btnVote = $doms.container.find(".btn-vote").on("click", function()
+            {
+                self.hide();
+                //console.log("serial = " + _entryData.serial);
+                CommonForm.setVotingSerial(_entryData.serial);
+                Entries.toStep("vote");
+            });
+
 
             $doms.container.detach();
         },
@@ -94,7 +106,7 @@
             _searchSetting = searchSetting;
 
             _isLocking = true;
-            Loading.show();
+            Loading.progress("資料讀取中...").show();
 
             ApiProxy.callApi("entries_search", searchSetting, "entries_search.single", function(response)
             {
@@ -159,6 +171,8 @@
 
         $doms.arrowLeft.css("display", 'none');
         $doms.arrowRight.css("display", 'none');
+
+        setVoteButtons(false);
     }
 
     function toEntryMode(isMultipleMode)
@@ -191,6 +205,22 @@
         {
             $doms.arrowLeft.css("display", 'none');
             $doms.arrowRight.css("display", 'none');
+        }
+
+        setVoteButtons(true);
+    }
+
+    function setVoteButtons(showIt)
+    {
+        if(showIt)
+        {
+            $doms.btnToList.toggleClass("hidding", false);
+            $doms.btnVote.toggleClass("hidding", false);
+        }
+        else
+        {
+            $doms.btnToList.toggleClass("hidding", true);
+            $doms.btnVote.toggleClass("hidding", true);
         }
     }
 

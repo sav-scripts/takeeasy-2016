@@ -56,9 +56,21 @@
             });
         });
 
-        $doms.btnToEntries = $doms.container.find(".button-2").on("click", function()
+
+        $doms.btnToParticipate = $doms.container.find(".button-2").on("click", function()
         {
-            //SceneHandler.toContent("/ParticipateForm");
+            Main.loginFB("/Fill", function()
+            {
+                SceneHandler.toHash("/Fill");
+            });
+        });
+
+        $doms.btnToEntries = $doms.container.find(".button-3").on("click", function()
+        {
+            Main.loginFB("/Entries", function()
+            {
+                SceneHandler.toHash("/Entries");
+            });
         });
 
         $doms.container.detach();
