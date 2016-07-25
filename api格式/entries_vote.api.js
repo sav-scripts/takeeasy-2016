@@ -20,5 +20,6 @@ var send =
 /* 後端回應 */
 var response =
 {
-    "error": "some error"  // 正常執行的話傳回空值, 有錯傳回錯誤訊息
+    "error": "some error",  // 正常執行的話傳回空值, 有錯傳回錯誤訊息
+    "share_url": "http://xxx.xxx/xx.jpg" // 傳回作品分享圖片網址, 由後端生成
 };

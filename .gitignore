@@ -1,6 +1,7 @@
 .idea
 design/
 documents/
+secret/
 node_modules
 
 # Windows image file caches
