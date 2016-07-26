@@ -97,11 +97,13 @@
 
         if(formObj)
         {
+            var canvas, imageData;
+
             if(_currentMode == "participate")
             {
                 //Participate.Success.show();
-                var canvas = Participate.UploadStep.getRawCanvas(),
-                    imageData;
+                canvas = Participate.UploadStep.getRawCanvas();
+
                 if(canvas)
                 {
                     imageData = canvas.toDataURL("image/jpeg", .95).replace(/^data:image\/jpeg;base64,/, "");
@@ -155,11 +157,48 @@
                         else
                         {
                             Entries.VoteSuccess.setShareEntrySerial(response.serial);
+                            Entries.VoteSuccess.setShareImageUrl(response.share_url);
                             Entries.VoteSuccess.show();
                         }
 
                         Loading.hide();
                     });
+                }
+            }
+            else if(_currentMode == 'fill')
+            {
+                canvas = Fill.getSendingCanvas();
+
+                if(canvas)
+                {
+                    imageData = canvas.toDataURL("image/jpeg", .95).replace(/^data:image\/jpeg;base64,/, "");
+
+                    formObj.image_data = imageData;
+
+                    Loading.progress('資料傳輸中 ... 請稍候').show();
+
+                    ApiProxy.callApi("filling_attending", formObj, true, function(response)
+                    {
+                        if(response.error)
+                        {
+                            alert(response.error);
+                        }
+                        else
+                        {
+                            console.log("success");
+                            console.log(response.share_url);
+                            //Participate.Success.setShareEntrySerial(response.serial);
+                            Fill.Success.setShareImageUrl(response.share_url);
+                            Fill.Success.show();
+                        }
+
+                        Loading.hide();
+                    });
+
+                }
+                else
+                {
+                    alert('lack image data');
                 }
             }
             else

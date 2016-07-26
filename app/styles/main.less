@@ -1213,14 +1213,51 @@ div{
 #fill{
 
     .container-pc();
-    .layout-pc("layouts/fill-illust-list-pc.jpg");
+    .layout-pc("layouts/fill-pc.jpg");
 
     .content-title{
         .content-wrapper();
 
-        .percent-div(title, -263, -338, 521, 157, "fill-title.png");
+        .percent-div(title, -265, -338, 521, 157, "fill-title.png");
         .percent-div(hand, -331, -290, 154, 127, "reviewer-hand.png");
         .percent-div(sub-title, -389, -190, 809, 38, "fill-sub-title.png");
+
+
+        .mini-hand{
+            .abs-div(211, -256, 47, 35, "mini-hand.png");
+        }
+
+        .right-girl{
+            .percent-div(none, 192, -242, 115, 75, "participate-upload-title-girl.png");
+            opacity: 0;
+        }
+
+
+        .left-girl{
+            .percent-div(none, -448, -228, 117, 142, "participate-upload-left-girl.png");
+            opacity: 0;
+        }
+
+
+
+        &.form-mode{
+            .sub-title{
+                opacity: 0;
+            }
+
+            .right-girl{
+                opacity: 1;
+            }
+
+            .left-girl{
+                opacity: 1;
+            }
+
+            .mini-hand{
+                left: 207px;
+                top: -275px;
+            }
+        }
     }
 
 
@@ -1247,6 +1284,8 @@ div{
                 height: 261px;
 
                 left: @wGap * (@index - 1);
+
+                cursor: pointer;
 
                 .image-bg("reviewer-@{index}.png");
 
@@ -1301,19 +1340,20 @@ div{
                 left:0;
                 top:0;
 
-                .my-mixin(1, 1);
-                .my-mixin(1, 2);
-                .my-mixin(1, 3);
+                .my-mixin(1, 1, 20, 26, 77, 173);
+                .my-mixin(1, 2, 251, 16, 68, 142, 28px);
+                .my-mixin(1, 3, 244, 73, 76, 160);
 
-                .my-mixin(2, 1);
-                .my-mixin(2, 2);
-                .my-mixin(2, 3);
+                .my-mixin(2, 1, 233, 4, 107, 80, 26px, 26px, none);
+                .my-mixin(2, 2, 1, 93, 60, 131, 26px, 28px);
+                .my-mixin(2, 3, 39, 68, 68, 133, 26px, 32px);
 
-                .my-mixin(3, 1);
-                .my-mixin(3, 2);
-                .my-mixin(3, 3);
+                .my-mixin(3, 1, 230, 11, 113, 130);
+                .my-mixin(3, 2, 242, 30, 100, 170);
+                .my-mixin(3, 3, 26, 12, 302, 43, 30px, 38px, none);
 
-                .my-mixin(@illustrator-index; @illust-index;)
+                .my-mixin(@illustrator-index; @illust-index; @left:0; @top:0; @width:100px; @height:100px;
+                    @size: 30px; @line-height: 36px; @writing-mode:vertical;)
                 {
                     @w: 347px;
                     @wGap: @w + 19px;
@@ -1369,6 +1409,45 @@ div{
                             background: white;
                         }
 
+                        .fill-bound{
+                            position: absolute;
+                            z-index: 10;
+
+                            background: none;
+                            border: none;
+
+                            left: @left * 1px;
+                            top: @top * 1px;
+                            width: @width * 1px;
+                            height: @height * 1px;
+
+                            .default-font(@size);
+
+                            & when not (@line-height = none){
+                                line-height: @line-height;
+                            }
+
+                            pointer-events: none;
+
+                            resize: none;
+                            overflow: hidden;
+
+                            & when (@writing-mode = vertical){
+
+                                -webkit-writing-mode: vertical-rl;
+                                writing-mode: vertical-rl;
+                            }
+
+                            visibility: hidden;
+
+//                            opacity: .3;
+//                            transition: opacity .3s ease-out;
+
+//                            &.open-mode{
+//                                opacity: 0;
+//                            }
+                        }
+
                         &.open-mode{
 
                             .my-word{
@@ -1392,4 +1471,49 @@ div{
     }
 }
 
+#fill-success{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    z-index: 2000;
+
+    .cover{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #fce7b1;
+        opacity: .75;
+    }
+
+
+    .content{
+
+        position: absolute;
+        left:50%;
+        top:50%;
+        width: 474px;
+        height: 261px;
+        .image-bg("fill-success.png");
+        margin-left: -237px;
+        margin-top: -130px;
+
+        .btn-close{
+            .abs-div(436, 10, 28, 28);
+            .image-bg("common-btn-close.png");
+
+            cursor: pointer;
+            &:active{
+                margin-top: 2px;
+            }
+        }
+
+        .btn-share{
+            .abs-div(158,164,152,24);
+            .image-bg("common-btn-facebook-share.png");
+
+            cursor: pointer;
+        }
+    }
+}
 

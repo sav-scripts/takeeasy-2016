@@ -48,7 +48,13 @@
 
             $doms.loadingHint = $doms.container.find(".loading-hint").css("display", "none");
 
-            $doms.keywordInput = $doms.container.find(".field-keyword");
+            $doms.keywordInput = $doms.container.find(".field-keyword").on("keyup", function(event)
+            {
+                if(event.keyCode == 13)
+                {
+                    $doms.btnSearchName.click();
+                }
+            });
 
             $doms.btnSearchName = $doms.container.find(".btn-name").on("click", function()
             {
