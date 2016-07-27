@@ -52,6 +52,42 @@
   left: 1px;
   top: 1px;
 }
+@media (max-width: 640px) {
+  .custom-checkbox.big {
+    width: 41px;
+    height: 41px;
+  }
+  .custom-checkbox.big label {
+    width: 39px;
+    height: 39px;
+  }
+  .custom-checkbox.big label:after {
+    width: 23px;
+    height: 13px;
+    left: 7px;
+    top: 7px;
+    border: 6px solid #000000;
+    border-top: none;
+    border-right: none;
+  }
+  .custom-checkbox.middle {
+    width: 29px;
+    height: 29px;
+  }
+  .custom-checkbox.middle label {
+    width: 27px;
+    height: 27px;
+  }
+  .custom-checkbox.middle label:after {
+    width: 13px;
+    height: 7px;
+    left: 7px;
+    top: 7px;
+    border: 4px solid #000000;
+    border-top: none;
+    border-right: none;
+  }
+}
 @charset "utf-8";
 /* CSS Document */
 .ss_dom{
@@ -213,7 +249,7 @@ div.disactivated {
 }
 /** ui **/
 #menu-cover {
-  position: absolute;
+  position: fixed;
   z-index: 999;
   width: 100%;
   height: 100%;
@@ -637,6 +673,15 @@ div.disactivated {
   background-image: url("../images/index-title.png");
   background-size: cover;
 }
+#index .mini-hand {
+  position: absolute;
+  left: 262%;
+  top: -309%;
+  width: 47%;
+  height: 35%;
+  background-image: url("../images/mini-hand.png");
+  background-size: cover;
+}
 #index .left-mob {
   position: absolute;
   left: -458%;
@@ -673,7 +718,22 @@ div.disactivated {
   background-image: url("../images/index-button-3.png");
   background-size: cover;
 }
-#index .arrow-left {
+#index .button-1,
+#index .button-2,
+#index .button-3 {
+  cursor: pointer;
+}
+#index .button-1:active,
+#index .button-2:active,
+#index .button-3:active {
+  margin-top: 5px;
+}
+#index .wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#index .wrapper .arrow-left {
   position: absolute;
   left: 214%;
   top: 163%;
@@ -682,7 +742,7 @@ div.disactivated {
   background-image: url("../images/index-arrow-left.png");
   background-size: cover;
 }
-#index .arrow-right {
+#index .wrapper .arrow-right {
   position: absolute;
   left: 372%;
   top: 163%;
@@ -691,7 +751,7 @@ div.disactivated {
   background-image: url("../images/index-arrow-right.png");
   background-size: cover;
 }
-#index .sample-thumb {
+#index .wrapper .sample-thumb {
   position: absolute;
   left: 240px;
   top: 137px;
@@ -700,7 +760,7 @@ div.disactivated {
   border: 1px solid rgba(0, 0, 0, 0.5);
   background-color: white;
 }
-#index .sample-serial {
+#index .wrapper .sample-serial {
   position: absolute;
   left: 242px;
   top: 237px;
@@ -715,7 +775,7 @@ div.disactivated {
   user-select: none;
   cursor: default;
 }
-#index .sample-author {
+#index .wrapper .sample-author {
   position: absolute;
   left: 285px;
   top: 237px;
@@ -732,26 +792,16 @@ div.disactivated {
   user-select: none;
   cursor: default;
 }
-#index .button-1,
-#index .button-2,
-#index .button-3 {
+#index .wrapper .arrow-left {
   cursor: pointer;
 }
-#index .button-1:active,
-#index .button-2:active,
-#index .button-3:active {
-  margin-top: 5px;
-}
-#index .arrow-left {
-  cursor: pointer;
-}
-#index .arrow-left:active {
+#index .wrapper .arrow-left:active {
   margin-left: -2px;
 }
-#index .arrow-right {
+#index .wrapper .arrow-right {
   cursor: pointer;
 }
-#index .arrow-right:active {
+#index .wrapper .arrow-right:active {
   margin-left: 2px;
 }
 /** participate **/
@@ -914,6 +964,9 @@ div.disactivated {
   background-size: auto;
   background-repeat: repeat;
   cursor: pointer;
+}
+#participate .content-step-upload .image-input {
+  visibility: hidden;
 }
 #participate-success {
   position: absolute;
@@ -1970,13 +2023,12 @@ div.disactivated {
   margin-top: 0px;
 }
 #reviewer .reviewers .reviewer:nth-child(1) {
-  position: relative;
+  position: absolute;
   width: 347px;
   height: 261px;
-  margin-right: 19px;
+  left: 0px;
   background-image: url("../images/reviewer-1.png");
   background-size: auto;
-  float: left;
 }
 #reviewer .reviewers .reviewer:nth-child(1) .my-word {
   position: absolute;
@@ -1990,13 +2042,12 @@ div.disactivated {
   background-size: auto;
 }
 #reviewer .reviewers .reviewer:nth-child(2) {
-  position: relative;
+  position: absolute;
   width: 347px;
   height: 261px;
-  margin-right: 19px;
+  left: 366px;
   background-image: url("../images/reviewer-2.png");
   background-size: auto;
-  float: left;
 }
 #reviewer .reviewers .reviewer:nth-child(2) .my-word {
   position: absolute;
@@ -2010,13 +2061,12 @@ div.disactivated {
   background-size: auto;
 }
 #reviewer .reviewers .reviewer:nth-child(3) {
-  position: relative;
+  position: absolute;
   width: 347px;
   height: 261px;
-  margin-right: 19px;
+  left: 732px;
   background-image: url("../images/reviewer-3.png");
   background-size: auto;
-  float: left;
 }
 #reviewer .reviewers .reviewer:nth-child(3) .my-word {
   position: absolute;
@@ -3082,4 +3132,940 @@ div.disactivated {
   background-image: url("../images/common-btn-facebook-share.png");
   background-size: auto;
   cursor: pointer;
+}
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  #scene-container {
+    width: 640px;
+    height: 100%;
+    overflow: hidden;
+  }
+  #scene-container.extend-mode {
+    height: 1120px;
+  }
+  #logo {
+    left: 15px;
+    top: 10px;
+  }
+  #statements {
+    width: 421px;
+    height: 37px;
+    right: 25px;
+    bottom: 10px;
+    background-image: url("../images/statements.m.png");
+    background-size: auto;
+  }
+  /** menu **/
+  #menu {
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    top: 0;
+  }
+  #menu .icon {
+    background-image: url("../images/menu-icon.m.png");
+    background-size: auto;
+    right: 24px;
+    top: 22px;
+    width: 78px;
+    height: 75px;
+  }
+  #menu .button-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 356px;
+    height: 945px;
+    overflow-y: hidden;
+    transition: height 0.3s ease-out;
+    visibility: hidden;
+  }
+  #menu .button-container.close-mode {
+    height: 0;
+  }
+  #menu .button-container .button:nth-child(9) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(9).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(9) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 -840px;
+  }
+  #menu .button-container .button:nth-child(9):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(9):hover .text {
+    background-position: -356px -840px;
+  }
+  #menu .button-container .button:nth-child(8) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(8).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(8) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 -735px;
+  }
+  #menu .button-container .button:nth-child(8):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(8):hover .text {
+    background-position: -356px -735px;
+  }
+  #menu .button-container .button:nth-child(7) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(7).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(7) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 -630px;
+  }
+  #menu .button-container .button:nth-child(7):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(7):hover .text {
+    background-position: -356px -630px;
+  }
+  #menu .button-container .button:nth-child(6) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(6).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(6) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 -525px;
+  }
+  #menu .button-container .button:nth-child(6):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(6):hover .text {
+    background-position: -356px -525px;
+  }
+  #menu .button-container .button:nth-child(5) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(5).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(5) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 -420px;
+  }
+  #menu .button-container .button:nth-child(5):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(5):hover .text {
+    background-position: -356px -420px;
+  }
+  #menu .button-container .button:nth-child(4) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(4).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(4) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 -315px;
+  }
+  #menu .button-container .button:nth-child(4):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(4):hover .text {
+    background-position: -356px -315px;
+  }
+  #menu .button-container .button:nth-child(3) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(3).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(3) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 -210px;
+  }
+  #menu .button-container .button:nth-child(3):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(3):hover .text {
+    background-position: -356px -210px;
+  }
+  #menu .button-container .button:nth-child(2) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(2).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(2) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 -105px;
+  }
+  #menu .button-container .button:nth-child(2):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(2):hover .text {
+    background-position: -356px -105px;
+  }
+  #menu .button-container .button:nth-child(1) {
+    position: relative;
+    right: 0;
+    top: 0;
+    background-image: url("../images/menu-button-base.m.png");
+    background-size: auto;
+    width: 356px;
+    height: 105px;
+    cursor: pointer;
+    opacity: .4;
+    background-position: bottom;
+  }
+  #menu .button-container .button:nth-child(1).activated {
+    opacity: 1;
+  }
+  #menu .button-container .button:nth-child(1) .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 356px;
+    height: 105px;
+    background-image: url("../images/menu-texts.m.png");
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: 0 0px;
+  }
+  #menu .button-container .button:nth-child(1):hover {
+    background-position: top;
+  }
+  #menu .button-container .button:nth-child(1):hover .text {
+    background-position: -356px 0px;
+  }
+  /** index **/
+  #index {
+    left: 0;
+    top: 0;
+  }
+  #index .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: 0;
+    top: 0;
+    background-image: url("../images/layouts/index-mobile.jpg");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #index .title {
+    left: 47px;
+    top: 60px;
+  }
+  #index .sub-title {
+    left: 22px;
+    top: 217px;
+  }
+  #index .desc {
+    position: absolute;
+    left: 64%;
+    top: 306%;
+    width: 526%;
+    height: 104%;
+    background-image: url("../images/index-desc.m.png");
+    background-size: cover;
+  }
+  #index .mini-hand {
+    left: 579px;
+    top: 133px;
+  }
+  #index .button-1 {
+    left: 108px;
+    top: 442px;
+  }
+  #index .button-2 {
+    left: 249px;
+    top: 442px;
+  }
+  #index .button-3 {
+    left: 396px;
+    top: 442px;
+  }
+  #index .left-mob {
+    position: absolute;
+    left: 526%;
+    top: 463%;
+    width: 89%;
+    height: 113%;
+    background-image: url("../images/index-left-mob.m.png");
+    background-size: cover;
+  }
+  #index .hand {
+    position: absolute;
+    left: 119%;
+    top: 596%;
+    width: 440%;
+    height: 520%;
+    background-image: url("../images/index-hand.m.png");
+    background-size: cover;
+  }
+  #index .hand-girl {
+    left: 444px;
+    top: 605px;
+  }
+  #index .left-girl {
+    position: absolute;
+    left: 31%;
+    top: 549%;
+    width: 118%;
+    height: 149%;
+    background-image: url("../images/index-left-girl.m.png");
+    background-size: cover;
+  }
+  #index .right-boy {
+    position: absolute;
+    left: 453%;
+    top: 700%;
+    width: 161%;
+    height: 152%;
+    background-image: url("../images/index-right-boy.m.png");
+    background-size: cover;
+  }
+  #index .wrapper {
+    left: -179px;
+    top: 611px;
+  }
+  /** reviewer **/
+  #reviewer .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: -320px;
+    top: -475px;
+    background-image: url("../images/layouts/reviewer-mobile.png");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #reviewer .title {
+    position: absolute;
+    left: -282%;
+    top: -430%;
+    width: 562%;
+    height: 260%;
+    background-image: url("../images/reviewer-title.m.png");
+    background-size: cover;
+  }
+  #reviewer .hand,
+  #reviewer .sub-title {
+    display: none;
+  }
+  #reviewer .reviewers {
+    display: none;
+  }
+  #reviewer .reviewers-m {
+    position: absolute;
+    left: -238px;
+    top: -107px;
+    width: 472px;
+    height: 354px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #reviewer .reviewers-m .reviewer:nth-child(1) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 0px;
+    background-image: url("../images/reviewer-1.m.png");
+    background-size: auto;
+  }
+  #reviewer .reviewers-m .reviewer:nth-child(1) .my-word {
+    position: absolute;
+    left: 125px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #reviewer .reviewers-m .reviewer:nth-child(2) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 491px;
+    background-image: url("../images/reviewer-2.m.png");
+    background-size: auto;
+  }
+  #reviewer .reviewers-m .reviewer:nth-child(2) .my-word {
+    position: absolute;
+    left: 125px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #reviewer .reviewers-m .reviewer:nth-child(3) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 982px;
+    background-image: url("../images/reviewer-3.m.png");
+    background-size: auto;
+  }
+  #reviewer .reviewers-m .reviewer:nth-child(3) .my-word {
+    position: absolute;
+    left: 125px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  /** rule **/
+  #rule .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: -320px;
+    top: -475px;
+    background-image: url("../images/layouts/rule-mobile.jpg");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #rule .basement {
+    position: absolute;
+    left: -304px;
+    top: -375px;
+    width: 603px;
+    height: 782px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-color: white;
+    border: 1px solid #666;
+  }
+  #rule .basement .title {
+    position: absolute;
+    left: 204px;
+    top: 23px;
+    width: 176px;
+    height: 46px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/rule-title.png");
+    background-size: auto;
+  }
+  #rule .basement .content-container {
+    left: 20px;
+    top: 86px;
+    width: 542px;
+    height: 674px;
+  }
+  #rule .basement .content-container .content {
+    width: 514px;
+    height: 3989px;
+    margin-top: 4px;
+    background-image: url("../images/rule-content.m.png");
+    background-size: auto;
+  }
+  #rule .basement .scroll-base {
+    position: absolute;
+    left: 569px;
+    top: 86px;
+    width: 27px;
+    height: 674px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #rule .basement .btn-close {
+    left: 555px;
+    top: 19px;
+  }
+  /** participate upload **/
+  #participate .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: -320px;
+    top: -475px;
+    background-image: url("../images/layouts/participate-step-upload-mobile.jpg");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #participate .content-title {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  #participate .content-title .title {
+    position: absolute;
+    left: -303%;
+    top: -432%;
+    width: 624%;
+    height: 157%;
+    background-image: url("../images/participate-upload-title.m.png");
+    background-size: cover;
+  }
+  #participate .content-title .title-girl,
+  #participate .content-title .left-girl {
+    display: none;
+  }
+  #participate .content-title.form-mode .title {
+    position: absolute;
+    left: -290%;
+    top: -448%;
+    width: 610%;
+    height: 192%;
+    background-image: url("../images/common-form-title.m.png");
+    background-size: cover;
+  }
+  #participate .content-step-upload {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  #participate .content-step-upload .sub-title {
+    position: absolute;
+    left: -309%;
+    top: -270%;
+    width: 596%;
+    height: 684%;
+    background-image: url("../images/participate-upload-content.m.png");
+    background-size: cover;
+  }
+  #participate .content-step-upload .texts,
+  #participate .content-step-upload .mob {
+    display: none;
+  }
+  #participate .content-step-upload .btn-preview {
+    position: absolute;
+    left: 58%;
+    top: 299%;
+    width: 86%;
+    height: 90%;
+    background-image: url("../images/participate-upload-btn-preview.png");
+    background-size: cover;
+  }
+  #participate .content-step-upload .btn-send {
+    position: absolute;
+    left: 157%;
+    top: 280%;
+    width: 138%;
+    height: 139%;
+    background-image: url("../images/participate-upload-btn-send.png");
+    background-size: cover;
+  }
+  #participate .content-step-upload .btn-upload {
+    position: absolute;
+    left: 146%;
+    top: 144%;
+    width: 136%;
+    height: 40%;
+    background-image: url("../images/participate-upload-btn-upload.png");
+    background-size: cover;
+  }
+  #participate .content-step-upload .description {
+    left: -187px;
+    top: -225px;
+    width: 455px;
+    height: 143px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 18px;
+    color: #999999;
+    resize: none;
+  }
+  #participate .content-step-upload .upload-confirm {
+    left: -195px;
+    top: 199px;
+    background: none;
+  }
+  #participate .content-step-upload .upload-confirm .checkbox {
+    position: absolute;
+    left: -54px;
+    top: -1px;
+  }
+  #participate .content-step-upload .upload-confirm .btn-rule {
+    position: absolute;
+    left: 131px;
+    top: 70px;
+    width: 80px;
+    height: 30px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  /** common form **/
+  #common-form .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: -320px;
+    top: -475px;
+    background-image: url("../images/layouts/common-form-mobile.jpg");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #common-form .sub-title {
+    position: absolute;
+    left: -293%;
+    top: -285%;
+    width: 492%;
+    height: 682%;
+    background-image: url("../images/common-form-content.m.png");
+    background-size: cover;
+  }
+  #common-form .btn-send {
+    left: 162px;
+    top: 271px;
+  }
+  #common-form .mob {
+    display: none;
+  }
+  #common-form .fields {
+    background: none;
+  }
+  #common-form .fields .field-name,
+  #common-form .fields .field-phone,
+  #common-form .fields .field-email {
+    position: absolute;
+    height: 30px;
+    border: 1px solid black;
+    background: white;
+    padding: 0 8px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 14px;
+    color: #555;
+  }
+  #common-form .fields .field-name {
+    left: 113px;
+    top: -90px;
+    width: 120px;
+  }
+  #common-form .fields .field-phone {
+    left: 383px;
+    top: -90px;
+    width: 178px;
+  }
+  #common-form .fields .field-email {
+    left: 114px;
+    top: -32px;
+    width: 447px;
+  }
+  #common-form .eula-content {
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    left: -295px;
+    top: -83px;
+    width: 591px;
+    height: 338px;
+  }
+  #common-form .eula-content .scroll-base {
+    position: absolute;
+    height: 100%;
+    width: 27px;
+    right: 0;
+    background-color: #fff7dc;
+  }
+  #common-form .eula-content .content-container {
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 585px;
+    height: 332px;
+  }
+  #common-form .eula-content .content-container .content {
+    width: 528px;
+    height: 630px;
+    background-image: url("../images/eula-content.m.png");
+    background-size: auto;
+  }
+  #common-form .eula-confirm {
+    background: none;
+    left: -261px;
+    top: 278px;
+  }
+  #common-form .eula-confirm .checkbox {
+    position: absolute;
+    left: -33px;
+    top: -4px;
+  }
+  /** entry-view **/
+  #entry-view .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: -320px;
+    top: -475px;
+    background-image: url("../images/layouts/entry-view-mobile.jpg");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #entry-view .basement {
+    position: absolute;
+    left: -283px;
+    top: -456px;
+    width: 562px;
+    height: 913px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entry-view .btn-close {
+    position: absolute;
+    left: 243px;
+    top: -442px;
+    width: 28px;
+    height: 28px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entry-view .arrow-left {
+    position: absolute;
+    left: -302px;
+    top: -80px;
+    width: 38px;
+    height: 38px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entry-view .arrow-right {
+    position: absolute;
+    left: 264px;
+    top: -80px;
+    width: 38px;
+    height: 38px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entry-view .optional-fields {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #entry-view .optional-fields .texts-1 {
+    position: absolute;
+    left: -230px;
+    top: -29px;
+    width: 224px;
+    height: 62px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/entry-view-texts.m.png");
+    background-size: auto;
+    background-position: left top;
+  }
+  #entry-view .optional-fields .field-num-votes {
+    left: -139px;
+    top: -37px;
+  }
+  #entry-view .optional-fields .field-serial {
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 25px;
+    color: black;
+    left: -156px;
+    top: 3px;
+  }
+  #entry-view .optional-fields .field-author {
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 25px;
+    color: black;
+    position: absolute;
+    left: 10px;
+    top: 3px;
+  }
+  #entry-view .texts-2 {
+    position: absolute;
+    left: -230px;
+    top: 33px;
+    width: 224px;
+    height: 31px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/entry-view-texts.m.png");
+    background-size: auto;
+    background-position: left bottom;
+  }
+  #entry-view .field-description {
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 18px;
+    color: black;
+    left: -230px;
+    top: 72px;
+    width: 461px;
+    height: 274px;
+    letter-spacing: 1px;
+    line-height: 25px;
+  }
+  #entry-view .image-preview {
+    position: absolute;
+    left: -230px;
+    top: -402px;
+    width: 474px;
+    height: 356px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entry-view .btn-to-list {
+    position: absolute;
+    left: 16px;
+    top: 325px;
+    width: 104px;
+    height: 109px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/entry-view-btn-to-list.png");
+    background-size: auto;
+  }
+  #entry-view .btn-vote {
+    position: absolute;
+    left: 130px;
+    top: 325px;
+    width: 106px;
+    height: 113px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/entry-view-btn-vote.png");
+    background-size: auto;
+  }
+}
+@media (max-width: 640px) and (max-height: 950px) {
+  #scene-container {
+    height: 950px;
+  }
 }

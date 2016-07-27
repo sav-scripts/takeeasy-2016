@@ -169,7 +169,8 @@
         {
             if(updateContentHeight) _bounds.content.height = $(_doms.content).height();
 
-            $(_doms.container).css("width", _bounds.container.width).css("height", _bounds.container.height);
+            //$(_doms.container).css("width", _bounds.container.width).css("height", _bounds.container.height);
+            $(_doms.container).css("width", "100%").css("height", _bounds.container.height);
 
             _scrollArea.height = _bounds.content.height - _bounds.container.height;
             if(_scrollArea.height < 0) _scrollArea.height = 0;
@@ -234,7 +235,10 @@
             $(_doms.scrollbarContainer).css("height", _bounds.scrollbar.height);
 
             //$(_dom).css("width", null).css("height", null).css("overflow", "");
-            $(_dom).css("width", "auto").css("height", "auto").css("overflow", "visible");
+
+
+            $(_dom).css("overflow", "visible");
+            //$(_dom).css("width", "auto").css("height", "auto").css("overflow", "visible");
 
             updatePosition();
 
@@ -255,12 +259,14 @@
                 hammer.on("panstart", function(event)
                 {
                     event.preventDefault();
+                    //event.stopPropagation();
                     mouseY = 0;
                 });
 
                 hammer.on("panmove", function(event)
                 {
                     event.preventDefault();
+                    //event.stopPropagation();
 
 
 

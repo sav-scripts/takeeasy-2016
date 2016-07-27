@@ -44,11 +44,11 @@
             _stepDic[_currentStep].hide();
 
             _currentStep = step;
+            self.Title.update(_currentStep);
 
             if(_currentStep == "form")
             {
                 CommonForm.setMode("participate");
-                //self.UploadStep.hide(0, CommonForm.show);
             }
 
             _stepDic[_currentStep].show();
@@ -90,12 +90,14 @@
         $("#scene-container").append($doms.container);
 
         _currentStep = 'upload';
-        self.Title.show();
-
         //_currentStep = 'form';
-        //self.Title.show();
+
+        self.Title.show();
+        self.Title.update(_currentStep);
 
         _stepDic[_currentStep].show(0, cb);
+
+        //EntryView.show();
 
         //self.Success.show();
     }
@@ -118,11 +120,13 @@
     var $doms = {},
         _isHiding = true;
 
-    window.Participate.Title =
+    var self = window.Participate.Title =
     {
+        $container: null,
+
         init: function ($container)
         {
-            $doms.container = $container;
+            $doms.container = self.$container = $container;
             $doms.parent = $container.parent();
 
             $doms.container.detach();
@@ -158,6 +162,11 @@
                 if(cb) cb.apply();
             });
 
+        },
+
+        update: function(step)
+        {
+            $doms.container.toggleClass("form-mode", step == 'form');
         }
     };
 
@@ -180,7 +189,7 @@
             {
                 self.hide();
 
-                SceneHandler.toHash("/Index");
+                SceneHandler.toHash("/Entries");
             });
 
             $doms.btnShare = $doms.container.find(".btn-share").on("click", function()
@@ -196,7 +205,7 @@
                         if(!response.error && !response.error_code)
                         {
                             self.hide();
-                            SceneHandler.toHash("/Index");
+                            SceneHandler.toHash("/Entries");
                         }
                     }
                 );

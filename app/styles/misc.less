@@ -62,4 +62,47 @@
         }
     }
 
+    @media (max-width: 640px)
+    {
+        &.big{
+            width: 41px;
+            height: 41px;
+
+            label{
+                width: 39px;
+                height: 39px;
+
+                &:after{
+                    width:23px;
+                    height: 13px;
+                    left:7px;
+                    top: 7px;
+                    border: 6px solid #000000;
+                    border-top: none;
+                    border-right: none;
+                }
+            }
+        }
+
+        &.middle{
+            width: 29px;
+            height: 29px;
+
+            label{
+                width: 27px;
+                height: 27px;
+
+                &:after{
+                    width:13px;
+                    height: 7px;
+                    left:7px;
+                    top: 7px;
+                    border: 4px solid #000000;
+                    border-top: none;
+                    border-right: none;
+                }
+            }
+
+        }
+    }
 }

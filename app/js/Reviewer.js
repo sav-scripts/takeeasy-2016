@@ -1,9 +1,10 @@
 (function ()
 {
     var $doms = {},
-        _isInit = false;
+        _isInit = false,
+        _isMobieInit = false;
 
-    window.Reviewer =
+    var self = window.Reviewer =
     {
         stageIn: function (options, cb)
         {
@@ -37,7 +38,11 @@
 
         resize: function (width, height, scale)
         {
-
+            var vp = Main.settings.viewport;
+            if(vp.index == 0)
+            {
+                buildMobile();
+            }
         }
     };
 
@@ -51,9 +56,103 @@
         $doms.container.detach();
     }
 
+    function buildMobile()
+    {
+        if(_isMobieInit) return;
+        _isMobieInit = true;
+
+        $doms.reviewersM = $doms.container.find(".reviewers-m");
+
+        var currentIndex = 0,
+            $reviewers = [],
+            isLocking = false;
+
+        setupOne(0);
+        setupOne(1);
+        setupOne(2);
+
+        toIndex(1, 0);
+
+        if(Modernizr.touchevents)
+        {
+            var hammer = new Hammer($doms.reviewersM[0]);
+
+            hammer.on("swipeleft", function(event)
+            {
+                //console.log("on swipe left");
+                toIndex(currentIndex+1);
+            });
+
+            hammer.on("swiperight", function(event)
+            {
+                //console.log("on swipe right");
+                toIndex(currentIndex-1);
+            });
+        }
+
+
+        function setupOne(index)
+        {
+            $reviewers[index] = $doms.reviewersM.find(".reviewer:nth-child("+(index+1)+")").on("mousedown", function()
+            {
+                toIndex(index);
+            });
+        }
+
+        function toIndex(index, duration)
+        {
+            if(isLocking) return;
+            if(index < 0 || index > 2 || currentIndex == index) return;
+
+            currentIndex = index;
+
+            isLocking = true;
+
+            if(duration === undefined) duration = .5;
+
+            var i,
+                wGap = 492,
+                tx,
+                tl = new TimelineMax,
+                offsetIndex,
+                transformOrigin,
+                scale;
+
+            for(i=0;i<3;i++)
+            {
+                offsetIndex = (i - currentIndex);
+
+                scale = offsetIndex == 0? 1: .8;
+
+                if(offsetIndex == 0)
+                {
+                    transformOrigin = "center center";
+                }
+                else if(offsetIndex < 0)
+                {
+                    transformOrigin = "right center";
+                }
+                else
+                {
+                    transformOrigin = "left center";
+                }
+
+                tx = offsetIndex * wGap;
+                tl.to($reviewers[i], duration, {left: tx, scale: scale, transformOrigin: transformOrigin}, 0);
+            }
+
+            tl.add(function()
+            {
+                isLocking = false;
+            })
+        }
+    }
+
     function show(cb)
     {
         $("#scene-container").append($doms.container);
+
+        self.resize();
 
         var tl = new TimelineMax;
         tl.set($doms.container, {autoAlpha: 0});

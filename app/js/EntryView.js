@@ -139,6 +139,8 @@
 
             $doms.parent.append($doms.container);
 
+            $("#scene-container").toggleClass("extend-mode", true);
+
             if (delay === undefined) delay = 0;
 
             var tl = new TimelineMax;
@@ -159,6 +161,7 @@
             tl.to($doms.container, .4, {autoAlpha: 0}, delay);
             tl.add(function ()
             {
+                $("#scene-container").toggleClass("extend-mode", false);
                 $doms.container.detach();
                 if (cb) cb.apply();
             });

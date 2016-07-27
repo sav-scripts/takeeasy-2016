@@ -3,7 +3,7 @@
 <head lang="en">
     <title></title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=640">
+    <meta id="myViewport" name="viewport" content="width=640,user-scalable=0">
 
     <meta property="fb:app_id" content="xxx"/>
     <meta property="og:title" content="輕鬆小品暑假打工爽的咧" />
@@ -83,7 +83,7 @@
 
             <div class="eula-confirm">
 
-                <div class="checkbox custom-checkbox">
+                <div class="checkbox custom-checkbox middle">
                     <input type="checkbox" id="eula-checkbox" class="eula-checkbox" />
                     <label for="eula-checkbox"></label>
                 </div>
@@ -93,6 +93,8 @@
         </div>
 
     </div>
+
+    <!--<div id="mobile-background"></div>-->
 
     <div id="scene-container">
 
@@ -125,6 +127,9 @@
     <div id="fb-root"></div>
 
 
+    <script src="js/lib/modernizr-custom.js"></script>
+    <script>if(Modernizr.touchevents) document.write('<script src="js/lib/hammer.min.js"><\/script>');</script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/lib/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
@@ -132,14 +137,12 @@
 
 
     <!-- build:js js/optimized.js -->
-    <script src="js/lib/modernizr-custom.js"></script>
     <script src="js/lib/FBHelper.1.0.2.js"></script>
     <script src="js/lib/Helper.1.0.4.js"></script>
     <script src="js/lib/SceneHandler.1.0.2.js"></script>
     <script src="js/lib/jquery.waitforimages.min.js"></script>
     <script src="js/lib/Utility.0.0.14.js"></script>
     <script src="js/lib/jquery.mousewheel.min.js"></script>
-    <script src="js/lib/hammer.js"></script>
     <script src="js/lib/simple_scroller.0.0.7.js"></script>
     <script src="js/Main.js"></script>
     <script src="js/UI.js"></script>

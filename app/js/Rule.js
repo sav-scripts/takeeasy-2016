@@ -1,9 +1,10 @@
 (function ()
 {
     var $doms = {},
+        _ss,
         _isInit = false;
 
-    window.Rule =
+    var self = window.Rule =
     {
         stageIn: function (options, cb)
         {
@@ -37,6 +38,16 @@
 
         resize: function (width, height, scale)
         {
+            var vp = Main.settings.viewport;
+
+            if(vp.changed)
+            {
+
+
+                var containerHeight = $doms.contentContainer.height();
+                var $ssContainer = $(_ss.doms.container);
+                _ss.containerSize(null, containerHeight).scrollBound($ssContainer.width()+10, 3, 0, containerHeight-44).update(true);
+            }
 
         }
     };
@@ -48,11 +59,11 @@
 
         $doms.contentContainer = $doms.container.find(".content-container");
 
-        var containerHeight = $doms.contentContainer.height();
-        var ss = new SimpleScroller($doms.contentContainer[0], null, 0, Modernizr.touchevents).update(true);
+        _ss = new SimpleScroller($doms.contentContainer[0], null, 0, Modernizr.touchevents).update(true);
 
-        var $ssContainer = $(ss.doms.container);
-        ss.containerSize(null, containerHeight).scrollBound($ssContainer.width()+10, 3, 0, containerHeight-44).update(true);
+        //var containerHeight = $doms.contentContainer.height();
+        //var $ssContainer = $(_ss.doms.container);
+        //_ss.containerSize(null, containerHeight).scrollBound($ssContainer.width()+10, 3, 0, containerHeight-44).update(true);
 
         $doms.btnClose = $doms.container.find(".btn-close").on("click", function()
         {
@@ -74,6 +85,8 @@
     function show(cb)
     {
         $("#scene-container").append($doms.container);
+
+        self.resize();
 
         var tl = new TimelineMax;
         tl.set($doms.container, {autoAlpha: 0});

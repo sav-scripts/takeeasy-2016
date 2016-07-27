@@ -2,23 +2,23 @@
 {
     var $doms = {},
         _isHiding = true,
+        _isInit = false,
         _currentMode = null,
-        _votingSerial;
+        _votingSerial,
+        _ss;
 
     var self = window.CommonForm =
     {
         init: function ()
         {
+            _isInit = true;
+
             $doms.parent = $("#scene-container");
             $doms.container = $('#common-form');
 
             $doms.eulaContentContainer = $doms.container.find(".content-container");
 
-            var containerHeight = $doms.eulaContentContainer.height();
-            var ss = new SimpleScroller($doms.eulaContentContainer[0], null, 0, Modernizr.touchevents).update(true);
-
-            var $ssContainer = $(ss.doms.container);
-            ss.containerSize(null, containerHeight).scrollBound($ssContainer.width()-21, 0, 0, containerHeight-38).update(true);
+            _ss = new SimpleScroller($doms.eulaContentContainer[0], null, 0, Modernizr.touchevents).update(true);
 
             $doms.fields =
             {
@@ -41,6 +41,8 @@
             _isHiding = false;
 
             $doms.parent.append($doms.container);
+
+            self.resize();
 
             reset();
 
@@ -80,6 +82,21 @@
             _currentMode = mode;
 
             return self;
+        },
+
+        resize: function()
+        {
+            if(_isInit && _isHiding == false)
+            {
+                var vp = Main.settings.viewport;
+
+                if(vp.changed)
+                {
+                    var containerHeight = $doms.eulaContentContainer.height();
+                    var $ssContainer = $(_ss.doms.container);
+                    _ss.containerSize(null, containerHeight).scrollBound($ssContainer.width() - 21, 0, 0, containerHeight - 38).update(true);
+                }
+            }
         }
     };
 

@@ -27,7 +27,8 @@
                 width: 0,
                 height: 0,
                 ranges: [640],
-                index: 0
+                index: -1,
+                changed: false
             }
         },
         init: function()
@@ -75,9 +76,11 @@
 
             Menu.init();
 
+
             //EntryView.show();
             //Loading.hide();
 
+            if(Modernizr.touchevents) Helper.precentPullToRefresh();
 
             FBHelper.init(Main.settings.fb_appid, function()
             {
@@ -279,14 +282,25 @@
             if(vp.ranges[i] >= width) break;
         }
 
+        var oldIndex = vp.index;
+
         vp.index = i;
         vp.width = width;
         vp.height = vp;
+
+        if(oldIndex !== vp.index)
+        {
+            vp.changed = true;
+        }
 
         if(SceneHandler.currentScene)
         {
             SceneHandler.currentScene.resize();
         }
+
+        CommonForm.resize();
     }
 
 }());
+
+

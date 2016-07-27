@@ -3,7 +3,7 @@
 <head lang="en">
     <title></title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=640">
+    <meta id="myViewport" name="viewport" content="width=640,user-scalable=0">
 
     <meta property="fb:app_id" content="xxx"/>
     <meta property="og:title" content="輕鬆小品暑假打工爽的咧" />
@@ -12,7 +12,7 @@
     <meta property="og:description" content="把腦海中擋不住的爽感通通畫出來，就有機會像微疼、啾啾妹、小學課本的逆襲一樣出道成為人氣插畫家，再得10萬元打工獎金＋一箱輕鬆小品，天哪！這夏實在太爽惹～～" />
     <meta property="og:image" content="https://2016summer.tw/misc/fb-share.jpg" />
 
-    <link rel="stylesheet" href="styles/main.77d44f3cec9cb5747384.css">
+    <link rel="stylesheet" href="styles/main.64a71ff0b584dcaa1b2a.css">
 
 </head>
 <body onload="Main.init();">
@@ -94,6 +94,8 @@
 
     </div>
 
+    <!--<div id="mobile-background"></div>-->
+
     <div id="scene-container">
 
         <div id="backgrounds"></div>
@@ -125,13 +127,16 @@
     <div id="fb-root"></div>
 
 
+    <script src="js/lib/modernizr-custom.js"></script>
+    <script>if(Modernizr.touchevents) document.write('<script src="js/lib/hammer.min.js"><\/script>');</script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/lib/jquery.min.js"><\/script>')</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script>window.TweenMax || document.write('<script src="js/lib/TweenMax.min.js"><\/script>')</script>
 
 
-    <script src="js/optimized.ac8842deacb9131c80d2.js"></script>
+    <script src="js/optimized.d1e70886824b0464def3.js"></script>
 
 </body>
 </html>

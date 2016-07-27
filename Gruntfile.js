@@ -36,6 +36,8 @@ module.exports = function(grunt)
                         src: [
                             //'images/*.{png,gif,jpg,svg}',
                             '*.html',
+                            'js/lib/hammer.min.js',
+                            'js/lib/modernizr-custom.js',
                             'js/lib/TweenMax.min.js',
                             'js/lib/jquery.min.js',
                             'js/lib/SquareLoading.1.0.1.js',
