@@ -43,11 +43,12 @@
 
             if(Utility.urlParams.state)
             {
+                /*
                 var length = history.length;
                 history.go(-length);
-
                 window.location.replace(Utility.getPath() + "#" + Utility.urlParams.state);
-                //SceneHandler.setHash(Utility.urlParams.state, false);
+                */
+                removeFBParams();
             }
 
 
@@ -169,8 +170,35 @@
         loginFB: doLogin
     };
 
+    function removeFBParams()
+    {
+        if(history && history.replaceState)
+        {
+            var hash = Utility.urlParams.state;
+            var uri = Helper.removeURLParameter(location.href, 'code');
+            uri = Helper.removeURLParameter(uri, 'state');
+
+            uri += "#" + hash;
+            window.history.replaceState({path:uri},'',uri);
+        }
+    }
+
     function getFirstEntry()
     {
+        //if (history.pushState) {
+        //    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?myNewUrlQuery=1';
+        //    window.history.pushState({path:newurl},'',newurl);
+        //}
+        if(history && history.replaceState)
+        {
+            var hash = SceneHandler.getHash();
+            var uri = Helper.removeURLParameter(location.href, 'serial') + "#" + hash;
+            //window.history.pushState({path:uri},'',uri);
+            window.history.replaceState({path:uri},'',uri);
+        }
+
+        console.log("uri = " + uri);
+
         Entries.firstEntrySerial = Utility.urlParams.serial;
         //SceneHandler.toFirstHash();
         SceneHandler.toHash('/Entries');
