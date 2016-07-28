@@ -9,6 +9,7 @@
         _thumbs = [],
         _oldThumbs = [],
         _lastSearchSetting,
+        _isFirstSearchExecuted = false,
         _thumbGapSetting =
         {
             0: {w:10, h:10},
@@ -22,12 +23,12 @@
             $doms.container = $container;
             $doms.parent = $container.parent();
 
-            $doms.arrowLeft = $doms.container.find(".arrow-left").on("click", function()
+            $doms.arrowLeft = $doms.container.find(".arrow-left").on("mousedown", function()
             {
                 self.PageIndex.toPrevPage();
             });
 
-            $doms.arrowRight = $doms.container.find(".arrow-right").on("click", function()
+            $doms.arrowRight = $doms.container.find(".arrow-right").on("mousedown", function()
             {
                 self.PageIndex.toNextPage();
             });
@@ -107,9 +108,15 @@
             {
                 if (cb) cb.apply();
 
-                $doms.keywordInput.val('');
-                _keyword = '';
-                self.doSearch(0, true);
+                if(!_isFirstSearchExecuted)
+                {
+                    _isFirstSearchExecuted = true;
+                    $doms.keywordInput.val('');
+                    _keyword = '';
+                    self.doSearch(0, true);
+                }
+
+                checkFirstEntry();
             });
 
         },
@@ -130,7 +137,7 @@
 
         resize: function(viewport)
         {
-
+            _pageSize = viewport.index == 0? 4: 10;
         },
 
         changeSortType: function(newType)
@@ -200,63 +207,56 @@
             {
                 ApiProxy.callApi("entries_search", params, 'entries_search.serial', function(response)
                 {
-                    TweenMax.delayedCall(.5, function()
+                    if(response.error)
                     {
-
-                        if(response.error)
+                        alert(response.error);
+                    }
+                    else
+                    {
+                        if(response.data.length == 0)
                         {
-                            alert(response.error);
+                            alert("很抱歉, 作品編號 ["+serachingKeyword+"] 並不存在");
                         }
                         else
                         {
-                            if(response.data.length == 0)
+                            var dataObj = response.data[0];
+                            if(dataObj.status == 'approved')
                             {
-                                alert("很抱歉, 作品編號 ["+serachingKeyword+"] 並不存在");
+                                EntryView.showEntry(dataObj);
                             }
-                            else
+                            else if(dataObj.status = 'reviewing')
                             {
-                                var dataObj = response.data[0];
-                                if(dataObj.status == 'approved')
-                                {
-                                    EntryView.showEntry(dataObj);
-                                }
-                                else if(dataObj.status = 'reviewing')
-                                {
-                                    Entries.Reviewing.show();
-                                }
-                                else if(dataObj.status = 'unapproved')
-                                {
-                                    Entries.Unapproved.show();
-                                }
+                                Entries.Reviewing.show();
+                            }
+                            else if(dataObj.status = 'unapproved')
+                            {
+                                Entries.Unapproved.show();
                             }
                         }
+                    }
 
-                        loadingHide();
-                        _isLocking = false;
-                    });
+                    loadingHide();
+                    _isLocking = false;
                 });
             }
             else
             {
                 ApiProxy.callApi("entries_search", params, 'entries_search', function(response)
                 {
-                    TweenMax.delayedCall(.5, function()
+
+                    if(response.error)
                     {
+                        alert(response.error);
+                    }
+                    else
+                    {
+                        //console.log("data = " + response.data);
 
-                        if(response.error)
-                        {
-                            alert(response.error);
-                        }
-                        else
-                        {
-                            //console.log("data = " + response.data);
+                        self.PageIndex.update(parseInt(response.num_pages), parseInt(response.page_index)+1);
+                        self.updateEntries(response.data, fromDirection);
+                    }
 
-                            self.PageIndex.update(parseInt(response.num_pages), parseInt(response.page_index)+1);
-                            self.updateEntries(response.data, fromDirection);
-                        }
-
-                        loadingHide();
-                    });
+                    loadingHide();
                 });
             }
         },
@@ -331,6 +331,61 @@
 
         }
     };
+
+    function checkFirstEntry()
+    {
+
+        if(Entries.firstEntrySerial)
+        {
+            var serial = Entries.firstEntrySerial;
+            Entries.firstEntrySerial = null;
+
+            var params =
+            {
+                "keyword": serial,
+                "search_type": "serial",
+                "status": "",
+                "sort_type": "date",
+                "page_index": 0,
+                "page_size": 1
+            };
+
+            ApiProxy.callApi("entries_search", params, 'entries_search.serial', function(response)
+            {
+                if(response.error)
+                {
+                    alert(response.error);
+                }
+                else
+                {
+                    if(response.data.length == 0)
+                    {
+                        alert("很抱歉, 作品編號 ["+serial+"] 並不存在");
+                    }
+                    else
+                    {
+                        var dataObj = response.data[0];
+                        if(dataObj.status == 'approved')
+                        {
+                            EntryView.showEntry(dataObj);
+                        }
+                        else if(dataObj.status = 'reviewing')
+                        {
+                            Entries.Reviewing.show();
+                        }
+                        else if(dataObj.status = 'unapproved')
+                        {
+                            Entries.Unapproved.show();
+                        }
+                    }
+                }
+
+            });
+
+
+        }
+
+    }
 
     function loadingShow()
     {

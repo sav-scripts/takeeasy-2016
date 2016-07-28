@@ -81,11 +81,11 @@
 
     function show(cb)
     {
-        if(!Main.settings.fbToken)
-        {
-            cb.apply();
-            return;
-        }
+        //if(!Main.settings.fbToken)
+        //{
+        //    cb.apply();
+        //    return;
+        //}
 
         $("#scene-container").append($doms.container);
 
@@ -98,7 +98,6 @@
         _stepDic[_currentStep].show(0, cb);
 
         //EntryView.show();
-
         //self.Success.show();
     }
 

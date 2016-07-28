@@ -15,7 +15,7 @@
         _gapSetting =
         {
             0:{
-                wGap:100,
+                wGap:472 + 19,
                 wrapSize:1,
                 duration:.4
             },
@@ -35,19 +35,24 @@
 
             $doms.listContainer = $doms.container.find(".list-container");
 
-            $doms.arrowLeft = $doms.container.find(".arrow-left").on("click", function()
+            $doms.arrowLeft = $doms.container.find(".arrow-left").on("mousedown", function()
             {
                 var wrapSize = _gapSetting[Main.settings.viewport.index].wrapSize;
 
                 self.toIllust(_illustIndex - wrapSize);
             });
 
-            $doms.arrowRight = $doms.container.find(".arrow-right").on("click", function()
+            $doms.arrowRight = $doms.container.find(".arrow-right").on("mousedown", function()
             {
                 var wrapSize = _gapSetting[Main.settings.viewport.index].wrapSize;
 
                 self.toIllust(_illustIndex + wrapSize);
 
+            });
+
+            $doms.btnReturn = $doms.container.find(".btn-return").on("mousedown", function()
+            {
+                Fill.toStep("illustrator-list");
             });
 
             for(var i=0;i<NUM_ILLUSTS;i++)
@@ -64,6 +69,8 @@
             _isHiding = false;
 
             $doms.parent.append($doms.container);
+
+            self.resize();
 
 
 
@@ -123,6 +130,22 @@
             {
                _isLocking = false;
             });
+        },
+        resize: function()
+        {
+            if(_isHiding) return;
+
+            var vp = Main.settings.viewport;
+            if(vp.changed)
+            {
+                self.toIllust(0, 0);
+
+                var i;
+                for(i=0;i<_illusts.length;i++)
+                {
+                    _illusts[i].resetTextCanvas();
+                }
+            }
         }
     };
 
@@ -197,13 +220,18 @@
             }
         });
 
-        var imageUrl = $container.css("background-image").replace('url("', '').replace('")', '');
+
+        //var imageUrl = $container.css("background-image").replace('url("', '').replace('")', '');
+        var imageUrl = './images/fill-illust-'+illustratorIndex+'-' + (index%3+1) + ".png";
+
         this.image = document.createElement("img");
         var $image = $(this.image).css("cursor", 'pointer');
         this.image.onload = function()
         {
             $image.on("click", triggerInput);
         };
+        $(this.image).attr('width', "100%");
+        $(this.image).attr('height', "100%");
         this.image.src = imageUrl;
 
 
@@ -257,6 +285,20 @@
             this.$inputBound.toggleClass("open-mode", (this.$input.val().length > 0));
         },
 
+        resetTextCanvas: function()
+        {
+            if(this.textCtx)
+            {
+                $(this.textCanvas).detach();
+                this.textCanvas = null;
+                this.textCtx = null;
+
+                this._oldText = null;
+
+                this.textToCanvas();
+            }
+        },
+
         textToCanvas: function()
         {
             var horizontalModeIllusts =
@@ -282,6 +324,8 @@
 
                 newCanvas.width = parseInt($textarea.css("width"));
                 newCanvas.height = parseInt($textarea.css("height"));
+
+
 
                 $(newCanvas).css("position", "absolute").css("left", left).css("top", top).css("z-index", 19)
                     .css("cursor", "pointer").on("click", function()
@@ -381,12 +425,28 @@
 
         getOutputCanvas: function()
         {
-            var canvas = Helper.imageToCanvas(this.image, this.image.width, this.image.height);
+            var size =
+            {
+                0: {w: 472, h:354},
+                1: {w:347, h:261}
+            };
 
-            $(canvas).css("z-index", 6000).css("position", "absolute");
+            var index = Main.settings.viewport.index;
+
+            var w = size[index].w,
+                h = size[index].h;
+
+            var canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
 
             var ctx = canvas.getContext("2d");
+
+            ctx.drawImage(this.image, 0, 0, w, h);
             ctx.drawImage(this.textCanvas, this.textCanvas.finalLeft, this.textCanvas.finalTop);
+
+            //$(canvas).css("z-index", 6000).css("position", "absolute");
+            //$("body").append(canvas);
 
             return canvas;
         }

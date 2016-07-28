@@ -606,137 +606,155 @@ div{
 
 /** entry-view **/
 #entry-view{
-    .container-pc();
-    .layout-pc("layouts/entry-view-pc.jpg");
 
-    .basement{
-        .abs-div(-531, -180, 1056, 462);
-//        background-color: rgba(255,255,255,.3);
-        background: white;
-        border: 1px solid black;
-    }
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
-    .btn-close{
-        .abs-div(487, -170, 28, 28);
-        .image-bg("common-btn-close.png");
-
-        cursor: pointer;
-        &:active{
-            margin-top: 2px;
-        }
-    }
-
-    .arrow-left{
-        .abs-div(-550, 30, 38, 38);
-        .image-bg("entry-view-arrow-left.png");
-
-        cursor: pointer;
-        &:active{
-            margin-left: -3px;
-        }
-    }
-
-    .arrow-right{
-        .abs-div(506, 30, 38, 38);
-        .image-bg("entry-view-arrow-right.png");
-
-        cursor: pointer;
-        &:active{
-            margin-left: 3px;
-        }
-    }
-
-    .optional-fields{
-
+    .cover{
         position: absolute;
-        left:0;
-        top:0;
+        width: 100%;
+        height: 100%;
+        background-color: #fce7b1;
+        opacity: .75;
+    }
 
-        .texts-1{
-            .abs-div(49, -126, 78, 80);
+    .wrapper{
+
+        .container-pc();
+        .layout-pc("layouts/entry-view-pc.jpg");
+
+
+
+        .basement{
+            .abs-div(-531, -180, 1056, 462);
+    //        background-color: rgba(255,255,255,.3);
+            background: white;
+            border: 1px solid black;
+        }
+
+        .btn-close{
+            .abs-div(487, -170, 28, 28);
+            .image-bg("common-btn-close.png");
+
+            cursor: pointer;
+            &:active{
+                margin-top: 2px;
+            }
+        }
+
+        .arrow-left{
+            .abs-div(-550, 30, 38, 38);
+            .image-bg("entry-view-arrow-left.png");
+
+            cursor: pointer;
+            &:active{
+                margin-left: -3px;
+            }
+        }
+
+        .arrow-right{
+            .abs-div(506, 30, 38, 38);
+            .image-bg("entry-view-arrow-right.png");
+
+            cursor: pointer;
+            &:active{
+                margin-left: 3px;
+            }
+        }
+
+        .optional-fields{
+
+            position: absolute;
+            left:0;
+            top:0;
+
+            .texts-1{
+                .abs-div(49, -126, 78, 80);
+                .image-bg("entry-view-texts.png");
+                background-size: auto;
+                background-position: left top;
+            }
+
+            .field-num-votes{
+                .default-font(30px, red);
+                position: absolute;
+                left: 142px;
+                top: -134px;
+                width: 300px;
+                height: 30px;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+
+            .field-serial{
+                .default-font(17px, black);
+                position: absolute;
+                left: 97px;
+                top: -88px;
+                width: 300px;
+                height: 30px;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+
+            .field-author{
+                .default-font(17px, black);
+                position: absolute;
+                left: 97px;
+                top: -66px;
+                width: 300px;
+                height: 30px;
+                font-weight: bold;
+                letter-spacing: 1px;
+            }
+        }
+
+
+
+        .texts-2{
+            .abs-div(49, -46, 78, 21);
             .image-bg("entry-view-texts.png");
             background-size: auto;
-            background-position: left top;
+            background-position: left bottom;
         }
 
-        .field-num-votes{
-            .default-font(30px, red);
-            position: absolute;
-            left: 142px;
-            top: -134px;
-            width: 300px;
-            height: 30px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+        .field-description{
 
-        .field-serial{
             .default-font(17px, black);
             position: absolute;
-            left: 97px;
-            top: -88px;
-            width: 300px;
-            height: 30px;
-            font-weight: bold;
+            left: 48px;
+            top: -23px;
+            width: 430px;
+            height: 252px;
             letter-spacing: 1px;
+            //border: 1px solid black;
+            line-height: 23px;
         }
 
-        .field-author{
-            .default-font(17px, black);
-            position: absolute;
-            left: 97px;
-            top: -66px;
-            width: 300px;
-            height: 30px;
-            font-weight: bold;
-            letter-spacing: 1px;
+        .image-preview{
+            .abs-div(-478, -127, 474, 356);
+            background: white;
+            border: 1px solid black;
         }
-    }
 
-
-
-    .texts-2{
-        .abs-div(49, -46, 78, 21);
-        .image-bg("entry-view-texts.png");
-        background-size: auto;
-        background-position: left bottom;
-    }
-
-    .field-description{
-
-        .default-font(17px, black);
-        position: absolute;
-        left: 48px;
-        top: -23px;
-        width: 430px;
-        height: 252px;
-        letter-spacing: 1px;
-        //border: 1px solid black;
-        line-height: 23px;
-    }
-
-    .image-preview{
-        .abs-div(-478, -127, 474, 356);
-        background: white;
-        border: 1px solid black;
-    }
-
-    .btn-to-list{
-        .abs-div(265,150,104,109,'entry-view-btn-to-list.png');
-    }
-
-    .btn-vote{
-        .abs-div(379,150,106,113,'entry-view-btn-vote.png');
-    }
-
-    .btn-to-list, .btn-vote{
-        cursor: pointer;
-        &:active{
-            margin-top: 2px;
+        .btn-to-list{
+            .abs-div(265,150,104,109,'entry-view-btn-to-list.png');
         }
+
+        .btn-vote{
+            .abs-div(379,150,106,113,'entry-view-btn-vote.png');
+        }
+
+        .btn-to-list, .btn-vote{
+            cursor: pointer;
+            &:active{
+                margin-top: 2px;
+            }
+        }
+
+
     }
-
-
 }
 
 /** rule **/
@@ -1111,6 +1129,8 @@ div{
     }
 }
 
+
+/** entries dialogs **/
 .create-entries-dialog(reviewing);
 .create-entries-dialog(unapproved);
 .create-entries-dialog(vote-success, share);
@@ -1370,6 +1390,7 @@ div{
                     @size: 30px; @line-height: 36px; @writing-mode:vertical;)
                 {
                     @w: 347px;
+                    @h: 261px;
                     @wGap: @w + 19px;
                     @duration: .4s;
 
@@ -1379,7 +1400,7 @@ div{
                     {
                         position: absolute;
                         width: @w;
-                        height: 261px;
+                        height: @h;
 
                         left: @wGap * (@index - 1);
 
@@ -1387,23 +1408,23 @@ div{
 
                         .my-word{
                             .abs-div(0, 288, 125,13,"reviewer-word.png");
-                            transition: top @duration ease-out;
+
+                            margin-top: 0;
+                            transition: margin-top @duration ease-out;
                         }
 
                         .btn-send{
                             .abs-div(211,275,136,40, "fill-illust-btn-send.png");
                             cursor: pointer;
-                            &:active{
-                                margin-top: 2px;
-                            }
 
-                            transition: top @duration ease-out;
+                            margin-top: 0;
+                            transition: margin-top @duration ease-out;
                         }
 
                         .field-input{
                             position: absolute;
                             left:0;
-                            top:265px;
+                            top:@h + 4px;
 
                             width: @w - 12px;
                             height:0;
@@ -1465,10 +1486,10 @@ div{
                         &.open-mode{
 
                             .my-word{
-                                top: 288px + 27px;
+                                margin-top: 27px;
                             }
                             .btn-send{
-                                top: 275px + 27px;
+                                margin-top: 27px;
                             }
                             .field-input{
                                 visibility: visible;
@@ -1523,8 +1544,8 @@ div{
         }
 
         .btn-share{
-            .abs-div(158,164,152,24);
-            .image-bg("common-btn-facebook-share.png");
+            .abs-div(115,164,240,38);
+            .image-bg("common-btn-facebook-share.m.png");
 
             cursor: pointer;
         }

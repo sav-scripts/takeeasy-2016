@@ -1173,12 +1173,24 @@ div.disactivated {
 /** entry-view **/
 #entry-view {
   position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#entry-view .cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fce7b1;
+  opacity: .75;
+}
+#entry-view .wrapper {
+  position: absolute;
   left: 50%;
   top: 50%;
   width: 100px;
   height: 100px;
 }
-#entry-view .layout {
+#entry-view .wrapper .layout {
   position: absolute;
   left: -600%;
   top: -350%;
@@ -1188,7 +1200,7 @@ div.disactivated {
   background-size: cover;
   opacity: 0.3;
 }
-#entry-view .basement {
+#entry-view .wrapper .basement {
   position: absolute;
   left: -531px;
   top: -180px;
@@ -1199,7 +1211,7 @@ div.disactivated {
   background: white;
   border: 1px solid black;
 }
-#entry-view .btn-close {
+#entry-view .wrapper .btn-close {
   position: absolute;
   left: 487px;
   top: -170px;
@@ -1211,10 +1223,10 @@ div.disactivated {
   background-size: auto;
   cursor: pointer;
 }
-#entry-view .btn-close:active {
+#entry-view .wrapper .btn-close:active {
   margin-top: 2px;
 }
-#entry-view .arrow-left {
+#entry-view .wrapper .arrow-left {
   position: absolute;
   left: -550px;
   top: 30px;
@@ -1226,10 +1238,10 @@ div.disactivated {
   background-size: auto;
   cursor: pointer;
 }
-#entry-view .arrow-left:active {
+#entry-view .wrapper .arrow-left:active {
   margin-left: -3px;
 }
-#entry-view .arrow-right {
+#entry-view .wrapper .arrow-right {
   position: absolute;
   left: 506px;
   top: 30px;
@@ -1241,15 +1253,15 @@ div.disactivated {
   background-size: auto;
   cursor: pointer;
 }
-#entry-view .arrow-right:active {
+#entry-view .wrapper .arrow-right:active {
   margin-left: 3px;
 }
-#entry-view .optional-fields {
+#entry-view .wrapper .optional-fields {
   position: absolute;
   left: 0;
   top: 0;
 }
-#entry-view .optional-fields .texts-1 {
+#entry-view .wrapper .optional-fields .texts-1 {
   position: absolute;
   left: 49px;
   top: -126px;
@@ -1261,7 +1273,7 @@ div.disactivated {
   background-size: auto;
   background-position: left top;
 }
-#entry-view .optional-fields .field-num-votes {
+#entry-view .wrapper .optional-fields .field-num-votes {
   font-family: '微軟正黑體', "Heiti TC", serif;
   font-size: 30px;
   color: red;
@@ -1273,7 +1285,7 @@ div.disactivated {
   font-weight: bold;
   letter-spacing: 1px;
 }
-#entry-view .optional-fields .field-serial {
+#entry-view .wrapper .optional-fields .field-serial {
   font-family: '微軟正黑體', "Heiti TC", serif;
   font-size: 17px;
   color: black;
@@ -1285,7 +1297,7 @@ div.disactivated {
   font-weight: bold;
   letter-spacing: 1px;
 }
-#entry-view .optional-fields .field-author {
+#entry-view .wrapper .optional-fields .field-author {
   font-family: '微軟正黑體', "Heiti TC", serif;
   font-size: 17px;
   color: black;
@@ -1297,7 +1309,7 @@ div.disactivated {
   font-weight: bold;
   letter-spacing: 1px;
 }
-#entry-view .texts-2 {
+#entry-view .wrapper .texts-2 {
   position: absolute;
   left: 49px;
   top: -46px;
@@ -1309,7 +1321,7 @@ div.disactivated {
   background-size: auto;
   background-position: left bottom;
 }
-#entry-view .field-description {
+#entry-view .wrapper .field-description {
   font-family: '微軟正黑體', "Heiti TC", serif;
   font-size: 17px;
   color: black;
@@ -1321,7 +1333,7 @@ div.disactivated {
   letter-spacing: 1px;
   line-height: 23px;
 }
-#entry-view .image-preview {
+#entry-view .wrapper .image-preview {
   position: absolute;
   left: -478px;
   top: -127px;
@@ -1332,7 +1344,7 @@ div.disactivated {
   background: white;
   border: 1px solid black;
 }
-#entry-view .btn-to-list {
+#entry-view .wrapper .btn-to-list {
   position: absolute;
   left: 265px;
   top: 150px;
@@ -1343,7 +1355,7 @@ div.disactivated {
   background-image: url("../images/entry-view-btn-to-list.png");
   background-size: auto;
 }
-#entry-view .btn-vote {
+#entry-view .wrapper .btn-vote {
   position: absolute;
   left: 379px;
   top: 150px;
@@ -1354,12 +1366,12 @@ div.disactivated {
   background-image: url("../images/entry-view-btn-vote.png");
   background-size: auto;
 }
-#entry-view .btn-to-list,
-#entry-view .btn-vote {
+#entry-view .wrapper .btn-to-list,
+#entry-view .wrapper .btn-vote {
   cursor: pointer;
 }
-#entry-view .btn-to-list:active,
-#entry-view .btn-vote:active {
+#entry-view .wrapper .btn-to-list:active,
+#entry-view .wrapper .btn-vote:active {
   margin-top: 2px;
 }
 /** rule **/
@@ -1815,6 +1827,7 @@ div.disactivated {
   font-size: 14px;
   color: #000;
 }
+/** entries dialogs **/
 #entries-reviewing {
   position: absolute;
   width: 100%;
@@ -2357,7 +2370,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(1) .btn-send {
   position: absolute;
@@ -2370,10 +2384,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(1) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(1) .field-input {
   position: absolute;
@@ -2413,10 +2425,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(1).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(1).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(1).open-mode .field-input {
   visibility: visible;
@@ -2440,7 +2452,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(2) .btn-send {
   position: absolute;
@@ -2453,10 +2466,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(2) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(2) .field-input {
   position: absolute;
@@ -2496,10 +2507,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(2).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(2).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(2).open-mode .field-input {
   visibility: visible;
@@ -2523,7 +2534,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(3) .btn-send {
   position: absolute;
@@ -2536,10 +2548,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(3) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(3) .field-input {
   position: absolute;
@@ -2579,10 +2589,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(3).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(3).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(3).open-mode .field-input {
   visibility: visible;
@@ -2606,7 +2616,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(4) .btn-send {
   position: absolute;
@@ -2619,10 +2630,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(4) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(4) .field-input {
   position: absolute;
@@ -2660,10 +2669,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(4).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(4).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(4).open-mode .field-input {
   visibility: visible;
@@ -2687,7 +2696,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(5) .btn-send {
   position: absolute;
@@ -2700,10 +2710,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(5) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(5) .field-input {
   position: absolute;
@@ -2743,10 +2751,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(5).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(5).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(5).open-mode .field-input {
   visibility: visible;
@@ -2770,7 +2778,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(6) .btn-send {
   position: absolute;
@@ -2783,10 +2792,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(6) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(6) .field-input {
   position: absolute;
@@ -2826,10 +2833,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(6).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(6).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(6).open-mode .field-input {
   visibility: visible;
@@ -2853,7 +2860,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(7) .btn-send {
   position: absolute;
@@ -2866,10 +2874,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(7) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(7) .field-input {
   position: absolute;
@@ -2909,10 +2915,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(7).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(7).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(7).open-mode .field-input {
   visibility: visible;
@@ -2936,7 +2942,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(8) .btn-send {
   position: absolute;
@@ -2949,10 +2956,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(8) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(8) .field-input {
   position: absolute;
@@ -2992,10 +2997,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(8).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(8).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(8).open-mode .field-input {
   visibility: visible;
@@ -3019,7 +3024,8 @@ div.disactivated {
   margin-top: 0px;
   background-image: url("../images/reviewer-word.png");
   background-size: auto;
-  transition: top 0.4s ease-out;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(9) .btn-send {
   position: absolute;
@@ -3032,10 +3038,8 @@ div.disactivated {
   background-image: url("../images/fill-illust-btn-send.png");
   background-size: auto;
   cursor: pointer;
-  transition: top 0.4s ease-out;
-}
-#fill .illust-list .list-mask .list-container .illust:nth-child(9) .btn-send:active {
-  margin-top: 2px;
+  margin-top: 0;
+  transition: margin-top 0.4s ease-out;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(9) .field-input {
   position: absolute;
@@ -3073,10 +3077,10 @@ div.disactivated {
   visibility: hidden;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(9).open-mode .my-word {
-  top: 315px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(9).open-mode .btn-send {
-  top: 302px;
+  margin-top: 27px;
 }
 #fill .illust-list .list-mask .list-container .illust:nth-child(9).open-mode .field-input {
   visibility: visible;
@@ -3123,13 +3127,13 @@ div.disactivated {
 }
 #fill-success .content .btn-share {
   position: absolute;
-  left: 158px;
+  left: 115px;
   top: 164px;
-  width: 152px;
-  height: 24px;
+  width: 240px;
+  height: 38px;
   margin-left: 0px;
   margin-top: 0px;
-  background-image: url("../images/common-btn-facebook-share.png");
+  background-image: url("../images/common-btn-facebook-share.m.png");
   background-size: auto;
   cursor: pointer;
 }
@@ -3142,6 +3146,7 @@ div.disactivated {
     width: 640px;
     height: 100%;
     overflow: hidden;
+    transition: height 0.4s ease-out;
   }
   #scene-container.extend-mode {
     height: 1120px;
@@ -3753,7 +3758,7 @@ div.disactivated {
     top: -448%;
     width: 610%;
     height: 192%;
-    background-image: url("../images/common-form-title.m.png");
+    background-image: url("../images/participate-form-title.m.png");
     background-size: cover;
   }
   #participate .content-step-upload {
@@ -3829,6 +3834,21 @@ div.disactivated {
     height: 30px;
     margin-left: 0px;
     margin-top: 0px;
+  }
+  #participate-success .content {
+    background-image: url("../images/participate-upload-success.m.png");
+    background-size: auto;
+  }
+  #participate-success .content .btn-share {
+    position: absolute;
+    left: 118px;
+    top: 192px;
+    width: 240px;
+    height: 38px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/common-btn-facebook-share.m.png");
+    background-size: auto;
   }
   /** common form **/
   #common-form .layout {
@@ -3927,7 +3947,7 @@ div.disactivated {
     top: -4px;
   }
   /** entry-view **/
-  #entry-view .layout {
+  #entry-view .wrapper .layout {
     position: absolute;
     width: 640px;
     height: 950px;
@@ -3937,7 +3957,7 @@ div.disactivated {
     background-size: auto;
     opacity: 0.3;
   }
-  #entry-view .basement {
+  #entry-view .wrapper .basement {
     position: absolute;
     left: -283px;
     top: -456px;
@@ -3946,7 +3966,7 @@ div.disactivated {
     margin-left: 0px;
     margin-top: 0px;
   }
-  #entry-view .btn-close {
+  #entry-view .wrapper .btn-close {
     position: absolute;
     left: 243px;
     top: -442px;
@@ -3955,7 +3975,7 @@ div.disactivated {
     margin-left: 0px;
     margin-top: 0px;
   }
-  #entry-view .arrow-left {
+  #entry-view .wrapper .arrow-left {
     position: absolute;
     left: -302px;
     top: -80px;
@@ -3964,7 +3984,7 @@ div.disactivated {
     margin-left: 0px;
     margin-top: 0px;
   }
-  #entry-view .arrow-right {
+  #entry-view .wrapper .arrow-right {
     position: absolute;
     left: 264px;
     top: -80px;
@@ -3973,12 +3993,12 @@ div.disactivated {
     margin-left: 0px;
     margin-top: 0px;
   }
-  #entry-view .optional-fields {
+  #entry-view .wrapper .optional-fields {
     position: absolute;
     left: 0;
     top: 0;
   }
-  #entry-view .optional-fields .texts-1 {
+  #entry-view .wrapper .optional-fields .texts-1 {
     position: absolute;
     left: -230px;
     top: -29px;
@@ -3990,18 +4010,18 @@ div.disactivated {
     background-size: auto;
     background-position: left top;
   }
-  #entry-view .optional-fields .field-num-votes {
+  #entry-view .wrapper .optional-fields .field-num-votes {
     left: -139px;
     top: -37px;
   }
-  #entry-view .optional-fields .field-serial {
+  #entry-view .wrapper .optional-fields .field-serial {
     font-family: '微軟正黑體', "Heiti TC", serif;
     font-size: 25px;
     color: black;
     left: -156px;
     top: 3px;
   }
-  #entry-view .optional-fields .field-author {
+  #entry-view .wrapper .optional-fields .field-author {
     font-family: '微軟正黑體', "Heiti TC", serif;
     font-size: 25px;
     color: black;
@@ -4009,7 +4029,7 @@ div.disactivated {
     left: 10px;
     top: 3px;
   }
-  #entry-view .texts-2 {
+  #entry-view .wrapper .texts-2 {
     position: absolute;
     left: -230px;
     top: 33px;
@@ -4021,7 +4041,7 @@ div.disactivated {
     background-size: auto;
     background-position: left bottom;
   }
-  #entry-view .field-description {
+  #entry-view .wrapper .field-description {
     font-family: '微軟正黑體', "Heiti TC", serif;
     font-size: 18px;
     color: black;
@@ -4032,7 +4052,7 @@ div.disactivated {
     letter-spacing: 1px;
     line-height: 25px;
   }
-  #entry-view .image-preview {
+  #entry-view .wrapper .image-preview {
     position: absolute;
     left: -230px;
     top: -402px;
@@ -4041,7 +4061,7 @@ div.disactivated {
     margin-left: 0px;
     margin-top: 0px;
   }
-  #entry-view .btn-to-list {
+  #entry-view .wrapper .btn-to-list {
     position: absolute;
     left: 16px;
     top: 325px;
@@ -4052,7 +4072,7 @@ div.disactivated {
     background-image: url("../images/entry-view-btn-to-list.png");
     background-size: auto;
   }
-  #entry-view .btn-vote {
+  #entry-view .wrapper .btn-vote {
     position: absolute;
     left: 130px;
     top: 325px;
@@ -4063,9 +4083,904 @@ div.disactivated {
     background-image: url("../images/entry-view-btn-vote.png");
     background-size: auto;
   }
+  /** entries **/
+  #entries .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: -320px;
+    top: -475px;
+    background-image: url("../images/layouts/entries-form-mobile.jpg");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #entries .content-title .title {
+    position: absolute;
+    left: -293%;
+    top: -447%;
+    width: 570%;
+    height: 268%;
+    background-image: url("../images/entries-list-title.m.png");
+    background-size: cover;
+  }
+  #entries .content-title .hand,
+  #entries .content-title .mob,
+  #entries .content-title .boy {
+    display: none;
+  }
+  #entries .content-title.form-mode .title {
+    position: absolute;
+    left: -319%;
+    top: -446%;
+    width: 619%;
+    height: 247%;
+    background-image: url("../images/entries-form-title.m.png");
+    background-size: cover;
+  }
+  #entries .content-list .sub-title {
+    display: none;
+  }
+  #entries .content-list .tab-by-date {
+    position: absolute;
+    left: -286px;
+    top: -160px;
+    width: 173px;
+    height: 34px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/entries-button-tab-by-date.png");
+    background-size: auto;
+  }
+  #entries .content-list .tab-by-rank {
+    position: absolute;
+    left: -99px;
+    top: -160px;
+    width: 173px;
+    height: 34px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/entries-button-tab-by-rank.png");
+    background-size: auto;
+  }
+  #entries .content-list .bottom-part {
+    position: absolute;
+    left: -286px;
+    top: -127px;
+    width: 571px;
+    height: 539px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entries .content-list .bottom-part .output-mask {
+    position: absolute;
+    left: 66px;
+    top: 19px;
+    width: 441px;
+    height: 453px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entries .content-list .bottom-part .output-mask .output-container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 530px;
+    height: 453px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entries .content-list .bottom-part .output-mask .output-container .thumb-container {
+    background-image: url("../images/entries-thumb-base.m.png");
+    background-size: auto;
+    width: 185px;
+    height: 218px;
+    margin-right: 71px;
+    margin-bottom: 16px;
+  }
+  #entries .content-list .bottom-part .output-mask .output-container .thumb-container .thumb {
+    left: 8px;
+    top: 11px;
+    width: 164px;
+    height: 123px;
+  }
+  #entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-num-votes,
+  #entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-author,
+  #entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-serial {
+    margin-left: 11px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 17px;
+    color: #000;
+  }
+  #entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-num-votes {
+    margin-top: 138px;
+  }
+  #entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-author {
+    margin-top: 1px;
+  }
+  #entries .content-list .bottom-part .output-mask .output-container .thumb-container .text-serial {
+    margin-top: 1px;
+  }
+  #entries .content-list .bottom-part .arrow-left {
+    top: 246px;
+  }
+  #entries .content-list .bottom-part .arrow-right {
+    left: 552px;
+    top: 246px;
+  }
+  #entries .content-list .bottom-part .loading-hint {
+    bottom: 16px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 20px;
+    color: #000;
+  }
+  #entries .content-list .bottom-part .page-index-container {
+    position: absolute;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    bottom: 16px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    height: 28px;
+    cursor: default;
+  }
+  #entries .content-list .bottom-part .page-index-container .word,
+  #entries .content-list .bottom-part .page-index-container .word-prev-block,
+  #entries .content-list .bottom-part .page-index-container .word-next-block,
+  #entries .content-list .bottom-part .page-index-container .word-prev-page,
+  #entries .content-list .bottom-part .page-index-container .word-next-page {
+    display: inline-block;
+    height: 26px;
+    line-height: 25px;
+    border-radius: 30px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 19px;
+    color: #000;
+    cursor: pointer;
+  }
+  #entries .content-list .bottom-part .page-index-container .word {
+    width: 26px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  #entries .content-list .bottom-part .page-index-container .word.activated {
+    color: white;
+    background: #ff9c00;
+  }
+  #entries .content-list .bottom-part .page-index-container .word-prev-block,
+  #entries .content-list .bottom-part .page-index-container .word-next-block {
+    width: 30px;
+    letter-spacing: 2px;
+  }
+  #entries .content-list .bottom-part .page-index-container .word-prev-page,
+  #entries .content-list .bottom-part .page-index-container .word-next-page {
+    width: 64px;
+    letter-spacing: 2px;
+  }
+  #entries .content-list .search-bar {
+    position: absolute;
+    left: -218px;
+    top: -230px;
+    width: 505px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/entries-search-bar.m.png");
+    background-size: auto;
+  }
+  #entries .content-list .search-bar .girl {
+    position: absolute;
+    left: 469px;
+    top: -50px;
+    width: 64px;
+    height: 56px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/entries-search-girl.m.png");
+    background-size: auto;
+  }
+  #entries .content-list .search-bar .btn-name {
+    position: absolute;
+    left: 314px;
+    top: 3px;
+    width: 84px;
+    height: 33px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entries .content-list .search-bar .btn-serial {
+    position: absolute;
+    left: 416px;
+    top: 3px;
+    width: 80px;
+    height: 33px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #entries .content-list .search-bar .field-keyword {
+    width: 291px;
+    height: 32px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 16px;
+    color: #000;
+  }
+  /** entries dialogs **/
+  #entries-reviewing .content {
+    background-image: url("../images/entries-reviewing.m.png");
+    background-size: auto;
+  }
+  #entries-unapproved .content {
+    background-image: url("../images/entries-unapproved.m.png");
+    background-size: auto;
+  }
+  /** fill **/
+  #fill .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: -320px;
+    top: -475px;
+    background-image: url("../images/layouts/fill-illust-list-mobile.jpg");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #fill .content-title .title {
+    position: absolute;
+    left: -317%;
+    top: -444%;
+    width: 608%;
+    height: 243%;
+    background-image: url("../images/fill-title.m.png");
+    background-size: cover;
+  }
+  #fill .content-title .hand,
+  #fill .content-title .sub-title,
+  #fill .content-title .mini-hand,
+  #fill .content-title .right-girl,
+  #fill .content-title .left-girl {
+    display: none;
+  }
+  #fill .content-title.form-mode .title {
+    position: absolute;
+    left: -314%;
+    top: -448%;
+    width: 627%;
+    height: 250%;
+    background-image: url("../images/fill-form-title.m.png");
+    background-size: cover;
+  }
+  #fill .illustrator-list {
+    position: absolute;
+    left: -238px;
+    top: -147px;
+    width: 1079px;
+    height: 261px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #fill .illustrator-list .illustrator:nth-child(1) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 0px;
+    background-image: url("../images/reviewer-1.m.png");
+    background-size: auto;
+  }
+  #fill .illustrator-list .illustrator:nth-child(1) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illustrator-list .illustrator:nth-child(1) .btn-select {
+    position: absolute;
+    left: 168px;
+    top: 423px;
+    width: 136px;
+    height: 42px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-btn-select-illustrator.png");
+    background-size: auto;
+  }
+  #fill .illustrator-list .illustrator:nth-child(2) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 491px;
+    background-image: url("../images/reviewer-2.m.png");
+    background-size: auto;
+  }
+  #fill .illustrator-list .illustrator:nth-child(2) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illustrator-list .illustrator:nth-child(2) .btn-select {
+    position: absolute;
+    left: 168px;
+    top: 423px;
+    width: 136px;
+    height: 42px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-btn-select-illustrator.png");
+    background-size: auto;
+  }
+  #fill .illustrator-list .illustrator:nth-child(3) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 982px;
+    background-image: url("../images/reviewer-3.m.png");
+    background-size: auto;
+  }
+  #fill .illustrator-list .illustrator:nth-child(3) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illustrator-list .illustrator:nth-child(3) .btn-select {
+    position: absolute;
+    left: 168px;
+    top: 423px;
+    width: 136px;
+    height: 42px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-btn-select-illustrator.png");
+    background-size: auto;
+  }
+  #fill .illust-list .arrow-left {
+    position: absolute;
+    left: -301px;
+    top: 15px;
+    width: 38px;
+    height: 38px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #fill .illust-list .arrow-right {
+    position: absolute;
+    left: 262px;
+    top: 15px;
+    width: 38px;
+    height: 38px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #fill .illust-list .btn-return {
+    position: absolute;
+    left: 76px;
+    top: 365px;
+    width: 195px;
+    height: 19px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-btn-return.m.png");
+    background-size: auto;
+    cursor: pointer;
+  }
+  #fill .illust-list .list-mask {
+    position: absolute;
+    left: -237px;
+    top: -147px;
+    width: 472px;
+    height: 654px;
+    margin-left: 0px;
+    margin-top: 0px;
+    overflow: hidden;
+  }
+  #fill .illust-list .list-mask .list-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(1) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 0px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(1) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(1) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(1) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(1) .fill-bound {
+    left: 27.2px;
+    top: 35.36px;
+    width: 104.72px;
+    height: 235.28px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 40.8px;
+    color: #000;
+    line-height: 48.96px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(1).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(1).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(1).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(2) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 491px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(2) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(2) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(2) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(2) .fill-bound {
+    left: 341.36px;
+    top: 21.76px;
+    width: 92.48px;
+    height: 193.12px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 38.08px;
+    color: #000;
+    line-height: 48.96px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(2).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(2).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(2).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(3) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 982px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(3) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(3) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(3) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(3) .fill-bound {
+    left: 331.84px;
+    top: 99.28px;
+    width: 103.36px;
+    height: 217.6px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 40.8px;
+    color: #000;
+    line-height: 48.96px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(3).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(3).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(3).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(4) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 1473px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(4) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(4) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(4) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(4) .fill-bound {
+    left: 316.88px;
+    top: 5.44px;
+    width: 145.52px;
+    height: 108.8px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 35.36px;
+    color: #000;
+    line-height: 35.36px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(4).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(4).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(4).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(5) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 1964px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(5) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(5) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(5) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(5) .fill-bound {
+    left: 1.36px;
+    top: 126.48px;
+    width: 81.6px;
+    height: 178.16px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 35.36px;
+    color: #000;
+    line-height: 38.08px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(5).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(5).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(5).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(6) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 2455px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(6) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(6) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(6) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(6) .fill-bound {
+    left: 53.04px;
+    top: 92.48px;
+    width: 92.48px;
+    height: 180.88px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 35.36px;
+    color: #000;
+    line-height: 43.52px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(6).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(6).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(6).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(7) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 2946px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(7) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(7) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(7) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(7) .fill-bound {
+    left: 312.8px;
+    top: 14.96px;
+    width: 153.68px;
+    height: 176.8px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 40.8px;
+    color: #000;
+    line-height: 48.96px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(7).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(7).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(7).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(8) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 3437px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(8) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(8) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(8) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(8) .fill-bound {
+    left: 329.12px;
+    top: 40.8px;
+    width: 136px;
+    height: 231.2px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 40.8px;
+    color: #000;
+    line-height: 48.96px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(8).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(8).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(8).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(9) {
+    position: absolute;
+    width: 472px;
+    height: 354px;
+    left: 3928px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(9) .my-word {
+    position: absolute;
+    left: 124px;
+    top: 379px;
+    width: 214px;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/reviewer-word.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(9) .btn-send {
+    position: absolute;
+    left: 167px;
+    top: 423px;
+    width: 136px;
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/fill-illust-btn-send.m.png");
+    background-size: auto;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(9) .field-input {
+    top: 358px;
+    width: 460px;
+    height: 0;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(9) .fill-bound {
+    left: 35.36px;
+    top: 16.32px;
+    width: 410.72px;
+    height: 58.48px;
+    font-family: '微軟正黑體', "Heiti TC", serif;
+    font-size: 40.8px;
+    color: #000;
+    line-height: 51.68px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(9).open-mode .my-word {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(9).open-mode .btn-send {
+    margin-top: 27px;
+  }
+  #fill .illust-list .list-mask .list-container .illust:nth-child(9).open-mode .field-input {
+    visibility: visible;
+    height: 30px;
+  }
 }
 @media (max-width: 640px) and (max-height: 950px) {
   #scene-container {
     height: 950px;
+  }
+}
+@media (max-width: 640px) and (min-height: 950px) {
+  #backgrounds {
+    background-size: cover;
   }
 }

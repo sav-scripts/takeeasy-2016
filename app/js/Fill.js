@@ -21,9 +21,9 @@
             function loadAndBuild(cb)
             {
                 var templates =
-                    [
-                        {url: "_fill.html", startWeight: 0, weight: 100, dom: null}
-                    ];
+                [
+                    {url: "_fill.html", startWeight: 0, weight: 100, dom: null}
+                ];
 
                 SceneHandler.loadTemplate(null, templates, function loadComplete()
                 {
@@ -119,7 +119,8 @@
 
         resize: function (width, height, scale)
         {
-
+            self.IllustratorList.resize();
+            self.IllustList.resize();
         }
     };
 
@@ -146,11 +147,11 @@
 
     function show(cb)
     {
-        if(!Main.settings.fbToken)
-        {
-            cb.apply();
-            return;
-        }
+        //if(!Main.settings.fbToken)
+        //{
+        //    cb.apply();
+        //    return;
+        //}
 
         $("#scene-container").append($doms.container);
 
@@ -241,9 +242,10 @@
 (function ()
 {
     var $doms = {},
+        _inMobileMode = false,
         _isHiding = true;
 
-    window.Fill.IllustratorList =
+    var self = window.Fill.IllustratorList =
     {
         init: function ($container)
         {
@@ -251,9 +253,13 @@
             $doms.parent = $container.parent();
 
 
-            setupIllustrator(1);
-            setupIllustrator(2);
-            setupIllustrator(3);
+            //setupIllustrator(1);
+            //setupIllustrator(2);
+            //setupIllustrator(3);
+
+            buildMobile();
+
+
 
 
             $doms.container.detach();
@@ -264,6 +270,8 @@
             _isHiding = false;
 
             $doms.parent.append($doms.container);
+
+            self.resize();
 
             if (delay === undefined) delay = 0;
 
@@ -288,17 +296,128 @@
                 $doms.container.detach();
                 if (cb) cb.apply();
             });
-        }
+        },
+        
+        resize: function()
+        {
+            var vp = Main.settings.viewport;
+            if(vp.changed)
+            {
+                if(vp.index == 0)
+                {
+                    _inMobileMode = true;
+                    self.toIndex(1, 0);
+                }
+                else
+                {
+                    _inMobileMode = false;
+
+                    $doms.container.find(".illustrator").css("left", "").css("transform", "");
+
+                }
+            }
+        },
+
+        toIndex: null
+
     };
 
-    function setupIllustrator(index)
-    {
-        var $dom = $doms["illustrator" + index] = $doms.container.find(".illustrator:nth-child("+index+")");
 
-        $dom.on("click", function()
+    function buildMobile()
+    {
+        var $container = $doms.container;
+
+        var currentIndex = 0,
+            isLocking = false;
+
+        $doms.illustrators = [];
+
+        //$doms.$illustrators = $illustrators;
+
+        setupOne(0);
+        setupOne(1);
+        setupOne(2);
+
+        self.toIndex = toIndex;
+
+        toIndex(1, 0);
+
+        if(Modernizr.touchevents)
         {
-            Fill.toStep("illust-list", {illustratorIndex: index});
-        });
+            var hammer = new Hammer($container[0]);
+
+            hammer.on("swipeleft", function()
+            {
+                if(_inMobileMode) toIndex(currentIndex+1);
+            });
+
+            hammer.on("swiperight", function()
+            {
+                if(_inMobileMode) toIndex(currentIndex-1);
+            });
+        }
+
+
+        function setupOne(index)
+        {
+            var $dom = $doms.illustrators[index] = $container.find(".illustrator:nth-child("+(index+1)+")").on("mousedown", function(event)
+            {
+                if(event.target.className == 'illustrator' && _inMobileMode) toIndex(index);
+            });
+
+            $dom.find('.btn-select').on("click", function()
+            {
+                Fill.toStep("illust-list", {illustratorIndex: (index+1)});
+            });
+        }
+
+        function toIndex(index, duration)
+        {
+            if(isLocking) return;
+            if(index < 0 || index > 2) return;
+
+            currentIndex = index;
+
+            isLocking = true;
+
+            if(duration === undefined) duration = .5;
+
+            var i,
+                wGap = 492,
+                tx,
+                tl = new TimelineMax,
+                offsetIndex,
+                transformOrigin,
+                scale;
+
+            for(i=0;i<3;i++)
+            {
+                offsetIndex = (i - currentIndex);
+
+                scale = offsetIndex == 0? 1: .8;
+
+                if(offsetIndex == 0)
+                {
+                    transformOrigin = "center center";
+                }
+                else if(offsetIndex < 0)
+                {
+                    transformOrigin = "right center";
+                }
+                else
+                {
+                    transformOrigin = "left center";
+                }
+
+                tx = offsetIndex * wGap;
+                tl.to($doms.illustrators[i], duration, {left: tx, scale: scale, transformOrigin: transformOrigin}, 0);
+            }
+
+            tl.add(function()
+            {
+                isLocking = false;
+            })
+        }
     }
 
 }());

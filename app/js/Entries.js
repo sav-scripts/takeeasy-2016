@@ -7,6 +7,8 @@
 
     var self = window.Entries =
     {
+        firstEntrySerial: null,
+
         stageIn: function (options, cb)
         {
             (!_isInit) ? loadAndBuild(execute) : execute();
@@ -44,6 +46,7 @@
             _stepDic[_currentStep].hide();
 
             _currentStep = step;
+            self.Title.update(_currentStep);
 
             if(_currentStep == "vote")
             {
@@ -91,17 +94,12 @@
 
     function show(cb)
     {
-        if(!Main.settings.fbToken)
-        {
-            cb.apply();
-            return;
-        }
-
         $("#scene-container").append($doms.container);
 
         self.resize();
 
         _currentStep = 'list';
+        self.Title.update(_currentStep);
         self.Title.show();
         self.List.show(0, cb);
 
@@ -168,6 +166,11 @@
                 if(cb) cb.apply();
             });
 
+        },
+
+        update: function(step)
+        {
+            $doms.container.toggleClass("form-mode", step == 'vote');
         }
     };
 

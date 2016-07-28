@@ -138,7 +138,6 @@
                         }
                         else
                         {
-                            //console.log("success");
                             Participate.Success.setShareEntrySerial(response.serial);
                             Participate.Success.show();
                         }
@@ -202,9 +201,6 @@
                         }
                         else
                         {
-                            console.log("success");
-                            console.log(response.share_url);
-                            //Participate.Success.setShareEntrySerial(response.serial);
                             Fill.Success.setShareImageUrl(response.share_url);
                             Fill.Success.show();
                         }

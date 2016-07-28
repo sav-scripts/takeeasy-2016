@@ -117,14 +117,29 @@
                             },
                             hashChangeTester: function(hashName)
                             {
-                                if(hashName == '/Participate' || hashName == '/Entries')
+                                if(hashName == '/Participate' || hashName == '/Fill')
                                 {
                                     if(!Main.settings.fbToken)
                                     {
                                         console.log("no token");
-                                        var targetHash = hashName;
                                         hashName = null; // cancel content change
-                                        SceneHandler.setHash(targetHash);
+                                        SceneHandler.setHash('/Index');
+
+                                        return null;
+                                    }
+                                }
+
+
+                                if(hashName == '/Participate' || hashName == '/Fill')
+                                {
+                                    if(!Modernizr.canvas)
+                                    {
+                                        alert('您的瀏覽器不支援 html5 canvas, 請使用較新的瀏覽器瀏覽此單元');
+
+                                        hashName = null; // cancel content change
+                                        SceneHandler.setHash('/Index');
+
+                                        return null;
                                     }
                                 }
 
@@ -132,8 +147,14 @@
                             }
                         });
 
-
-                    SceneHandler.toFirstHash();
+                    if(Utility.urlParams.serial)
+                    {
+                        getFirstEntry();
+                    }
+                    else
+                    {
+                        SceneHandler.toFirstHash();
+                    }
                 }
 
             });
@@ -148,7 +169,14 @@
         loginFB: doLogin
     };
 
-    function doLogin(targetHash, cb)
+    function getFirstEntry()
+    {
+        Entries.firstEntrySerial = Utility.urlParams.serial;
+        //SceneHandler.toFirstHash();
+        SceneHandler.toHash('/Entries');
+    }
+
+    function doLogin(targetHash, cb, redirectUrl)
     {
         if(!targetHash) targetHash = "/Index";
 
@@ -248,11 +276,13 @@
 
         function doRedirectLogin()
         {
+            var uri = redirectUrl? encodeURI(redirectUrl): encodeURI(Utility.getPath());
+
             var url = "https://www.facebook.com/dialog/oauth?"+
                 "client_id="+Main.settings.fb_appid+
                 "&scope="+Main.settings.fbPermissions.join(",")+
                 "&state="+ targetHash +
-                "&redirect_uri=" + encodeURI(Utility.getPath());
+                "&redirect_uri=" + uri;
             window.open(url, "_self");
         }
 
@@ -286,12 +316,8 @@
 
         vp.index = i;
         vp.width = width;
-        vp.height = vp;
-
-        if(oldIndex !== vp.index)
-        {
-            vp.changed = true;
-        }
+        vp.height = height;
+        vp.changed = (oldIndex !== vp.index);
 
         if(SceneHandler.currentScene)
         {

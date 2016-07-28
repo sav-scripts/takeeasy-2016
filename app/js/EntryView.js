@@ -63,8 +63,12 @@
             {
                 self.hide();
                 //console.log("serial = " + _entryData.serial);
-                CommonForm.setVotingSerial(_entryData.serial);
-                Entries.toStep("vote");
+
+                Main.loginFB("/Entries", function()
+                {
+                    CommonForm.setVotingSerial(_entryData.serial);
+                    Entries.toStep("vote");
+                });
             });
 
 
