@@ -199,6 +199,14 @@
         .wrapper{
             left: -179px;
             top: 611px;
+
+            .sample-serial{
+                margin-top: 5px;
+            }
+
+            .sample-author{
+                margin-top: 5px;
+            }
         }
     }
 
@@ -226,11 +234,11 @@
 
             .abs-div(-238,-107,@w,@h);
 
-            .my-mixin(1);
-            .my-mixin(2);
-            .my-mixin(3);
+            .my-mixin(1, 0, 370, 165, 55);
+            .my-mixin(2, 0, 383, 211, 28);
+            .my-mixin(3, 0, 377, 295, 41);
 
-            .my-mixin(@index;)
+            .my-mixin(@index; @sl; @st; @sw; @sh;)
             {
                 .reviewer:nth-child(@{index})
                 {
@@ -245,7 +253,8 @@
                     .image-bg("reviewer-@{index}.m.png");
 
                     .my-word{
-                        .abs-div(125, 379, 214,23,"reviewer-word.m.png");
+//                        .abs-div(125, 379, 214,23,"reviewer-word.m.png");
+                        .abs-div(@sl + (@w - @sw)*.5, @st, @sw, @sh,"fill-sign-@{index}.png");
                     }
 
                 }
@@ -284,7 +293,7 @@
                 .content{
 
                     width: 514px;
-                    height: 3989px;
+                    height: 4725px;
 
                     margin-top: 4px;
 
@@ -804,11 +813,11 @@
             .abs-div(-238,-147,1079,261);
             //        background: rgba(0,0,0,.2);
 
-            .my-mixin(1);
-            .my-mixin(2);
-            .my-mixin(3);
+            .my-mixin(1, 0, 370, 165, 55);
+            .my-mixin(2, 0, 383, 211, 28);
+            .my-mixin(3, 0, 377, 295, 41);
 
-            .my-mixin(@index;)
+            .my-mixin(@index; @sl; @st; @sw; @sh;)
             {
                 @w: 472px;
                 @h: 354px;
@@ -826,11 +835,13 @@
                     .image-bg("reviewer-@{index}.m.png");
 
                     .my-word{
-                        .abs-div(124, 379, 214,23,"reviewer-word.m.png");
+//                        .abs-div(124, 379, 214,23,"reviewer-word.m.png");
+
+                        .abs-div(@sl + (@w - @sw)*.5, @st, @sw, @sh,"fill-sign-@{index}.png");
                     }
 
                     .btn-select{
-                        .abs-div(168,423,136,42, "fill-btn-select-illustrator.png");
+                        .abs-div(168,441,136,42, "fill-btn-select-illustrator.png");
                     }
                 }
             }

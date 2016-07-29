@@ -71,7 +71,9 @@
             {
                 if(_isLocking) return;
 
-                _keyword = $doms.keywordInput.val();
+                //_keyword = $doms.keywordInput.val();
+                _keyword = parseInt($doms.keywordInput.val());
+
                 $doms.keywordInput.val('');
                 self.doSearch(0, true, null, true);
             });
@@ -158,7 +160,7 @@
                 $doms.btnSortByRank.toggleClass("activated", true);
             }
 
-            _keyword = $doms.keywordInput.val();
+            //_keyword = $doms.keywordInput.val();
             self.doSearch(0, true);
         },
 
@@ -193,7 +195,7 @@
                 }
             }
 
-            var params = _lastSearchSetting =
+            var params =
             {
                 "keyword": _keyword,
                 "search_type": isSearchSerial? "serial": "user_name",
@@ -241,6 +243,8 @@
             }
             else
             {
+                _lastSearchSetting = params;
+
                 ApiProxy.callApi("entries_search", params, 'entries_search', function(response)
                 {
 
@@ -342,7 +346,7 @@
 
             var params =
             {
-                "keyword": serial,
+                "keyword": parseInt(serial),
                 "search_type": "serial",
                 "status": "",
                 "sort_type": "date",
@@ -674,11 +678,16 @@
 
         $dom.find(".text-num-votes").text("累積票數：" + numVotes);
         $dom.find(".text-author").text("作者：" + authorName);
-        $dom.find(".text-serial").text(serial);
+
+
+        //$dom.find(".text-serial").text(serial);
+        $dom.find(".text-serial").text("編號：" + (parseInt(serial) + 10000).toString().substr(1));
 
         if(thumbUrl)
         {
             var image = document.createElement("img");
+
+            $(image).attr("width", "100%").attr("height", "100%");
 
             image.onload = function()
             {

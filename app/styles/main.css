@@ -238,14 +238,29 @@ div.disactivated {
   z-index: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../images/background.jpg");
-  background-size: auto;
-  background-position: center;
+  background: #f9d36c;
+  /*
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    .image-bg("background.jpg");
+
+    background-position: center;
+
+    @media (min-height: 1070px) {
+        background-size:cover;
+    }
+    */
 }
-@media (min-height: 1070px) {
-  #backgrounds {
-    background-size: cover;
-  }
+#backgrounds #radial-background {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2400px;
+  height: 2400px;
+  margin-left: -1200px;
+  margin-top: -1200px;
 }
 /** ui **/
 #menu-cover {
@@ -633,7 +648,7 @@ div.disactivated {
   left: -260%;
   top: -53%;
   width: 535%;
-  height: 641%;
+  height: 851%;
   background-image: url("../images/index-hand.png");
   background-size: cover;
 }
@@ -718,10 +733,17 @@ div.disactivated {
   background-image: url("../images/index-button-3.png");
   background-size: cover;
 }
+#index .hand {
+  z-index: 1;
+}
+#index .hand-girl {
+  z-index: 2;
+}
 #index .button-1,
 #index .button-2,
 #index .button-3 {
   cursor: pointer;
+  z-index: 10;
 }
 #index .button-1:active,
 #index .button-2:active,
@@ -729,6 +751,7 @@ div.disactivated {
   margin-top: 5px;
 }
 #index .wrapper {
+  z-index: 10;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1449,7 +1472,7 @@ div.disactivated {
 #rule .basement .content-container .content {
   position: relative;
   width: 961px;
-  height: 1495px;
+  height: 1675px;
   margin-top: 4px;
   background-image: url("../images/rule-content.png");
   background-size: auto;
@@ -2045,13 +2068,13 @@ div.disactivated {
 }
 #reviewer .reviewers .reviewer:nth-child(1) .my-word {
   position: absolute;
-  left: 109px;
+  left: 91px;
   top: 275px;
-  width: 125px;
-  height: 13px;
+  width: 165px;
+  height: 55px;
   margin-left: 0px;
   margin-top: 0px;
-  background-image: url("../images/reviewer-word.png");
+  background-image: url("../images/fill-sign-1.png");
   background-size: auto;
 }
 #reviewer .reviewers .reviewer:nth-child(2) {
@@ -2064,13 +2087,13 @@ div.disactivated {
 }
 #reviewer .reviewers .reviewer:nth-child(2) .my-word {
   position: absolute;
-  left: 109px;
-  top: 275px;
-  width: 125px;
-  height: 13px;
+  left: 68px;
+  top: 290px;
+  width: 211px;
+  height: 28px;
   margin-left: 0px;
   margin-top: 0px;
-  background-image: url("../images/reviewer-word.png");
+  background-image: url("../images/fill-sign-2.png");
   background-size: auto;
 }
 #reviewer .reviewers .reviewer:nth-child(3) {
@@ -2083,13 +2106,13 @@ div.disactivated {
 }
 #reviewer .reviewers .reviewer:nth-child(3) .my-word {
   position: absolute;
-  left: 109px;
-  top: 275px;
-  width: 125px;
-  height: 13px;
+  left: 26px;
+  top: 283px;
+  width: 295px;
+  height: 41px;
   margin-left: 0px;
   margin-top: 0px;
-  background-image: url("../images/reviewer-word.png");
+  background-image: url("../images/fill-sign-3.png");
   background-size: auto;
 }
 /** fill **/
@@ -2208,19 +2231,19 @@ div.disactivated {
 }
 #fill .illustrator-list .illustrator:nth-child(1) .my-word {
   position: absolute;
-  left: 0px;
-  top: 288px;
-  width: 125px;
-  height: 13px;
+  left: 91px;
+  top: 275px;
+  width: 165px;
+  height: 55px;
   margin-left: 0px;
   margin-top: 0px;
-  background-image: url("../images/reviewer-word.png");
+  background-image: url("../images/fill-sign-1.png");
   background-size: auto;
 }
 #fill .illustrator-list .illustrator:nth-child(1) .btn-select {
   position: absolute;
-  left: 211px;
-  top: 275px;
+  left: 105px;
+  top: 345px;
   width: 136px;
   height: 42px;
   margin-left: 0px;
@@ -2243,19 +2266,19 @@ div.disactivated {
 }
 #fill .illustrator-list .illustrator:nth-child(2) .my-word {
   position: absolute;
-  left: 0px;
-  top: 288px;
-  width: 125px;
-  height: 13px;
+  left: 68px;
+  top: 290px;
+  width: 211px;
+  height: 28px;
   margin-left: 0px;
   margin-top: 0px;
-  background-image: url("../images/reviewer-word.png");
+  background-image: url("../images/fill-sign-2.png");
   background-size: auto;
 }
 #fill .illustrator-list .illustrator:nth-child(2) .btn-select {
   position: absolute;
-  left: 211px;
-  top: 275px;
+  left: 105px;
+  top: 345px;
   width: 136px;
   height: 42px;
   margin-left: 0px;
@@ -2278,19 +2301,19 @@ div.disactivated {
 }
 #fill .illustrator-list .illustrator:nth-child(3) .my-word {
   position: absolute;
-  left: 0px;
-  top: 288px;
-  width: 125px;
-  height: 13px;
+  left: 26px;
+  top: 283px;
+  width: 295px;
+  height: 41px;
   margin-left: 0px;
   margin-top: 0px;
-  background-image: url("../images/reviewer-word.png");
+  background-image: url("../images/fill-sign-3.png");
   background-size: auto;
 }
 #fill .illustrator-list .illustrator:nth-child(3) .btn-select {
   position: absolute;
-  left: 211px;
-  top: 275px;
+  left: 105px;
+  top: 345px;
   width: 136px;
   height: 42px;
   margin-left: 0px;
@@ -3571,6 +3594,12 @@ div.disactivated {
     left: -179px;
     top: 611px;
   }
+  #index .wrapper .sample-serial {
+    margin-top: 5px;
+  }
+  #index .wrapper .sample-author {
+    margin-top: 5px;
+  }
   /** reviewer **/
   #reviewer .layout {
     position: absolute;
@@ -3617,13 +3646,13 @@ div.disactivated {
   }
   #reviewer .reviewers-m .reviewer:nth-child(1) .my-word {
     position: absolute;
-    left: 125px;
-    top: 379px;
-    width: 214px;
-    height: 23px;
+    left: 153.5px;
+    top: 370px;
+    width: 165px;
+    height: 55px;
     margin-left: 0px;
     margin-top: 0px;
-    background-image: url("../images/reviewer-word.m.png");
+    background-image: url("../images/fill-sign-1.png");
     background-size: auto;
   }
   #reviewer .reviewers-m .reviewer:nth-child(2) {
@@ -3636,13 +3665,13 @@ div.disactivated {
   }
   #reviewer .reviewers-m .reviewer:nth-child(2) .my-word {
     position: absolute;
-    left: 125px;
-    top: 379px;
-    width: 214px;
-    height: 23px;
+    left: 130.5px;
+    top: 383px;
+    width: 211px;
+    height: 28px;
     margin-left: 0px;
     margin-top: 0px;
-    background-image: url("../images/reviewer-word.m.png");
+    background-image: url("../images/fill-sign-2.png");
     background-size: auto;
   }
   #reviewer .reviewers-m .reviewer:nth-child(3) {
@@ -3655,13 +3684,13 @@ div.disactivated {
   }
   #reviewer .reviewers-m .reviewer:nth-child(3) .my-word {
     position: absolute;
-    left: 125px;
-    top: 379px;
-    width: 214px;
-    height: 23px;
+    left: 88.5px;
+    top: 377px;
+    width: 295px;
+    height: 41px;
     margin-left: 0px;
     margin-top: 0px;
-    background-image: url("../images/reviewer-word.m.png");
+    background-image: url("../images/fill-sign-3.png");
     background-size: auto;
   }
   /** rule **/
@@ -3705,7 +3734,7 @@ div.disactivated {
   }
   #rule .basement .content-container .content {
     width: 514px;
-    height: 3989px;
+    height: 4725px;
     margin-top: 4px;
     background-image: url("../images/rule-content.m.png");
     background-size: auto;
@@ -4371,19 +4400,19 @@ div.disactivated {
   }
   #fill .illustrator-list .illustrator:nth-child(1) .my-word {
     position: absolute;
-    left: 124px;
-    top: 379px;
-    width: 214px;
-    height: 23px;
+    left: 153.5px;
+    top: 370px;
+    width: 165px;
+    height: 55px;
     margin-left: 0px;
     margin-top: 0px;
-    background-image: url("../images/reviewer-word.m.png");
+    background-image: url("../images/fill-sign-1.png");
     background-size: auto;
   }
   #fill .illustrator-list .illustrator:nth-child(1) .btn-select {
     position: absolute;
     left: 168px;
-    top: 423px;
+    top: 441px;
     width: 136px;
     height: 42px;
     margin-left: 0px;
@@ -4401,19 +4430,19 @@ div.disactivated {
   }
   #fill .illustrator-list .illustrator:nth-child(2) .my-word {
     position: absolute;
-    left: 124px;
-    top: 379px;
-    width: 214px;
-    height: 23px;
+    left: 130.5px;
+    top: 383px;
+    width: 211px;
+    height: 28px;
     margin-left: 0px;
     margin-top: 0px;
-    background-image: url("../images/reviewer-word.m.png");
+    background-image: url("../images/fill-sign-2.png");
     background-size: auto;
   }
   #fill .illustrator-list .illustrator:nth-child(2) .btn-select {
     position: absolute;
     left: 168px;
-    top: 423px;
+    top: 441px;
     width: 136px;
     height: 42px;
     margin-left: 0px;
@@ -4431,19 +4460,19 @@ div.disactivated {
   }
   #fill .illustrator-list .illustrator:nth-child(3) .my-word {
     position: absolute;
-    left: 124px;
-    top: 379px;
-    width: 214px;
-    height: 23px;
+    left: 88.5px;
+    top: 377px;
+    width: 295px;
+    height: 41px;
     margin-left: 0px;
     margin-top: 0px;
-    background-image: url("../images/reviewer-word.m.png");
+    background-image: url("../images/fill-sign-3.png");
     background-size: auto;
   }
   #fill .illustrator-list .illustrator:nth-child(3) .btn-select {
     position: absolute;
     left: 168px;
-    top: 423px;
+    top: 441px;
     width: 136px;
     height: 42px;
     margin-left: 0px;

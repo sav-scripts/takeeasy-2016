@@ -91,22 +91,23 @@
 
                 var illustGeom =
                 {
-                    x: 161,
-                    y: 106,
-                    width: 272,
-                    height: 207
+                    x: 161*2,
+                    y: 106*2,
+                    width: 272*2,
+                    height: 205*2
                 };
 
                 var illustCanvas = _sendingIllust.getOutputCanvas(),
                     scale = illustGeom.width / illustCanvas.width;
 
-                var scaledCanvas = Helper.downScaleCanvas(illustCanvas, scale);
+                //var scaledCanvas = Helper.downScaleCanvas(illustCanvas, scale);
 
 
                 var canvas = Helper.imageToCanvas(_rawShareImage, _rawShareImage.width, _rawShareImage.height);
                 var ctx = canvas.getContext("2d");
 
-                ctx.drawImage(scaledCanvas, illustGeom.x, illustGeom.y);
+                //ctx.drawImage(scaledCanvas, illustGeom.x, illustGeom.y);
+                ctx.drawImage(illustCanvas, illustGeom.x, illustGeom.y, illustGeom.width, illustGeom.height);
 
 
                 return canvas;
@@ -360,9 +361,26 @@
 
         function setupOne(index)
         {
-            var $dom = $doms.illustrators[index] = $container.find(".illustrator:nth-child("+(index+1)+")").on("mousedown", function(event)
+            var $dom = $doms.illustrators[index] = $container.find(".illustrator:nth-child("+(index+1)+")").on("click", function(event)
             {
-                if(event.target.className == 'illustrator' && _inMobileMode) toIndex(index);
+                if(event.target.className == 'illustrator')
+                {
+                    if(_inMobileMode)
+                    {
+                        if(index == currentIndex)
+                        {
+                            Fill.toStep("illust-list", {illustratorIndex: (index+1)});
+                        }
+                        else
+                        {
+                            toIndex(index);
+                        }
+                    }
+                    else
+                    {
+                        Fill.toStep("illust-list", {illustratorIndex: (index+1)});
+                    }
+                }
             });
 
             $dom.find('.btn-select').on("click", function()
@@ -453,7 +471,9 @@
                         method:"share",
                         display: "iframe",
                         href: Utility.getPath(),
-                        picture: _shareImageUrl
+                        picture: _shareImageUrl + "?v=" + new Date().getTime(),
+                        title: CommonForm.getLastUserName() + "參加了輕鬆小品暑假打工爽的咧",
+                        description: '獨家微疼、啾啾妹、小學課本的逆襲爽畫作，選擇一個你喜歡的插畫家填空爽文字，就有機會獲得7-11禮券500元＋一箱輕鬆小品，有GO爽～～～'
                     },function(response)
                     {
                         if(!response.error && !response.error_code)

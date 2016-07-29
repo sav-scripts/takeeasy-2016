@@ -694,4 +694,48 @@
         }
     };
 
+    Helper.selectIntoArray = function($fromConteinr, selectorOrArray, domArray, $doms)
+    {
+        if(selectorOrArray.constructor === Array)
+        {
+            for(var i=0;i<selectorOrArray.length;i++)
+            {
+                execute(selectorOrArray[i]);
+            }
+        }
+        else
+        {
+            return execute(selectorOrArray);
+        }
+
+
+        function execute(selector)
+        {
+            var $dom = $fromConteinr.find(selector);
+            if($dom.length > 0) domArray.push($dom[0]);
+
+            if($doms) $doms[selector] = $dom;
+
+            return $dom;
+        }
+    };
+
+    Helper.clearElementsStyles = function($dom, styles)
+    {
+        if(!styles)
+        {
+            $dom.attr("style", '');
+        }
+        else
+        {
+            var i;
+            for(i=0;i<styles.length;i++)
+            {
+                $dom.css(styles[i], '');
+            }
+        }
+
+
+    };
+
 }());

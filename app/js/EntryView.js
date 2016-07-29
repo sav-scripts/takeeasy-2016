@@ -109,6 +109,8 @@
         {
             _searchSetting = searchSetting;
 
+            //console.log(JSON.stringify(searchSetting));
+
             _isLocking = true;
             Loading.progress("資料讀取中...").show();
 

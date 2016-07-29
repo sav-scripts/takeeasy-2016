@@ -5,6 +5,7 @@
         _isLocking = false,
         _isInit = false,
         _sampleImage,
+        _animeDoms = [],
         _lastQuery = null;
 
     window.Index =
@@ -66,7 +67,7 @@
         });
 
 
-        $doms.btnToParticipate = $doms.container.find(".button-2").on("click", function()
+        $doms.btnToFill = $doms.container.find(".button-2").on("click", function()
         {
             Main.loginFB("/Fill", function()
             {
@@ -88,7 +89,6 @@
         $doms.sampleSerial = $doms.thumbContainer.find(".sample-serial");
         $doms.sampleAuthor = $doms.thumbContainer.find(".sample-author");
 
-
         $doms.arrowLeft = $doms.thumbContainer.find('.arrow-left').on("mousedown", function()
         {
             requestOne_2(-1);
@@ -99,6 +99,30 @@
         });
 
         requestOne_2(0);
+
+
+        Helper.selectIntoArray($doms.container,
+            [
+                //".hand",
+                ".mini-hand",
+                ".title",
+                ".sub-title",
+                ".left-girl",
+                ".right-boy",
+                ".desc",
+                //".hand-girl",
+                ".left-mob"
+            ], _animeDoms, $doms);
+
+        $doms.hand = $doms.container.find(".hand");
+        $doms.handGirl = $doms.container.find(".hand-girl");
+
+        _animeDoms.push(
+            $doms.btnToEntries,
+            $doms.btnToParticipate,
+            $doms.btnToFill,
+            $doms.thumbContainer
+        );
 
 
         $doms.container.detach();
@@ -152,13 +176,15 @@
 
         var image = document.createElement('img');
 
-        $(image).css("position", "absolute").css("left", 0).css("top", 0);
+        $(image).css("position", "absolute").css("left", 0).css("top", 0).attr("width", "100%").attr("height", "100%");
+
 
         image.onload = function()
         {
             var oldImage = _sampleImage;
 
-            $doms.sampleSerial.text(dataObj.serial);
+            //$doms.sampleSerial.text(dataObj.serial);
+            $doms.sampleSerial.text((parseInt(dataObj.serial) + 10000).toString().substr(1));
             $doms.sampleAuthor.text('作者：'+dataObj.name);
 
             _sampleImage = image;
@@ -174,8 +200,6 @@
         };
 
         image.src = dataObj.thumb_url;
-
-
     }
 
 
@@ -194,9 +218,53 @@
 
         $("#scene-container").append($doms.container);
 
+        Helper.clearElementsStyles($doms.container.find("div"));
+
+        _animeDoms = Utility.shuffleArray(_animeDoms);
+
+
+        var vpIndex = Main.settings.viewport.index;
+
         var tl = new TimelineMax;
-        tl.set($doms.container, {autoAlpha: 0});
-        tl.to($doms.container, .4, {autoAlpha: 1});
+
+        if(vpIndex == 0)
+        {
+            tl.set($doms.container, {autoAlpha: 0});
+
+            tl.to($doms.container, .4, {autoAlpha: 1});
+        }
+        else
+        {
+            RadialBackground.stopFlash();
+
+            tl.set($doms.container, {autoAlpha:1});
+            tl.set(_animeDoms, {autoAlpha:0});
+
+            tl.set($doms.handGirl, {autoAlpha:0, scale:1, zIndex:1});
+            tl.set($doms.hand, {marginTop: 100, scale:2, transformOrigin: "center top"});
+
+            tl.to($doms.hand,1, {marginTop:300, ease:Power4.easeOut});
+            tl.to($doms.hand,1.2, {marginTop:0, scale:1, ease:Elastic.easeOut});
+
+            tl.add(function()
+            {
+                RadialBackground.startFlash();
+                RadialBackground.boom(.5);
+
+                Main.shakeScreen();
+
+            }, "-=1.05");
+
+            tl.set(_animeDoms, {autoAlpha:1}, "-=.9");
+            tl.staggerFrom(_animeDoms,1.7, {top:0, left:0, scale:0, transformOrigin: "center center", ease:Elastic.easeOut.config(2.5, 0.3)},.01, "-=.9");
+
+            tl.set($doms.handGirl, {autoAlpha:1}, "-=1.5");
+            tl.to($doms.handGirl,.15, {marginTop: -5, marginLeft: 20, rotation: 30, autoAlpha:1, scale:1, ease:Power3.easeOut}, "-=1.5");
+            tl.set($doms.handGirl, {zIndex:3}, "-=1.35");
+            tl.to($doms.handGirl,.15, {marginTop: 0, marginLeft: 0, ease:Power3.easeIn, scale: 1, rotation: 0}, "-=1.35");
+
+        }
+
         tl.add(function ()
         {
             cb.apply();

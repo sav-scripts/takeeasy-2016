@@ -5,6 +5,7 @@
         _isInit = false,
         _currentMode = null,
         _votingSerial,
+        _lastUserName = null,
         _ss;
 
     var self = window.CommonForm =
@@ -82,6 +83,11 @@
             _currentMode = mode;
 
             return self;
+        },
+
+        getLastUserName: function()
+        {
+            return _lastUserName;
         },
 
         resize: function()
@@ -254,6 +260,8 @@
 
         formObj.fb_uid = Main.settings.fbUid;
         formObj.fb_token = Main.settings.fbToken;
+
+        _lastUserName = formObj.name;
 
         //formObj.paint_data = CanvasProxy.getBase64JPEG();
 

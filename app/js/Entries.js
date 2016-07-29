@@ -335,7 +335,9 @@
                         method:"share",
                         display: "iframe",
                         href: Utility.getPath() + "?serial=" + _shareEntrySerial,
-                        picture: _shareImageUrl
+                        title: CommonForm.getLastUserName() + "參加了輕鬆小品暑假打工爽的咧",
+                        description: '客倌們快來看看超有梗會笑出腹肌的爽畫作們啊～立即爽投票＋分享好友還有機會獲得7-11禮券＄200，多爽呀～～',
+                        picture: _shareImageUrl + "?v=" + new Date().getTime()
                     },function(response)
                     {
                         if(!response.error && !response.error_code)

@@ -1,5 +1,7 @@
 (function(){
 
+    var _shakeTween;
+
     "use strict";
     var self = window.Main =
     {
@@ -56,6 +58,7 @@
 
             //self.settings.isiOS = true;
 
+
             var version = Utility.urlParams.nocache == '1'? new Date().getTime(): "0";
 
             var hashArray =
@@ -74,6 +77,7 @@
 
             CommonForm.init();
             EntryView.init();
+            RadialBackground.init();
 
             Menu.init();
 
@@ -150,21 +154,37 @@
 
                     if(Utility.urlParams.serial)
                     {
+                        RadialBackground.startFlash();
                         getFirstEntry();
                     }
                     else
                     {
-                        SceneHandler.toFirstHash();
+                        var firstHash = SceneHandler.toFirstHash();
+
+                        if(firstHash !== "/Index") RadialBackground.startFlash();
                     }
                 }
 
             });
 
-
             //SceneHandler.toFirstHash();
 
             $(window).on("resize", onResize);
             onResize();
+        },
+
+
+
+        shakeScreen: function ()
+        {
+            if(_shakeTween) _shakeTween.kill();
+
+            var offsetX = (Math.random()*16+16) * (Math.random()>.5? 1: -1),
+                offsetY = (Math.random()*12+12) * (Math.random()>.5? 1: -1);
+            var $dom = $("body");
+            TweenMax.killTweensOf($dom);
+            TweenMax.set($dom, {marginLeft:offsetX, marginTop:offsetY});
+            TweenMax.to($dom,.7, {marginLeft:0, marginTop:0, ease:Elastic.easeOut.config(1,.2)});
         },
 
         loginFB: doLogin
@@ -197,7 +217,7 @@
             window.history.replaceState({path:uri},'',uri);
         }
 
-        console.log("uri = " + uri);
+        //console.log("uri = " + uri);
 
         Entries.firstEntrySerial = Utility.urlParams.serial;
         //SceneHandler.toFirstHash();

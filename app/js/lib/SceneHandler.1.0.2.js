@@ -175,6 +175,8 @@
 
         //ga("send", "pageview", firstHash);
         _p.toContent(firstHash, options);
+
+        return firstHash;
     };
 
     _p.toHash = function(hashName)

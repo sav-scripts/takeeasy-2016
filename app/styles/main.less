@@ -126,6 +126,24 @@ div{
     }
 }
 #backgrounds{
+
+
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+//    .image-bg("background.gif");
+//    background-position: center center;
+
+    background: #f9d36c;
+
+
+
+//    @media (min-height: 1070px) {
+//        background-size:cover;
+//    }
+
+    /*
     position: absolute;
     z-index: 0;
     width: 100%;
@@ -136,6 +154,20 @@ div{
 
     @media (min-height: 1070px) {
         background-size:cover;
+    }
+    */
+
+    #radial-background{
+        @size: 2400px;
+        position: absolute;
+        left:50%;
+        top:50%;
+        width: @size;
+        height: @size;
+        margin-left: -@size * .5;
+        margin-top: -@size * .5;
+
+
     }
 }
 
@@ -273,7 +305,8 @@ div{
     .percent-div(left-girl, -416, -186, 153, 194, "index-left-girl.png");
     .percent-div(right-boy, 268, -239, 178, 170, "index-right-boy.png");
 
-    .percent-div(hand, -260, -53, 535, 641, "index-hand.png");
+//    .percent-div(hand, -260, -53, 535, 641, "index-hand.png");
+    .percent-div(hand, -260, -53, 535, 851, "index-hand.png");
     .percent-div(hand-girl, 144, -35, 115, 75, "index-hand-girl.png");
 
     .percent-div(desc, -245, -111, 508, 70, "index-desc.png");
@@ -286,14 +319,26 @@ div{
     .percent-div(button-2, -211, 114, 133, 139, "index-button-2.png");
     .percent-div(button-3, 78, 114, 133, 139, "index-button-3.png");
 
+    .hand{
+        z-index: 1;
+    }
+
+    .hand-girl{
+        z-index:2;
+    }
+
     .button-1, .button-2, .button-3{
         cursor: pointer;
         &:active{
             margin-top: 5px;
         }
+
+        z-index: 10;
     }
 
     .wrapper{
+
+        z-index: 10;
 
         .content-wrapper();
 
@@ -804,7 +849,7 @@ div{
 
                 position: relative;
                 width: 961px;
-                height: 1495px;
+                height: 1675px;
 
                 margin-top: 4px;
 
@@ -1213,11 +1258,12 @@ div{
 
 
 
-        .my-mixin(1);
-        .my-mixin(2);
-        .my-mixin(3);
 
-        .my-mixin(@index;)
+        .my-mixin(1, 0, 275, 165, 55);
+        .my-mixin(2, 0, 290, 211, 28);
+        .my-mixin(3, 0, 283, 295, 41);
+
+        .my-mixin(@index; @sl; @st; @sw; @sh;)
         {
             .reviewer:nth-child(@{index})
             {
@@ -1233,7 +1279,8 @@ div{
                 .image-bg("reviewer-@{index}.png");
 
                 .my-word{
-                    .abs-div(109, 275, 125,13,"reviewer-word.png");
+//                    .abs-div(109, 275, 125,13,"reviewer-word.png");
+                    .abs-div(@sl + (@w - @sw)*.5, @st, @sw, @sh,"fill-sign-@{index}.png");
                 }
 
             }
@@ -1302,11 +1349,11 @@ div{
         .abs-div(-547,-105,1079,261);
         //        background: rgba(0,0,0,.2);
 
-        .my-mixin(1);
-        .my-mixin(2);
-        .my-mixin(3);
+        .my-mixin(1, 0, 275, 165, 55);
+        .my-mixin(2, 0, 290, 211, 28);
+        .my-mixin(3, 0, 283, 295, 41);
 
-        .my-mixin(@index;)
+        .my-mixin(@index; @sl; @st; @sw; @sh;)
         {
             @w: 347px;
             @wGap: @w + 19px;
@@ -1324,11 +1371,13 @@ div{
                 .image-bg("reviewer-@{index}.png");
 
                 .my-word{
-                    .abs-div(0, 288, 125,13,"reviewer-word.png");
+//                    .abs-div(0, 288, 125,13,"reviewer-word.png");
+
+                    .abs-div(@sl + (@w - @sw)*.5, @st, @sw, @sh,"fill-sign-@{index}.png");
                 }
 
                 .btn-select{
-                    .abs-div(211,275,136,42, "fill-btn-select-illustrator.png");
+                    .abs-div(105,345,136,42, "fill-btn-select-illustrator.png");
                     cursor: pointer;
                     &:active{
                         margin-top: 2px;
