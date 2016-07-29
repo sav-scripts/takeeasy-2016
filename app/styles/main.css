@@ -3503,10 +3503,6 @@ div.disactivated {
     background-position: -356px 0px;
   }
   /** index **/
-  #index {
-    left: 0;
-    top: 0;
-  }
   #index .layout {
     position: absolute;
     width: 640px;
@@ -3518,42 +3514,42 @@ div.disactivated {
     opacity: 0.3;
   }
   #index .title {
-    left: 47px;
-    top: 60px;
+    left: -273px;
+    top: -415px;
   }
   #index .sub-title {
-    left: 22px;
-    top: 217px;
+    left: -298px;
+    top: -258px;
   }
   #index .desc {
     position: absolute;
-    left: 64%;
-    top: 306%;
+    left: -256%;
+    top: -169%;
     width: 526%;
     height: 104%;
     background-image: url("../images/index-desc.m.png");
     background-size: cover;
   }
   #index .mini-hand {
-    left: 579px;
-    top: 133px;
+    left: 259px;
+    top: -342px;
   }
   #index .button-1 {
-    left: 108px;
-    top: 442px;
+    left: -212px;
+    top: -33px;
   }
   #index .button-2 {
-    left: 249px;
-    top: 442px;
+    left: -71px;
+    top: -33px;
   }
   #index .button-3 {
-    left: 396px;
-    top: 442px;
+    left: 76px;
+    top: -33px;
   }
   #index .left-mob {
     position: absolute;
-    left: 526%;
-    top: 463%;
+    left: 206%;
+    top: -12%;
     width: 89%;
     height: 113%;
     background-image: url("../images/index-left-mob.m.png");
@@ -3561,21 +3557,21 @@ div.disactivated {
   }
   #index .hand {
     position: absolute;
-    left: 119%;
-    top: 596%;
+    left: -201%;
+    top: 121%;
     width: 440%;
     height: 520%;
     background-image: url("../images/index-hand.m.png");
     background-size: cover;
   }
   #index .hand-girl {
-    left: 444px;
-    top: 605px;
+    left: 124px;
+    top: 130px;
   }
   #index .left-girl {
     position: absolute;
-    left: 31%;
-    top: 549%;
+    left: -289%;
+    top: 74%;
     width: 118%;
     height: 149%;
     background-image: url("../images/index-left-girl.m.png");
@@ -3583,16 +3579,16 @@ div.disactivated {
   }
   #index .right-boy {
     position: absolute;
-    left: 453%;
-    top: 700%;
+    left: 133%;
+    top: 225%;
     width: 161%;
     height: 152%;
     background-image: url("../images/index-right-boy.m.png");
     background-size: cover;
   }
   #index .wrapper {
-    left: -179px;
-    top: 611px;
+    left: -499px;
+    top: 136px;
   }
   #index .wrapper .sample-serial {
     margin-top: 5px;

@@ -227,46 +227,40 @@
 
         var tl = new TimelineMax;
 
-        if(vpIndex == 0)
-        {
-            tl.set($doms.container, {autoAlpha: 0});
-
-            tl.to($doms.container, .4, {autoAlpha: 1});
-        }
-        else
-        {
+        var s = vpIndex == 0? .6: 1,
+            s2 = vpIndex == 0? 1.2: 2.5,
+            s3 = vpIndex == 0? 1.3: 1.7;
             RadialBackground.stopFlash();
 
-            tl.set($doms.container, {autoAlpha:1});
-            tl.set(_animeDoms, {autoAlpha:0});
+        tl.set($doms.container, {autoAlpha:1});
+        tl.set(_animeDoms, {autoAlpha:0});
 
-            tl.set($doms.handGirl, {autoAlpha:0, scale:1, zIndex:1});
-            tl.set($doms.hand, {marginTop: 100, scale:2, transformOrigin: "center top"});
+        tl.set($doms.handGirl, {autoAlpha:0, scale:1, zIndex:1});
+        tl.set($doms.hand, {marginTop: 100*s, scale:1+s, transformOrigin: "center top"});
 
-            tl.to($doms.hand,1, {marginTop:300, ease:Power4.easeOut});
-            tl.to($doms.hand,1.2, {marginTop:0, scale:1, ease:Elastic.easeOut});
+        tl.to($doms.hand,1, {marginTop:300*s, ease:Power4.easeOut});
+        tl.to($doms.hand,1.2, {marginTop:0, scale:1, ease:Elastic.easeOut});
 
-            tl.add(function()
-            {
-                RadialBackground.startFlash();
-                RadialBackground.boom(.5);
+        tl.add(function()
+        {
+            RadialBackground.startFlash();
+            RadialBackground.boom(.5);
 
-                Main.shakeScreen();
+            Main.shakeScreen();
 
-            }, "-=1.05");
+        }, "-=1.05");
 
-            tl.set(_animeDoms, {autoAlpha:1}, "-=.9");
-            tl.staggerFrom(_animeDoms,1.7, {top:0, left:0, scale:0, transformOrigin: "center center", ease:Elastic.easeOut.config(2.5, 0.3)},.01, "-=.9");
+        tl.set(_animeDoms, {autoAlpha:1}, "-=.9");
+        tl.staggerFrom(_animeDoms,s3, {top:0, left:0, scale:0, transformOrigin: "center center", ease:Elastic.easeOut.config(s2, 0.3)},.01, "-=.9");
 
-            tl.set($doms.handGirl, {autoAlpha:1}, "-=1.5");
-            tl.to($doms.handGirl,.15, {marginTop: -5, marginLeft: 20, rotation: 30, autoAlpha:1, scale:1, ease:Power3.easeOut}, "-=1.5");
-            tl.set($doms.handGirl, {zIndex:3}, "-=1.35");
-            tl.to($doms.handGirl,.15, {marginTop: 0, marginLeft: 0, ease:Power3.easeIn, scale: 1, rotation: 0}, "-=1.35");
-
-        }
+        tl.set($doms.handGirl, {autoAlpha:1}, "-=1.5");
+        tl.to($doms.handGirl,.15, {marginTop: -5, marginLeft: 20, rotation: 30, autoAlpha:1, scale:1, ease:Power3.easeOut}, "-=1.5");
+        tl.set($doms.handGirl, {zIndex:3}, "-=1.35");
+        tl.to($doms.handGirl,.15, {marginTop: 0, marginLeft: 0, ease:Power3.easeIn, scale: 1, rotation: 0}, "-=1.35");
 
         tl.add(function ()
         {
+            Helper.clearElementsStyles($doms.container.find("div"));
             cb.apply();
         });
     }

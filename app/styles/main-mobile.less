@@ -175,30 +175,33 @@
 
     /** index **/
     #index{
-        left:0;
-        top:0;
+//        left:0;
+//        top:0;
 
         .layout-mobile('layouts/index-mobile.jpg', false);
 
-        .change-position(title, 47, 60);
-        .change-position(sub-title, 22, 217);
-        .percent-div(desc, 64, 306, 526, 104, "index-desc.m.png");
-        .change-position(mini-hand, 579, 133);
+        @hw: @mobile-width * .5;
+        @hh: @mobile-height * .5;
 
-        .change-position(button-1, 108, 442);
-        .change-position(button-2, 249, 442);
-        .change-position(button-3, 396, 442);
-        .percent-div(left-mob, 526, 463, 89, 113, "index-left-mob.m.png");
+        .change-position(title, 47 - @hw, 60 - @hh);
+        .change-position(sub-title, 22 - @hw, 217 - @hh);
+        .percent-div(desc, 64 - @hw, 306 - @hh, 526, 104, "index-desc.m.png");
+        .change-position(mini-hand, 579 - @hw, 133 - @hh);
 
-        .percent-div(hand, 119, 596, 440, 520, "index-hand.m.png");
-        .change-position(hand-girl, 444, 605);
+        .change-position(button-1, 108 - @hw, 442 - @hh);
+        .change-position(button-2, 249 - @hw, 442 - @hh);
+        .change-position(button-3, 396 - @hw, 442 - @hh);
+        .percent-div(left-mob, 526 - @hw, 463 - @hh, 89, 113, "index-left-mob.m.png");
 
-        .percent-div(left-girl, 31, 549, 118, 149, "index-left-girl.m.png");
-        .percent-div(right-boy, 453, 700, 161, 152, "index-right-boy.m.png");
+        .percent-div(hand, 119 - @hw, 596 - @hh, 440, 520, "index-hand.m.png");
+        .change-position(hand-girl, 444 - @hw, 605 - @hh);
+
+        .percent-div(left-girl, 31 - @hw, 549 - @hh, 118, 149, "index-left-girl.m.png");
+        .percent-div(right-boy, 453 - @hw, 700 - @hh, 161, 152, "index-right-boy.m.png");
 
         .wrapper{
-            left: -179px;
-            top: 611px;
+            left: -179px - @hw;
+            top: 611px - @hh;
 
             .sample-serial{
                 margin-top: 5px;
