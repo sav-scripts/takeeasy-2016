@@ -202,6 +202,8 @@
 
         this.$btnSend = $container.find(".btn-send").toggleClass('disactivated', true).on("click", function()
         {
+            ga("send", "event", "copywork_input", "send_click", "artist_" + self.illustratorIndex + "_artwork_" + ((self.index%3)+1) );
+
             var text =  self.$input.val();
             if(text == '')
             {

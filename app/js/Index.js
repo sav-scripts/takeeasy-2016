@@ -60,6 +60,7 @@
 
         $doms.btnToParticipate = $doms.container.find(".button-1").on("click", function()
         {
+            ga("send", "event", "index", "click", "go_parttime");
             Main.loginFB("/Participate", function()
             {
                 SceneHandler.toHash("/Participate");
@@ -69,6 +70,7 @@
 
         $doms.btnToFill = $doms.container.find(".button-2").on("click", function()
         {
+            ga("send", "event", "index", "click", "go_copywork");
             Main.loginFB("/Fill", function()
             {
                 SceneHandler.toHash("/Fill");
@@ -77,6 +79,7 @@
 
         $doms.btnToEntries = $doms.container.find(".button-3").on("click", function()
         {
+            ga("send", "event", "index", "click", "go_artworks");
             Main.loginFB("/Entries", function()
             {
                 SceneHandler.toHash("/Entries");

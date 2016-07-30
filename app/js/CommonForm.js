@@ -6,7 +6,8 @@
         _currentMode = null,
         _votingSerial,
         _lastUserName = null,
-        _ss;
+        _ss,
+        _gaCategory;
 
     var self = window.CommonForm =
     {
@@ -54,6 +55,7 @@
             tl.to($doms.container, .4, {autoAlpha: 1}, delay);
             tl.add(function ()
             {
+                ga("send", "pageview", _gaCategory);
                 if (cb) cb.apply();
             });
 
@@ -81,6 +83,19 @@
         setMode: function(mode)
         {
             _currentMode = mode;
+
+            if(mode == 'participate')
+            {
+                _gaCategory = "parttime_form";
+            }
+            else if(mode == 'vote')
+            {
+                _gaCategory = "artworks_form";
+            }
+            else if(mode == 'fill')
+            {
+                _gaCategory = "copywork_form";
+            }
 
             return self;
         },

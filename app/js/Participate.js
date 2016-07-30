@@ -203,6 +203,10 @@
                     {
                         if(!response.error && !response.error_code)
                         {
+                            ga("send", "event", "parttime", "fb_share_success");
+
+                            alert('分享成功');
+
                             self.hide();
                             SceneHandler.toHash("/Entries");
                         }
@@ -218,6 +222,8 @@
         {
             if(!_isHiding) return;
             _isHiding = false;
+
+            ga("send", "event", "participate_dialogs", "show", "form_send_success");
 
             $doms.parent.append($doms.container);
 

@@ -56,6 +56,7 @@
 
             $doms.btnToList = $doms.container.find(".btn-to-list").on("click", function()
             {
+                ga("send", "event", "artworks_view", "click", "back_to_list");
                 self.hide();
             });
 
@@ -63,6 +64,8 @@
             {
                 self.hide();
                 //console.log("serial = " + _entryData.serial);
+
+                ga("send", "event", "artworks_view", "click", "vote");
 
                 Main.loginFB("/Entries", function()
                 {
@@ -80,6 +83,8 @@
             $doms.imagePreview.append(canvas);
 
             $doms.fields.description.text(description);
+
+            ga("send", "pageview", "parttime_preview");
 
             toPreviewMode();
             self.show();
@@ -99,6 +104,10 @@
             $doms.fields.numVotes.text(entryData.num_votes);
             $doms.fields.author.text(entryData.name);
             $doms.fields.serial.text(entryData.serial);
+
+            ga("send", "pageview", "artworks_view");
+            ga("send", "event", "artworks_view", "show_artwork", entryData.serial);
+
 
             toEntryMode(isMultipleMode);
             self.show();

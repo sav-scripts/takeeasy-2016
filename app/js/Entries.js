@@ -209,6 +209,8 @@
             if(!_isHiding) return;
             _isHiding = false;
 
+            ga("send", "event", "artworks_dialogs", "show", "form_send_success");
+
             $doms.parent.append($doms.container);
 
             if (delay === undefined) delay = 0;
@@ -273,6 +275,8 @@
         {
             if(!_isHiding) return;
             _isHiding = false;
+
+            ga("send", "event", "artworks", "unapproved_show");
 
             $doms.parent.append($doms.container);
 
@@ -342,6 +346,8 @@
                     {
                         if(!response.error && !response.error_code)
                         {
+                            ga("send", "event", "artworks", "fb_share_success");
+                            alert('分享成功');
                             self.hide();
                             Entries.toStep("list");
                         }

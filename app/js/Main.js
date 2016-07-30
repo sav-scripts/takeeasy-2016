@@ -75,6 +75,19 @@
                 //"/ParticipateForm"
             ];
 
+
+
+            var hashTranslate =
+            {
+                "/Index": "index",
+                "/Participate": "parttime",
+                "/Entries": "artworks",
+                "/Rule": "rule",
+                "/Reviewer": "artist",
+                "/Fill": "copywork"
+            };
+
+
             CommonForm.init();
             EntryView.init();
             RadialBackground.init();
@@ -119,6 +132,12 @@
                             },
                             cbContentChange: function(hashName)
                             {
+                                var pageName = hashTranslate[hashName];
+                                if(pageName)
+                                {
+                                    ga("send", "pageview", pageName);
+                                }
+
                             },
                             hashChangeTester: function(hashName)
                             {

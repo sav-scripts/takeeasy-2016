@@ -369,6 +369,7 @@
                     {
                         if(index == currentIndex)
                         {
+                            ga("send", "event", "copywork", "select_artist", (index+1));
                             Fill.toStep("illust-list", {illustratorIndex: (index+1)});
                         }
                         else
@@ -378,6 +379,7 @@
                     }
                     else
                     {
+                        ga("send", "event", "copywork", "select_artist", (index+1));
                         Fill.toStep("illust-list", {illustratorIndex: (index+1)});
                     }
                 }
@@ -385,6 +387,7 @@
 
             $dom.find('.btn-select').on("click", function()
             {
+                ga("send", "event", "copywork", "select_artist", (index+1));
                 Fill.toStep("illust-list", {illustratorIndex: (index+1)});
             });
         }
@@ -478,6 +481,8 @@
                     {
                         if(!response.error && !response.error_code)
                         {
+                            ga("send", "event", "copywork", "fb_share_success");
+                            alert('分享成功');
                             self.hide();
                             Fill.toStep("illustrator-list");
                         }
@@ -492,6 +497,8 @@
         {
             if(!_isHiding) return;
             _isHiding = false;
+
+            ga("send", "event", "copywork_dialogs", "show", "form_send_success");
 
             $doms.parent.append($doms.container);
 

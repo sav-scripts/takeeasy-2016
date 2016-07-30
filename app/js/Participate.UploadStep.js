@@ -35,11 +35,14 @@
 
             $doms.ruleCheckbox = $doms.container.find("#upload-checkbox").on("change", function()
             {
+                ga("send", "event", "parttime", "click", "parttime_agreement_artwork");
                 update();
             });
 
             $doms.btnSend = $doms.container.find(".btn-send").on("click", function()
             {
+                ga("send", "event", "parttime", "click", "parttime_send_now");
+
 
                 if(!_isImageReady)
                 {
@@ -61,6 +64,8 @@
 
             $doms.btnPreview = $doms.container.find(".btn-preview").on("click", function()
             {
+                ga("send", "event", "parttime", "click", "preview");
+
                 if(!_isImageReady)
                 {
                     alert("請先選擇欲上傳的圖片");
@@ -195,18 +200,19 @@
         var inputDom = $doms.container.find(".image-input")[0];
 
 
-        $doms.btnSelectImage = $doms.container.find(".btn-upload").on("click", selectFile);
-
-        function selectFile()
+        $doms.btnSelectImage = $doms.container.find(".btn-upload").on("click",   function()
         {
+
+            ga("send", "event", "parttime", "click", "upload");
+
             inputDom.value = null;
             inputDom.click();
-        }
+        });
+
+
 
         $(inputDom).on("change", function()
         {
-            //_imageInput.imageReady = false;
-
             Loading.progress('empty').show();
             loadFile(inputDom, function()
             {

@@ -28,16 +28,19 @@
 
             setupButton(1, "index", function()
             {
+                ga("send", "event", "menu", "click", "index");
                 SceneHandler.toHash("/Index");
             });
 
             setupButton(2, "reviewer", function()
             {
+                ga("send", "event", "menu", "click", "artist");
                 SceneHandler.toHash("/Reviewer");
             });
 
             setupButton(3, "participate", function()
             {
+                ga("send", "event", "menu", "click", "parttime");
                 Main.loginFB("/Participate", function()
                 {
                     SceneHandler.toHash("/Participate");
@@ -46,6 +49,7 @@
 
             setupButton(4, "vote", function()
             {
+                ga("send", "event", "menu", "click", "vote");
                 Main.loginFB("/Participate", function()
                 {
                     SceneHandler.toHash("/Entries");
@@ -54,6 +58,7 @@
 
             setupButton(5, "fill", function()
             {
+                ga("send", "event", "menu", "click", "copywork");
                 Main.loginFB("/Fill", function()
                 {
                     SceneHandler.toHash("/Fill");
@@ -62,16 +67,21 @@
 
             setupButton(6, "entries", function()
             {
+                ga("send", "event", "menu", "click", "artworks");
                 Main.loginFB("/Participate", function()
                 {
                     SceneHandler.toHash("/Entries");
                 });
             });
 
-            setupButton(7, "participate", function()
+            setupButton(7, "rule", function()
             {
+                ga("send", "event", "menu", "click", "rule");
                 SceneHandler.toHash("/Rule");
             });
+
+            // 接下來兩個按鈕 ga event name 是: winner 和 exhibition
+
 
             //$doms.buttonContainer.css("display", 'none').css("visibility", "visible");
             $doms.buttonContainer.css("visibility", "visible").toggleClass("close-mode", true);
@@ -102,7 +112,7 @@
         }
     };
 
-    function setupButton(index, name, onClick)
+    function setupButton(index, name, onclick)
     {
         var $dom = $doms.buttons[name] = $doms.buttonContainer.find(".button:nth-child("+index+")");
 
@@ -110,7 +120,7 @@
         {
             self.hide();
 
-            if(onClick) onClick.call();
+            if(onclick) onclick.call();
         });
     }
 
