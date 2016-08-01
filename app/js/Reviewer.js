@@ -154,6 +154,26 @@
 
         self.resize();
 
+        var doms = $doms.container.find("div").toArray();
+        doms.sort(function(){return 0.5-Math.random()});
+
+        $.each(doms, function(index, dom)
+        {
+            dom.style.marginTop = (Math.random()*200 - 100) + 'px';
+        });
+
+        var tl = new TimelineMax;
+        tl.set(doms, {autoAlpha: 0});
+        tl.set($doms.container, {autoAlpha: 1});
+        tl.staggerTo(doms,.6, {autoAlpha:1, marginTop:0, ease:Back.easeOut},.01);
+        //tl.to($doms.container, .4, {autoAlpha: 1});
+        tl.add(function ()
+        {
+            cb.apply();
+        });
+
+
+        /*
         var tl = new TimelineMax;
         tl.set($doms.container, {autoAlpha: 0});
         tl.to($doms.container, .4, {autoAlpha: 1});
@@ -161,6 +181,7 @@
         {
             cb.apply();
         });
+        */
     }
 
     function hide(cb)

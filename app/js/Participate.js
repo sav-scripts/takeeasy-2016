@@ -140,8 +140,8 @@
             if (delay === undefined) delay = 0;
 
             var tl = new TimelineMax;
-            tl.set($doms.container, {autoAlpha: 0});
-            tl.to($doms.container, .4, {autoAlpha: 1}, delay);
+            tl.set($doms.container, {autoAlpha: 0, marginLeft:-100});
+            tl.to($doms.container, .4, {autoAlpha: 1, marginLeft: 0}, delay);
             tl.add(function ()
             {
                 if(cb) cb.apply();
@@ -230,8 +230,8 @@
             if (delay === undefined) delay = 0;
 
             var tl = new TimelineMax;
-            tl.set($doms.container, {autoAlpha: 0});
-            tl.to($doms.container, .4, {autoAlpha: 1}, delay);
+            tl.set($doms.container, {autoAlpha: 0, marginTop:50});
+            tl.to($doms.container, .4, {autoAlpha: 1, marginTop: 0}, delay);
             tl.add(function ()
             {
                 if (cb) cb.apply();

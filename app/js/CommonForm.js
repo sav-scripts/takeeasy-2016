@@ -185,6 +185,7 @@
 
                     Loading.progress('資料傳輸中 ... 請稍候').show();
 
+
                     ApiProxy.callApi("entries_vote", formObj, true, function(response)
                     {
                         if(response.error)
@@ -193,7 +194,7 @@
                         }
                         else
                         {
-                            Entries.VoteSuccess.setShareEntrySerial(response.serial);
+                            Entries.VoteSuccess.setShareEntrySerial(_votingSerial);
                             Entries.VoteSuccess.setShareImageUrl(response.share_url);
                             Entries.VoteSuccess.show();
                         }

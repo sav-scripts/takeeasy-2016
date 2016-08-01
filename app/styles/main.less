@@ -284,6 +284,8 @@ div{
     top: 16px;
     width: 156px;
     height: 58px;
+
+    cursor: pointer;
 }
 #statements{
     position: absolute;
@@ -467,6 +469,7 @@ div{
 
         .image-input{
             visibility: hidden;
+//            position: absolute;
         }
     }
 }
@@ -606,7 +609,7 @@ div{
             .content{
                 position: relative;
                 width: 728px;
-                height: 476px;
+                height: 521px;
 
                 left: 13px;
 
@@ -775,6 +778,8 @@ div{
             letter-spacing: 1px;
             //border: 1px solid black;
             line-height: 23px;
+
+            word-break: break-all;
         }
 
         .image-preview{
@@ -1272,7 +1277,7 @@ div{
 
                 position: absolute;
                 width: @w;
-                height: 261px;
+                height: 260px;
 
                 left: @wGap * (@index - 1);
 
@@ -1346,14 +1351,14 @@ div{
 
         .content-wrapper();
 
-        .abs-div(-547,-105,1079,261);
+        .abs-div(-547,-105,1079,260);
         //        background: rgba(0,0,0,.2);
 
-        .my-mixin(1, 0, 275, 165, 55);
-        .my-mixin(2, 0, 290, 211, 28);
-        .my-mixin(3, 0, 283, 295, 41);
+        .my-mixin(1, 0, 275, 165, 55, 1);
+        .my-mixin(2, 0, 290, 211, 28, 3);
+        .my-mixin(3, 0, 283, 295, 41, 3);
 
-        .my-mixin(@index; @sl; @st; @sw; @sh;)
+        .my-mixin(@index; @sl; @st; @sw; @sh; @thumb-index;)
         {
             @w: 347px;
             @wGap: @w + 19px;
@@ -1362,13 +1367,14 @@ div{
             {
                 position: absolute;
                 width: @w;
-                height: 261px;
+                height: 260px;
 
                 left: @wGap * (@index - 1);
 
                 cursor: pointer;
 
-                .image-bg("reviewer-@{index}.png");
+                .image-bg("fill-illust-@{index}-@{thumb-index}.png");
+                background-size: cover;
 
                 .my-word{
 //                    .abs-div(0, 288, 125,13,"reviewer-word.png");

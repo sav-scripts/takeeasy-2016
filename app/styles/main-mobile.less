@@ -816,11 +816,11 @@
             .abs-div(-238,-147,1079,261);
             //        background: rgba(0,0,0,.2);
 
-            .my-mixin(1, 0, 370, 165, 55);
-            .my-mixin(2, 0, 383, 211, 28);
-            .my-mixin(3, 0, 377, 295, 41);
+            .my-mixin(1, 0, 370, 165, 55, 1);
+            .my-mixin(2, 0, 383, 211, 28, 3);
+            .my-mixin(3, 0, 377, 295, 41, 3);
 
-            .my-mixin(@index; @sl; @st; @sw; @sh;)
+            .my-mixin(@index; @sl; @st; @sw; @sh; @thumb-index;)
             {
                 @w: 472px;
                 @h: 354px;
@@ -835,7 +835,9 @@
 
                     left: @wGap * (@index - 1);
 
-                    .image-bg("reviewer-@{index}.m.png");
+
+                    .image-bg("fill-illust-@{index}-@{thumb-index}.png");
+                    background-size: cover;
 
                     .my-word{
 //                        .abs-div(124, 379, 214,23,"reviewer-word.m.png");

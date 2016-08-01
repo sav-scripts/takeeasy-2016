@@ -596,6 +596,7 @@ div.disactivated {
   top: 16px;
   width: 156px;
   height: 58px;
+  cursor: pointer;
 }
 #statements {
   position: absolute;
@@ -1155,7 +1156,7 @@ div.disactivated {
 #common-form .eula-content .content-container .content {
   position: relative;
   width: 728px;
-  height: 476px;
+  height: 521px;
   left: 13px;
   background-image: url("../images/eula-content.png");
   background-size: auto;
@@ -1355,6 +1356,7 @@ div.disactivated {
   height: 252px;
   letter-spacing: 1px;
   line-height: 23px;
+  word-break: break-all;
 }
 #entry-view .wrapper .image-preview {
   position: absolute;
@@ -2061,7 +2063,7 @@ div.disactivated {
 #reviewer .reviewers .reviewer:nth-child(1) {
   position: absolute;
   width: 347px;
-  height: 261px;
+  height: 260px;
   left: 0px;
   background-image: url("../images/reviewer-1.png");
   background-size: auto;
@@ -2080,7 +2082,7 @@ div.disactivated {
 #reviewer .reviewers .reviewer:nth-child(2) {
   position: absolute;
   width: 347px;
-  height: 261px;
+  height: 260px;
   left: 366px;
   background-image: url("../images/reviewer-2.png");
   background-size: auto;
@@ -2099,7 +2101,7 @@ div.disactivated {
 #reviewer .reviewers .reviewer:nth-child(3) {
   position: absolute;
   width: 347px;
-  height: 261px;
+  height: 260px;
   left: 732px;
   background-image: url("../images/reviewer-3.png");
   background-size: auto;
@@ -2216,18 +2218,19 @@ div.disactivated {
   left: -547px;
   top: -105px;
   width: 1079px;
-  height: 261px;
+  height: 260px;
   margin-left: 0px;
   margin-top: 0px;
 }
 #fill .illustrator-list .illustrator:nth-child(1) {
   position: absolute;
   width: 347px;
-  height: 261px;
+  height: 260px;
   left: 0px;
   cursor: pointer;
-  background-image: url("../images/reviewer-1.png");
+  background-image: url("../images/fill-illust-1-1.png");
   background-size: auto;
+  background-size: cover;
 }
 #fill .illustrator-list .illustrator:nth-child(1) .my-word {
   position: absolute;
@@ -2258,11 +2261,12 @@ div.disactivated {
 #fill .illustrator-list .illustrator:nth-child(2) {
   position: absolute;
   width: 347px;
-  height: 261px;
+  height: 260px;
   left: 366px;
   cursor: pointer;
-  background-image: url("../images/reviewer-2.png");
+  background-image: url("../images/fill-illust-2-3.png");
   background-size: auto;
+  background-size: cover;
 }
 #fill .illustrator-list .illustrator:nth-child(2) .my-word {
   position: absolute;
@@ -2293,11 +2297,12 @@ div.disactivated {
 #fill .illustrator-list .illustrator:nth-child(3) {
   position: absolute;
   width: 347px;
-  height: 261px;
+  height: 260px;
   left: 732px;
   cursor: pointer;
-  background-image: url("../images/reviewer-3.png");
+  background-image: url("../images/fill-illust-3-3.png");
   background-size: auto;
+  background-size: cover;
 }
 #fill .illustrator-list .illustrator:nth-child(3) .my-word {
   position: absolute;
@@ -4391,8 +4396,9 @@ div.disactivated {
     width: 472px;
     height: 354px;
     left: 0px;
-    background-image: url("../images/reviewer-1.m.png");
+    background-image: url("../images/fill-illust-1-1.png");
     background-size: auto;
+    background-size: cover;
   }
   #fill .illustrator-list .illustrator:nth-child(1) .my-word {
     position: absolute;
@@ -4421,8 +4427,9 @@ div.disactivated {
     width: 472px;
     height: 354px;
     left: 491px;
-    background-image: url("../images/reviewer-2.m.png");
+    background-image: url("../images/fill-illust-2-3.png");
     background-size: auto;
+    background-size: cover;
   }
   #fill .illustrator-list .illustrator:nth-child(2) .my-word {
     position: absolute;
@@ -4451,8 +4458,9 @@ div.disactivated {
     width: 472px;
     height: 354px;
     left: 982px;
-    background-image: url("../images/reviewer-3.m.png");
+    background-image: url("../images/fill-illust-3-3.png");
     background-size: auto;
+    background-size: cover;
   }
   #fill .illustrator-list .illustrator:nth-child(3) .my-word {
     position: absolute;

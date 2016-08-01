@@ -22,6 +22,11 @@
                 _isHiding? self.show(): self.hide();
             });
 
+            $doms.logo = $("#logo").on("click", function()
+            {
+                SceneHandler.toHash("/Index");
+            });
+
             $doms.buttonContainer = $doms.container.find(".button-container");
 
             $doms.buttons = {};

@@ -18,6 +18,7 @@
             setting =
             {
                 appId: setting,
+                status: true,
                 cookie: true,
                 xfbml: true,
                 version: "v2.4"
@@ -101,6 +102,8 @@
     {
         FB.getLoginStatus(function(response)
         {
+            //alert("status = " + response.status);
+
             if (response.status === 'connected')
             {
                 if(permissions)
@@ -115,7 +118,7 @@
             else
             {
                 //doRedirectLogin();
-                cb.call(null, {message:"no connect"}, null);
+                cb.call(null, {message:"no connect"}, response);
             }
         });
 

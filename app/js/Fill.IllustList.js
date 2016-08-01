@@ -68,6 +68,8 @@
             if (!_isHiding) return;
             _isHiding = false;
 
+            ga("send", "pageview", "copywork_input");
+
             $doms.parent.append($doms.container);
 
             self.resize();

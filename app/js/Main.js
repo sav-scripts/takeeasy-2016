@@ -22,7 +22,10 @@
             fbToken: null,
             fbUid: null,
 
+            fbState: null,
+
             isiOS: false,
+            isLineBrowser: false,
 
             viewport:
             {
@@ -43,20 +46,21 @@
 
             if(Main.settings.isLocal || Utility.urlParams.usefakedata == '1') Main.settings.useFakeData = true;
 
-            if(Utility.urlParams.state)
-            {
-                /*
-                var length = history.length;
-                history.go(-length);
-                window.location.replace(Utility.getPath() + "#" + Utility.urlParams.state);
-                */
-                removeFBParams();
-            }
 
+            //alert(location.href);
+
+            checkAccessToken();
+
+            self.settings.isLineBrowser = Boolean(navigator.userAgent.match('Line'));
 
             self.settings.isiOS = Utility.isiOS();
 
             //self.settings.isiOS = true;
+
+            //if(navigator.userAgent.match('Line'))
+            //{
+            //    alert('您使用的瀏覽器不支援某些功能，建議您使用其他瀏覽器瀏覽本網站.');
+            //}
 
 
             var version = Utility.urlParams.nocache == '1'? new Date().getTime(): "0";
@@ -102,7 +106,6 @@
 
             FBHelper.init(Main.settings.fb_appid, function()
             {
-
                 FBHelper.checkLoginStatus(Main.settings.fbPermissions, function(error, authResponse)
                 {
                     if(error == null)
@@ -110,6 +113,22 @@
                         Main.settings.fbToken = authResponse.accessToken;
                         Main.settings.fbUid = authResponse.userID;
                         startApp();
+                    }
+                    else if(self.settings.fbToken)
+                    {
+                        FB.api('/me?access_token=' + self.settings.fbToken + '', function (response)
+                        {
+                            if(response.id)
+                            {
+                                self.settings.fbUid = response.id;
+                                //alert("check");
+                                startApp();
+                            }
+                            else
+                            {
+                                startApp();
+                            }
+                        });
                     }
                     else
                     {
@@ -129,6 +148,14 @@
 
                             cbBeforeChange: function()
                             {
+                                var popups = [EntryView, Participate.Success, Entries.VoteSuccess, Entries.Reviewing, Entries.Unapproved, Fill.Success],
+                                    i;
+                                for(i=0;i<popups.length;i++)
+                                {
+                                    popups[i].hide();
+                                }
+
+
                             },
                             cbContentChange: function(hashName)
                             {
@@ -141,6 +168,18 @@
                             },
                             hashChangeTester: function(hashName)
                             {
+                                if(hashName == '/Participate')
+                                {
+                                    if(self.settings.isLineBrowser)
+                                    {
+                                        alert('您的瀏覽器不支援上傳檔案, 請使用其他的瀏覽器瀏覽此單元');
+                                        hashName = null; // cancel content change
+                                        SceneHandler.setHash('/Index');
+
+                                        return null;
+                                    }
+                                }
+
                                 if(hashName == '/Participate' || hashName == '/Fill')
                                 {
                                     if(!Main.settings.fbToken)
@@ -153,12 +192,11 @@
                                     }
                                 }
 
-
                                 if(hashName == '/Participate' || hashName == '/Fill')
                                 {
                                     if(!Modernizr.canvas)
                                     {
-                                        alert('您的瀏覽器不支援 html5 canvas, 請使用較新的瀏覽器瀏覽此單元');
+                                        alert('您的瀏覽器不支援 html5 canvas, 請使用其他的瀏覽器瀏覽此單元');
 
                                         hashName = null; // cancel content change
                                         SceneHandler.setHash('/Index');
@@ -166,6 +204,7 @@
                                         return null;
                                     }
                                 }
+
 
                                 return hashName;
                             }
@@ -209,7 +248,47 @@
         loginFB: doLogin
     };
 
+    function checkAccessToken()
+    {
+        if(location.href.match("access_token") && location.href.match("state"))
+        {
+            var string = "?" + location.href.split("#")[1];
+
+            if(string)
+            {
+                self.settings.fbToken = Helper.getParameterByName("access_token", string);
+                self.settings.fbState = Helper.getParameterByName("state", string);
+
+                removeFBParams();
+            }
+        }
+    }
+
     function removeFBParams()
+    {
+        if(history && history.replaceState)
+        {
+            var hash = Main.settings.fbState;
+            var uri = Helper.removeURLParameter(location.href, 'code');
+            uri = Helper.removeURLParameter(uri, 'state');
+
+            var currentHash = SceneHandler.getHash();
+
+            uri = uri.replace('?#' + currentHash, '').replace('#' + currentHash, '');
+
+            uri += "#" + hash;
+
+            //console.log("final uri = " + uri);
+            window.history.replaceState({path: uri}, '', uri);
+
+            //history.go(-length);
+            //window.location.replace(Utility.getPath() + "#" + Utility.urlParams.state);
+        }
+    }
+
+
+
+    function removeFBParams_old()
     {
         if(history && history.replaceState)
         {
@@ -257,7 +336,7 @@
         {
             //if(true)
             //if(Main.settings.isMobile)
-            if(Main.settings.isiOS)
+            if(Main.settings.isiOS || Main.settings.isLineBrowser)
             {
                 FB.getLoginStatus(function(response)
                 {
@@ -345,8 +424,10 @@
         {
             var uri = redirectUrl? encodeURI(redirectUrl): encodeURI(Utility.getPath());
 
+
             var url = "https://www.facebook.com/dialog/oauth?"+
-                "client_id="+Main.settings.fb_appid+
+                "response_type=token"+
+                "&client_id="+Main.settings.fb_appid+
                 "&scope="+Main.settings.fbPermissions.join(",")+
                 "&state="+ targetHash +
                 "&redirect_uri=" + uri;

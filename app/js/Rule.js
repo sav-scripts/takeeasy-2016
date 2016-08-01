@@ -89,8 +89,9 @@
         self.resize();
 
         var tl = new TimelineMax;
-        tl.set($doms.container, {autoAlpha: 0});
-        tl.to($doms.container, .4, {autoAlpha: 1});
+        tl.set($doms.container, {autoAlpha: 0, marginTop: -300});
+        tl.to($doms.container, .3, {autoAlpha: 1}, 0);
+        tl.to($doms.container, .6, {marginTop: 0, ease:Back.easeOut}, 0);
         tl.add(function ()
         {
             cb.apply();
@@ -100,7 +101,7 @@
     function hide(cb)
     {
         var tl = new TimelineMax;
-        tl.to($doms.container, .4, {autoAlpha: 0});
+        tl.to($doms.container, .4, {autoAlpha: 0, marginTop: -200});
         tl.add(function ()
         {
             $doms.container.detach();
