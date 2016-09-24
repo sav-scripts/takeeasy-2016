@@ -44,9 +44,10 @@
             {
 
 
-                var containerHeight = $doms.contentContainer.height();
-                var $ssContainer = $(_ss.doms.container);
-                _ss.containerSize(null, containerHeight).scrollBound($ssContainer.width()+10, 3, 0, containerHeight-44).update(true);
+                var containerHeight = $doms.contentContainer.height(),
+                    containerWidth = $doms.contentContainer.width();
+                //var $ssContainer = $(_ss.doms.container);
+                _ss.containerSize(null, containerHeight).scrollBound(containerWidth+10, 3, 0, containerHeight-44).update(true);
             }
 
         }

@@ -23,6 +23,10 @@
             height: 1120px;
         }
 
+        &.winner-entry-mode{
+            height: 1250px;
+        }
+
         @media (max-height: @mobile-height) {
             height: @mobile-height;
         }
@@ -963,5 +967,167 @@
         }
     }
 
+
+
+    /** winners **/
+    #winners{
+
+        .layout-mobile("layouts/winners-mobile.jpg");
+
+        .title{
+            .abs-div(-279,-447,584,179,"winners-title.m.png");
+        }
+
+        .girl{
+            left: -280px;
+            top: 215px;
+        }
+
+        .dog{
+            left:123px;
+            top:250px;
+        }
+
+        .boy{
+            .abs-div(-272,-305,160,153,"winners-boy.m.png");
+        }
+
+        .basement{
+
+            .abs-div(-279,-258,555,569);
+
+            .inner-title{
+                left: 179px;
+                top: 44px;
+            }
+
+            .content{
+                .abs-div(25,124,507,405,"winners-content.m.png");
+            }
+
+            .btn-close{
+                left:516px;
+                top:11px;
+            }
+        }
+    }
+
+    /** winners entries **/
+    #winner-entries{
+
+        .layout{
+            @w: 640px;
+            @h: 1250px;
+            position: absolute;
+            width: @w;
+            height: @h;
+
+            left: -@w * .5;
+            top: -@h * .5;
+
+            .image-bg("layouts/winner-entries-mobile.jpg");
+            opacity: .3;
+        }
+        .title{
+            .abs-div(-286,-591,593,157,"winner-entries-title.png");
+        }
+
+        .basement{
+
+            @w: 562px;
+            @h: 966px;
+
+            .abs-div(-283,-415,@w,@h);
+
+            //        background-color:white;
+            border: 1px solid #666;
+
+            .btn-close{
+                .abs-div(525, 13, 28, 28);
+                .image-bg("common-btn-close.png");
+
+                cursor: pointer;
+                &:active{
+                    margin-top: 1px;
+                }
+            }
+
+            .entries-type{
+                position: absolute;
+                top:16px;
+                left:51px;
+                width: 200px;
+                height: 26px;
+            }
+
+            .contents{
+
+                position: absolute;
+                width: @w;
+                height: @h;
+
+                @num: 26;
+
+
+                overflow: hidden;
+
+                .wrapper{
+
+                    position: absolute;
+                    left:0;
+                    top:0;
+
+                    .my-loop (1);
+                    .my-loop (@i) when (@i <= @num) {
+                        .my-mixin(@i);
+                        .my-loop(@i + 1);
+                    }
+
+                    .my-mixin(@index){
+                        .content:nth-child(@{index})
+                        {
+                            position: absolute;
+                            width: @w;
+                            height: @h;
+                            left: (@index - 1) * @w;
+
+                            .image-bg("winner-entries-@{index}.m.jpg");
+                        }
+                    }
+                }
+                &.vp-1{
+                    .wrapper{
+                        .content:nth-child(@{num})
+                        {
+                            left: -@w;
+                        }
+                    }
+                }
+                &.vp-2{
+                    .wrapper{
+                        .content:nth-child(1)
+                        {
+                            left: @w * @num;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .percent-div(arrow-left, -301, -25, 38, 38, "entry-view-arrow-left.png");
+        .percent-div(arrow-right, 263, -25, 38, 38, "entry-view-arrow-right.png");
+
+        .arrow-left, .arrow-right{
+            cursor: pointer;
+        }
+
+        .arrow-left:active{
+            margin-left: -1px;
+        }
+        .arrow-right:active{
+            margin-left: -1px;
+        }
+    }
 
 }

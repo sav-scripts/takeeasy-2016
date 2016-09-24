@@ -46,33 +46,46 @@
             setupButton(3, "participate", function()
             {
                 ga("send", "event", "menu", "click", "parttime");
-                Main.loginFB("/Participate", function()
-                {
-                    SceneHandler.toHash("/Participate");
-                });
+
+                alert("本活動已經截止 感謝您的參與");
+
+                //Main.loginFB("/Participate", function()
+                //{
+                //    SceneHandler.toHash("/Participate");
+                //});
             });
 
             setupButton(4, "vote", function()
             {
                 ga("send", "event", "menu", "click", "vote");
-                Main.loginFB("/Participate", function()
-                {
-                    SceneHandler.toHash("/Entries");
-                });
+
+                alert("本活動已經截止 感謝您的參與");
+
+                //Main.loginFB("/Participate", function()
+                //{
+                //    SceneHandler.toHash("/Entries");
+                //});
             });
 
             setupButton(5, "fill", function()
             {
                 ga("send", "event", "menu", "click", "copywork");
-                Main.loginFB("/Fill", function()
-                {
-                    SceneHandler.toHash("/Fill");
-                });
+
+                alert("本活動已經截止 感謝您的參與");
+
+                //Main.loginFB("/Fill", function()
+                //{
+                //    SceneHandler.toHash("/Fill");
+                //});
             });
 
             setupButton(6, "entries", function()
             {
                 ga("send", "event", "menu", "click", "artworks");
+
+                //alert("本活動已經截止 感謝您的參與");
+                //return;
+
                 Main.loginFB("/Participate", function()
                 {
                     SceneHandler.toHash("/Entries");
@@ -83,6 +96,18 @@
             {
                 ga("send", "event", "menu", "click", "rule");
                 SceneHandler.toHash("/Rule");
+            });
+
+            setupButton(8, "winners", function()
+            {
+                ga("send", "event", "menu", "click", "winners");
+                SceneHandler.toHash("/Winners");
+            });
+
+            setupButton(9, "winner entries", function()
+            {
+                ga("send", "event", "menu", "click", "winner entries");
+                SceneHandler.toHash("/WinnerEntries");
             });
 
             // 接下來兩個按鈕 ga event name 是: winner 和 exhibition

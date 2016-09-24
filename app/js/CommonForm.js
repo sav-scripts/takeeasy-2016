@@ -32,7 +32,11 @@
 
             $doms.btnSend = $doms.container.find(".btn-send").on("click", function()
             {
-                trySend();
+
+                alert("本活動已經截止 感謝您的參與");
+                return;
+
+                //trySend();
             });
 
             $doms.container.detach();
@@ -113,9 +117,9 @@
 
                 if(vp.changed)
                 {
-                    var containerHeight = $doms.eulaContentContainer.height();
-                    var $ssContainer = $(_ss.doms.container);
-                    _ss.containerSize(null, containerHeight).scrollBound($ssContainer.width() - 21, 0, 0, containerHeight - 38).update(true);
+                    var containerHeight = $doms.eulaContentContainer.height(),
+                        containerWidth = $doms.eulaContentContainer.width();
+                    _ss.containerSize(null, containerHeight).scrollBound(containerWidth - 21, 0, 0, containerHeight - 38).update(true);
                 }
             }
         }

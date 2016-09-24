@@ -46,7 +46,6 @@
 
             if(Main.settings.isLocal || Utility.urlParams.usefakedata == '1') Main.settings.useFakeData = true;
 
-
             //alert(location.href);
 
             checkAccessToken();
@@ -63,7 +62,7 @@
             //}
 
 
-            var version = Utility.urlParams.nocache == '1'? new Date().getTime(): "0";
+            var version = Utility.urlParams.nocache == '1'? new Date().getTime(): "1";
 
             var hashArray =
             [
@@ -72,7 +71,9 @@
                 "/Entries",
                 "/Rule",
                 "/Reviewer",
-                "/Fill"
+                "/Fill",
+                "/Winners",
+                "/WinnerEntries"
             ],
              blockHashs =
             [
@@ -230,8 +231,6 @@
             $(window).on("resize", onResize);
             onResize();
         },
-
-
 
         shakeScreen: function ()
         {

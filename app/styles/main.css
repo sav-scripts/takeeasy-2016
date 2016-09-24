@@ -272,7 +272,7 @@ div.disactivated {
 }
 #menu {
   position: absolute;
-  z-index: 1000;
+  z-index: 1001;
   right: 0;
   top: 0;
 }
@@ -3165,6 +3165,419 @@ div.disactivated {
   background-size: auto;
   cursor: pointer;
 }
+/** winners **/
+#winners {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+}
+#winners .layout {
+  position: absolute;
+  left: -600%;
+  top: -350%;
+  width: 1200%;
+  height: 700%;
+  background-image: url("../images/layouts/winners-pc.jpg");
+  background-size: cover;
+  opacity: 0.3;
+}
+#winners .title {
+  position: absolute;
+  left: -321px;
+  top: -300px;
+  width: 723px;
+  height: 188px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/winners-title.png");
+  background-size: auto;
+}
+#winners .girl {
+  position: absolute;
+  left: -452px;
+  top: 135px;
+  width: 170px;
+  height: 104px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/winners-girl.png");
+  background-size: auto;
+}
+#winners .dog {
+  position: absolute;
+  left: 267px;
+  top: 61px;
+  width: 179px;
+  height: 161px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/winners-mob.png");
+  background-size: auto;
+}
+#winners .basement {
+  position: absolute;
+  left: -376px;
+  top: -106px;
+  width: 732px;
+  height: 335px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-color: white;
+  border: 1px solid #666;
+}
+#winners .basement .inner-title {
+  position: absolute;
+  left: 269px;
+  top: 14px;
+  width: 180px;
+  height: 48px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/winners-inner-title.png");
+  background-size: auto;
+}
+#winners .basement .btn-close {
+  position: absolute;
+  left: 698px;
+  top: 7px;
+  width: 28px;
+  height: 28px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/common-btn-close.png");
+  background-size: auto;
+  cursor: pointer;
+}
+#winners .basement .btn-close:active {
+  margin-top: 2px;
+}
+#winners .basement .content {
+  position: absolute;
+  left: 83px;
+  top: 80px;
+  width: 556px;
+  height: 205px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/winners-content.png");
+  background-size: auto;
+}
+/** winners entries **/
+#winner-entries {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+}
+#winner-entries .layout {
+  position: absolute;
+  left: -600%;
+  top: -350%;
+  width: 1200%;
+  height: 700%;
+  background-image: url("../images/layouts/winner-entries-pc.jpg");
+  background-size: cover;
+  opacity: 0.3;
+}
+#winner-entries .title {
+  position: absolute;
+  left: -283px;
+  top: -343px;
+  width: 593px;
+  height: 157px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/winner-entries-title.png");
+  background-size: auto;
+}
+#winner-entries .basement {
+  position: absolute;
+  left: -531px;
+  top: -180px;
+  width: 1056px;
+  height: 462px;
+  margin-left: 0px;
+  margin-top: 0px;
+  border: 1px solid #666;
+}
+#winner-entries .basement .btn-close {
+  position: absolute;
+  left: 1017px;
+  top: 9px;
+  width: 28px;
+  height: 28px;
+  margin-left: 0px;
+  margin-top: 0px;
+  background-image: url("../images/common-btn-close.png");
+  background-size: auto;
+  cursor: pointer;
+}
+#winner-entries .basement .btn-close:active {
+  margin-top: 2px;
+}
+#winner-entries .basement .entries-type {
+  position: absolute;
+  top: -32px;
+  left: -4px;
+  width: 200px;
+  height: 26px;
+}
+#winner-entries .basement .contents {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  overflow: hidden;
+}
+#winner-entries .basement .contents .wrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(1) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 0px;
+  background-image: url("../images/winner-entries-1.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(2) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 1056px;
+  background-image: url("../images/winner-entries-2.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(3) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 2112px;
+  background-image: url("../images/winner-entries-3.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(4) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 3168px;
+  background-image: url("../images/winner-entries-4.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(5) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 4224px;
+  background-image: url("../images/winner-entries-5.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(6) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 5280px;
+  background-image: url("../images/winner-entries-6.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(7) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 6336px;
+  background-image: url("../images/winner-entries-7.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(8) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 7392px;
+  background-image: url("../images/winner-entries-8.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(9) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 8448px;
+  background-image: url("../images/winner-entries-9.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(10) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 9504px;
+  background-image: url("../images/winner-entries-10.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(11) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 10560px;
+  background-image: url("../images/winner-entries-11.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(12) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 11616px;
+  background-image: url("../images/winner-entries-12.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(13) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 12672px;
+  background-image: url("../images/winner-entries-13.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(14) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 13728px;
+  background-image: url("../images/winner-entries-14.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(15) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 14784px;
+  background-image: url("../images/winner-entries-15.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(16) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 15840px;
+  background-image: url("../images/winner-entries-16.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(17) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 16896px;
+  background-image: url("../images/winner-entries-17.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(18) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 17952px;
+  background-image: url("../images/winner-entries-18.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(19) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 19008px;
+  background-image: url("../images/winner-entries-19.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(20) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 20064px;
+  background-image: url("../images/winner-entries-20.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(21) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 21120px;
+  background-image: url("../images/winner-entries-21.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(22) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 22176px;
+  background-image: url("../images/winner-entries-22.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(23) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 23232px;
+  background-image: url("../images/winner-entries-23.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(24) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 24288px;
+  background-image: url("../images/winner-entries-24.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(25) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 25344px;
+  background-image: url("../images/winner-entries-25.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents .wrapper .content:nth-child(26) {
+  position: absolute;
+  width: 1056px;
+  height: 462px;
+  left: 26400px;
+  background-image: url("../images/winner-entries-26.jpg");
+  background-size: auto;
+}
+#winner-entries .basement .contents.vp-1 .wrapper .content:nth-child(26) {
+  left: -1056px;
+}
+#winner-entries .basement .contents.vp-2 .wrapper .content:nth-child(1) {
+  left: 27456px;
+}
+#winner-entries .arrow-left {
+  position: absolute;
+  left: -550%;
+  top: 30%;
+  width: 38%;
+  height: 38%;
+  background-image: url("../images/entry-view-arrow-left.png");
+  background-size: cover;
+}
+#winner-entries .arrow-right {
+  position: absolute;
+  left: 506%;
+  top: 30%;
+  width: 38%;
+  height: 38%;
+  background-image: url("../images/entry-view-arrow-right.png");
+  background-size: cover;
+}
+#winner-entries .arrow-left,
+#winner-entries .arrow-right {
+  cursor: pointer;
+}
+#winner-entries .arrow-left:active {
+  margin-left: -1px;
+}
+#winner-entries .arrow-right:active {
+  margin-left: -1px;
+}
 @media (max-width: 640px) {
   body {
     overflow-x: hidden;
@@ -3178,6 +3591,9 @@ div.disactivated {
   }
   #scene-container.extend-mode {
     height: 1120px;
+  }
+  #scene-container.winner-entry-mode {
+    height: 1250px;
   }
   #logo {
     left: 15px;
@@ -5005,6 +5421,382 @@ div.disactivated {
   #fill .illust-list .list-mask .list-container .illust:nth-child(9).open-mode .field-input {
     visibility: visible;
     height: 30px;
+  }
+  /** winners **/
+  #winners .layout {
+    position: absolute;
+    width: 640px;
+    height: 950px;
+    left: -320px;
+    top: -475px;
+    background-image: url("../images/layouts/winners-mobile.jpg");
+    background-size: auto;
+    opacity: 0.3;
+  }
+  #winners .title {
+    position: absolute;
+    left: -279px;
+    top: -447px;
+    width: 584px;
+    height: 179px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/winners-title.m.png");
+    background-size: auto;
+  }
+  #winners .girl {
+    left: -280px;
+    top: 215px;
+  }
+  #winners .dog {
+    left: 123px;
+    top: 250px;
+  }
+  #winners .boy {
+    position: absolute;
+    left: -272px;
+    top: -305px;
+    width: 160px;
+    height: 153px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/winners-boy.m.png");
+    background-size: auto;
+  }
+  #winners .basement {
+    position: absolute;
+    left: -279px;
+    top: -258px;
+    width: 555px;
+    height: 569px;
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+  #winners .basement .inner-title {
+    left: 179px;
+    top: 44px;
+  }
+  #winners .basement .content {
+    position: absolute;
+    left: 25px;
+    top: 124px;
+    width: 507px;
+    height: 405px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/winners-content.m.png");
+    background-size: auto;
+  }
+  #winners .basement .btn-close {
+    left: 516px;
+    top: 11px;
+  }
+  /** winners entries **/
+  #winner-entries .layout {
+    position: absolute;
+    width: 640px;
+    height: 1250px;
+    left: -320px;
+    top: -625px;
+    background-image: url("../images/layouts/winner-entries-mobile.jpg");
+    background-size: auto;
+    opacity: .3;
+  }
+  #winner-entries .title {
+    position: absolute;
+    left: -286px;
+    top: -591px;
+    width: 593px;
+    height: 157px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/winner-entries-title.png");
+    background-size: auto;
+  }
+  #winner-entries .basement {
+    position: absolute;
+    left: -283px;
+    top: -415px;
+    width: 562px;
+    height: 966px;
+    margin-left: 0px;
+    margin-top: 0px;
+    border: 1px solid #666;
+  }
+  #winner-entries .basement .btn-close {
+    position: absolute;
+    left: 525px;
+    top: 13px;
+    width: 28px;
+    height: 28px;
+    margin-left: 0px;
+    margin-top: 0px;
+    background-image: url("../images/common-btn-close.png");
+    background-size: auto;
+    cursor: pointer;
+  }
+  #winner-entries .basement .btn-close:active {
+    margin-top: 1px;
+  }
+  #winner-entries .basement .entries-type {
+    position: absolute;
+    top: 16px;
+    left: 51px;
+    width: 200px;
+    height: 26px;
+  }
+  #winner-entries .basement .contents {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    overflow: hidden;
+  }
+  #winner-entries .basement .contents .wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(1) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 0px;
+    background-image: url("../images/winner-entries-1.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(2) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 562px;
+    background-image: url("../images/winner-entries-2.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(3) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 1124px;
+    background-image: url("../images/winner-entries-3.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(4) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 1686px;
+    background-image: url("../images/winner-entries-4.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(5) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 2248px;
+    background-image: url("../images/winner-entries-5.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(6) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 2810px;
+    background-image: url("../images/winner-entries-6.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(7) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 3372px;
+    background-image: url("../images/winner-entries-7.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(8) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 3934px;
+    background-image: url("../images/winner-entries-8.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(9) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 4496px;
+    background-image: url("../images/winner-entries-9.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(10) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 5058px;
+    background-image: url("../images/winner-entries-10.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(11) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 5620px;
+    background-image: url("../images/winner-entries-11.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(12) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 6182px;
+    background-image: url("../images/winner-entries-12.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(13) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 6744px;
+    background-image: url("../images/winner-entries-13.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(14) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 7306px;
+    background-image: url("../images/winner-entries-14.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(15) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 7868px;
+    background-image: url("../images/winner-entries-15.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(16) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 8430px;
+    background-image: url("../images/winner-entries-16.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(17) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 8992px;
+    background-image: url("../images/winner-entries-17.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(18) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 9554px;
+    background-image: url("../images/winner-entries-18.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(19) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 10116px;
+    background-image: url("../images/winner-entries-19.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(20) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 10678px;
+    background-image: url("../images/winner-entries-20.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(21) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 11240px;
+    background-image: url("../images/winner-entries-21.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(22) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 11802px;
+    background-image: url("../images/winner-entries-22.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(23) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 12364px;
+    background-image: url("../images/winner-entries-23.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(24) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 12926px;
+    background-image: url("../images/winner-entries-24.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(25) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 13488px;
+    background-image: url("../images/winner-entries-25.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents .wrapper .content:nth-child(26) {
+    position: absolute;
+    width: 562px;
+    height: 966px;
+    left: 14050px;
+    background-image: url("../images/winner-entries-26.m.jpg");
+    background-size: auto;
+  }
+  #winner-entries .basement .contents.vp-1 .wrapper .content:nth-child(26) {
+    left: -562px;
+  }
+  #winner-entries .basement .contents.vp-2 .wrapper .content:nth-child(1) {
+    left: 14612px;
+  }
+  #winner-entries .arrow-left {
+    position: absolute;
+    left: -301%;
+    top: -25%;
+    width: 38%;
+    height: 38%;
+    background-image: url("../images/entry-view-arrow-left.png");
+    background-size: cover;
+  }
+  #winner-entries .arrow-right {
+    position: absolute;
+    left: 263%;
+    top: -25%;
+    width: 38%;
+    height: 38%;
+    background-image: url("../images/entry-view-arrow-right.png");
+    background-size: cover;
+  }
+  #winner-entries .arrow-left,
+  #winner-entries .arrow-right {
+    cursor: pointer;
+  }
+  #winner-entries .arrow-left:active {
+    margin-left: -1px;
+  }
+  #winner-entries .arrow-right:active {
+    margin-left: -1px;
   }
 }
 @media (max-width: 640px) and (max-height: 950px) {

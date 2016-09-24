@@ -182,7 +182,7 @@ div{
 #menu{
 
     position: absolute;
-    z-index: 1000;
+    z-index: 1001;
     right: 0;
     top: 0;
 
@@ -1604,6 +1604,161 @@ div{
 
             cursor: pointer;
         }
+    }
+}
+
+/** winners **/
+#winners{
+    .container-pc();
+    .layout-pc("layouts/winners-pc.jpg");
+
+    .title{
+        .abs-div(-321,-300,723,188,"winners-title.png");
+    }
+
+    .girl{
+        .abs-div(-452,135,170,104,"winners-girl.png");
+    }
+
+
+    .dog{
+        .abs-div(267,61,179,161,"winners-mob.png");
+    }
+
+    .basement{
+
+        .abs-div(-376,-106,732,335);
+
+        background-color:white;
+        border: 1px solid #666;
+
+        .inner-title{
+            .abs-div(269,14,180,48);
+            .image-bg("winners-inner-title.png");
+        }
+
+
+        .btn-close{
+            .abs-div(698, 7, 28, 28);
+            .image-bg("common-btn-close.png");
+
+            cursor: pointer;
+            &:active{
+                margin-top: 2px;
+            }
+        }
+
+        .content{
+            .abs-div(83,80,556,205,"winners-content.png");
+        }
+    }
+}
+
+/** winners entries **/
+#winner-entries{
+
+    .container-pc();
+    .layout-pc("layouts/winner-entries-pc.jpg");
+
+    .title{
+        .abs-div(-283,-343,593,157,"winner-entries-title.png");
+    }
+
+    .basement{
+
+        @w: 1056px;
+        @h: 462px;
+
+        .abs-div(-531,-180,@w,@h);
+
+//        background-color:white;
+        border: 1px solid #666;
+
+        .btn-close{
+            .abs-div(1017, 9, 28, 28);
+            .image-bg("common-btn-close.png");
+
+            cursor: pointer;
+            &:active{
+                margin-top: 2px;
+            }
+        }
+
+        .entries-type{
+            position: absolute;
+            top:-32px;
+            left:-4px;
+            width: 200px;
+            height: 26px;
+        }
+
+        .contents{
+
+            position: absolute;
+            width: @w;
+            height: @h;
+
+            @num: 26;
+
+
+            overflow: hidden;
+
+            .wrapper{
+
+                position: absolute;
+                left:0;
+                top:0;
+
+                .my-loop (1);
+                .my-loop (@i) when (@i <= @num) {
+                    .my-mixin(@i);
+                    .my-loop(@i + 1);
+                }
+
+                .my-mixin(@index){
+                    .content:nth-child(@{index})
+                    {
+                        position: absolute;
+                        width: @w;
+                        height: @h;
+                        left: (@index - 1) * @w;
+
+                        .image-bg("winner-entries-@{index}.jpg");
+                    }
+                }
+            }
+            &.vp-1{
+                .wrapper{
+                    .content:nth-child(@{num})
+                    {
+                        left: -@w;
+                    }
+                }
+            }
+            &.vp-2{
+                .wrapper{
+                    .content:nth-child(1)
+                    {
+                        left: @w * @num;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .percent-div(arrow-left, -550, 30, 38, 38, "entry-view-arrow-left.png");
+    .percent-div(arrow-right, 506, 30, 38, 38, "entry-view-arrow-right.png");
+
+    .arrow-left, .arrow-right{
+        cursor: pointer;
+    }
+
+    .arrow-left:active{
+        margin-left: -1px;
+    }
+    .arrow-right:active{
+        margin-left: -1px;
     }
 }
 

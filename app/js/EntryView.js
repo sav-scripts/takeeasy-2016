@@ -67,11 +67,14 @@
 
                 ga("send", "event", "artworks_view", "click", "vote");
 
-                Main.loginFB("/Entries", function()
-                {
-                    CommonForm.setVotingSerial(_entryData.serial);
-                    Entries.toStep("vote");
-                });
+                alert("本活動已經截止 感謝您的參與");
+                return;
+
+                //Main.loginFB("/Entries", function()
+                //{
+                //    CommonForm.setVotingSerial(_entryData.serial);
+                //    Entries.toStep("vote");
+                //});
             });
 
 
